@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($units as $unit)
+		@forelse($units as $unit)
 			<tr>
 				<td>#</td>
 				<td>{{ $unit->name }}</td>
@@ -42,6 +42,10 @@
 					</form>
 				</td>
 			</tr>
-		@endforeach
+		@empty
+			<tr>
+				<td colspan="6" class="text-center text-danger">{{ trans('unit.label.empty_data') }}</td>
+			</tr>
+		@endforelse
 	</tbody>
 </table>

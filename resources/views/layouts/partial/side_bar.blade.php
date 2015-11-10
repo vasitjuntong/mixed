@@ -72,6 +72,11 @@
 					</a>
 					<ul class="submenu">
 						<li>
+							<a href="/product-types">
+								<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
+							</a>
+						</li>
+						<li>
 							<a href="/units">
 								<span class="submenu-label">
 									{{ trans('main.side_menu.unit') }}

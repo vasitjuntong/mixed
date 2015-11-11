@@ -19,7 +19,9 @@ class ProductTypeCreateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|unique:product_types|max:255',
+            'name'          => 'required|unique:product_types|max:255',
+            'code_prefix'   => 'integer',
+            'code_default'  => 'integer',
         ];
     }
 

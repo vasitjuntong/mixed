@@ -1,0 +1,977 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"class",
+				"class	PHP New Class"
+			],
+			[
+				"Me",
+				"Material-Theme"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 210.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"new",
+				"ANF: New File"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"view tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"view tab",
+				"View: Toggle Tabs"
+			],
+			[
+				"Packre",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"viwe",
+				"View: Toggle Side Bar"
+			],
+			[
+				"view sdi",
+				"View: Toggle Side Bar"
+			],
+			[
+				"view sid",
+				"View: Toggle Side Bar"
+			],
+			[
+				"packre",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"pakc instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"packinsta",
+				"Package Control: Install Package"
+			],
+			[
+				"viwesi",
+				"View: Toggle Side Bar"
+			],
+			[
+				"packagere",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"pack instal",
+				"Package Control: Install Package"
+			],
+			[
+				"colo",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"colorsub",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"packa remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package instal",
+				"Package Control: Install Package"
+			],
+			[
+				"view",
+				"View: Toggle Status Bar"
+			]
+		],
+		"width": 557.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"php-cs-fixer",
+			"php -v",
+			"php",
+			"php-cs-fixer",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/units/partial/table.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/location.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/locations/partial/table.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/locations/partial/form.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/locations/edit.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/locations/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/LocationController.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Location.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Receive.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_153224_create_products_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_144214_create_product_type_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_152552_create_projects_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_170246_create_receives_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_171728_create_receive_items_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Project.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/projects/partial/form.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/projects/partial/table.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/projects/edit.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/projects/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/productTypes/partial/form.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/productTypes/partial/table.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/productTypes/edit.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/productTypes/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/units/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/units/partial/form.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/product_type.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/ProductTypeController.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/routes.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/project.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/ProjectUpdateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/ProductType.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/ProductTypeUpdateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/LocationUpdateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/ProjectCreateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/ProductTypeCreateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/LocationCreateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/UnitCreateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Requests/UnitUpdateRequest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/public/index.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/unit.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/units/edit.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Unit.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/ProjectController.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/UnitController.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/main.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/vendor/monolog/monolog/tests/Monolog/Handler/LogEntriesHandlerTest.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/side_bar.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/theme_setting.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/HomeController.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/products/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Http/Controllers/ProductController.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/PHP textfield.sublime-snippet",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/lang/th/validation.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/app.blade.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/PHP Breadcrump.sublime-snippet",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/breadcrump.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/config/app.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/top_nav.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/home/index.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/helpers.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/composer.json",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Helper/Flash.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/style.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php",
+		"/Users/BEEEEE/Downloads/update.sql",
+		"/Users/BEEEEE/Downloads/sweetalert-master/dist/sweetalert.css",
+		"/Users/BEEEEE/Downloads/sweetalert-master/dist/sweetalert.min.js",
+		"/Users/BEEEEE/WebProducts/Code/mixed/public/js/sweetalert.min.js",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_150727_create_location_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_145757_create_unit_table.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/BEEEEE/WebProducts/Code/mixed/.env",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/grey_container.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/patial/top_nav.blade.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/BEEEEE/WebProducts/Code/mixed/app/Providers/RouteServiceProvider.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/bootstrap/app.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/vendor/symfony/routing/Route.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/vendor/laravel/framework/src/Illuminate/Database/Grammar.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/BEEEEE/WebProducts/Code/mixed/resources/views/layouts/partial/style.blade",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_165105_create_stock_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_171006_create_stock_receives_table.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/Material Theme/Material-Theme.sublime-theme",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/Origami/Default (OSX).sublime-keymap",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_165420_create_stock_receive_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_152955_create_stock_table.php",
+		"/Users/BEEEEE/WebProducts/Code/mixed/database/migrations/2015_11_08_145432_create_product_table.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/PHP Construct.sublime-snippet",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/PHP New Class.sublime-snippet",
+		"/Users/BEEEEE/WebProducts/Code/product-list/app/Product.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/PHP Companion.sublime-settings",
+		"/Users/BEEEEE/WebProducts/Code/product-list/app/Http/Controllers/ProductController.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/builds/PHP CS Fix PRS2.sublime-build",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/PHP Companion/PHP Companion.sublime-settings",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/AdvancedNewFile/Default (OSX).sublime-keymap",
+		"/Users/BEEEEE/WebProducts/Code/product-list/resources/views/product-types/index.blade.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/Php Method.sublime-snippet",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/User/snippets/PHP Protected Method.sublime-snippet",
+		"/Users/BEEEEE/WebProducts/Code/product-list/app/Repository/ProductRepository.php",
+		"/Users/BEEEEE/WebProducts/Code/product-list/resources/views/layouts/partial/scripts.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/product-list/resources/views/layouts/app.blade.php",
+		"/Users/BEEEEE/WebProducts/Code/product-list/.env",
+		"/Users/BEEEEE/WebProducts/Code/product-list/resources/views/products/show.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/a7soft/product-list/app/Http/Controllers/ProductController.php",
+		"/Users/BEEEEE/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 71.0
+	},
+	"find_in_files":
+	{
+		"height": 164.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"trans('productType",
+			"prouduct",
+			"productType",
+			"name",
+			"'),\n",
+			"',\n",
+			"name",
+			"location",
+			"locations",
+			"trans('productType",
+			"prouductType",
+			"ProuductType",
+			"unit",
+			"/productTypes",
+			"unit",
+			"/productTypes",
+			"unit",
+			"/productTypes",
+			"unit",
+			"โครงการ",
+			"trans('productType",
+			"unit",
+			"Unit",
+			"project",
+			"unit",
+			"name",
+			"location",
+			"โกดัง",
+			"location",
+			"unit",
+			"units",
+			"unit.",
+			"units",
+			"units.",
+			"unit.",
+			"unit",
+			"Unit",
+			"unit",
+			"Unit",
+			"unit.",
+			"=\"/",
+			"$unit",
+			"unit",
+			"unit.",
+			"Unit",
+			"$units",
+			"units",
+			"Unit",
+			"unit",
+			"Unit",
+			"unit",
+			"Unit",
+			"unit",
+			"Unit",
+			"unit",
+			"unit.",
+			"unit",
+			"$unit",
+			"units",
+			"units.",
+			"unit.",
+			"units",
+			"หน่วยสินค้า",
+			"unit.",
+			"',\n",
+			">\n",
+			"td",
+			"name",
+			"\n];",
+			"<script src='",
+			"<script src=\"",
+			"<link href=\"",
+			"href=\"",
+			"bootstrap",
+			"38, 50, 56",
+			"super+shift+g",
+			"line",
+			"go",
+			"go_line",
+			"38, 50, 56",
+			"test",
+			"38, 50, 56",
+			"theme"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"37, 43, 57"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 71.0
+	},
+	"input":
+	{
+		"height": 72.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 325.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Java/Ant.sublime-build",
+	"project": "pcms.sublime-project",
+	"replace":
+	{
+		"height": 116.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"side_",
+				"resources/views/layouts/partial/side_bar.blade.php"
+			],
+			[
+				"",
+				"app/Http/Controllers/ProductTypeController.php"
+			],
+			[
+				"produtype/table",
+				"resources/views/productTypes/partial/table.blade.php"
+			],
+			[
+				"produtype/in",
+				"resources/views/productTypes/index.blade.php"
+			],
+			[
+				"th/pro",
+				"resources/lang/th/product_type.php"
+			],
+			[
+				"app/productytp",
+				"app/ProductType.php"
+			],
+			[
+				"producttype/form",
+				"resources/views/productTypes/partial/form.blade.php"
+			],
+			[
+				"http/producttype",
+				"app/Http/Controllers/ProductTypeController.php"
+			],
+			[
+				"app/producttype",
+				"app/ProductType.php"
+			],
+			[
+				"producttype/inde",
+				"resources/views/productTypes/index.blade.php"
+			],
+			[
+				"th/producttype",
+				"resources/lang/th/productType.php"
+			],
+			[
+				"app/unitcon",
+				"app/Http/Controllers/UnitController.php"
+			],
+			[
+				"producttypecontroller",
+				"app/Http/Controllers/ProductTypeController.php"
+			],
+			[
+				"http/rou",
+				"app/Http/routes.php"
+			],
+			[
+				"th/unit",
+				"resources/lang/th/unit.php"
+			],
+			[
+				"unit/table",
+				"resources/views/units/partial/table.blade.php"
+			],
+			[
+				"app/lo",
+				"app/Location.php"
+			],
+			[
+				"app/unit",
+				"app/Unit.php"
+			],
+			[
+				"app/proj",
+				"app/Project.php"
+			],
+			[
+				"project/edit",
+				"resources/views/projects/edit.blade.php"
+			],
+			[
+				"projectcont",
+				"app/Http/Controllers/ProjectController.php"
+			],
+			[
+				"app/proje",
+				"app/Project.php"
+			],
+			[
+				"create_receive",
+				"database/migrations/2015_11_08_170246_create_receives_table.php"
+			],
+			[
+				"create_product.",
+				"database/migrations/2015_11_08_153224_create_products_table.php"
+			],
+			[
+				"create_product",
+				"database/migrations/2015_11_08_144214_create_product_type_table.php"
+			],
+			[
+				"create_project",
+				"database/migrations/2015_11_08_152552_create_projects_table.php"
+			],
+			[
+				"create_user",
+				"database/migrations/2014_10_12_000000_create_users_table.php"
+			],
+			[
+				"create_revcie",
+				"database/migrations/2015_11_08_171728_create_receive_items_table.php"
+			],
+			[
+				"app/re",
+				"app/Receive.php"
+			],
+			[
+				"app/project",
+				"app/Project.php"
+			],
+			[
+				"projectcon",
+				"app/Http/Controllers/ProjectController.php"
+			],
+			[
+				"project/tab",
+				"resources/views/projects/partial/table.blade.php"
+			],
+			[
+				"project/form",
+				"resources/views/projects/partial/form.blade.php"
+			],
+			[
+				"th/proje",
+				"resources/lang/th/project.php"
+			],
+			[
+				"request/project",
+				"app/Http/Requests/ProjectUpdateRequest.php"
+			],
+			[
+				"request/create",
+				"app/Http/Requests/ProjectCreateRequest.php"
+			],
+			[
+				"project/inde",
+				"resources/views/projects/index.blade.php"
+			],
+			[
+				"project/ta",
+				"resources/views/projects/partial/table.blade.php"
+			],
+			[
+				"project",
+				"app/Project.php"
+			],
+			[
+				"project/for",
+				"resources/views/projects/partial/form.blade.php"
+			],
+			[
+				"project/table",
+				"resources/views/projects/partial/table.blade.php"
+			],
+			[
+				"porjectcont",
+				"app/Http/Controllers/ProjectController.php"
+			],
+			[
+				"side_b",
+				"resources/views/layouts/partial/side_bar.blade.php"
+			],
+			[
+				"route",
+				"app/Http/routes.php"
+			],
+			[
+				"location/form",
+				"resources/views/locations/partial/form.blade.php"
+			],
+			[
+				"th/main",
+				"resources/lang/th/main.php"
+			],
+			[
+				"th/load",
+				"vendor/monolog/monolog/tests/Monolog/Handler/LogEntriesHandlerTest.php"
+			],
+			[
+				"layout/sid",
+				"resources/views/layouts/partial/side_bar.blade.php"
+			],
+			[
+				"location/edi",
+				"resources/views/locations/edit.blade.php"
+			],
+			[
+				"/location/table",
+				"resources/views/locations/partial/table.blade.php"
+			],
+			[
+				"th/l",
+				"th/location.php"
+			],
+			[
+				"locationcontr",
+				"app/Http/Controllers/LocationController.php"
+			],
+			[
+				"location/indd",
+				"resources/views/locations/index.blade.php"
+			],
+			[
+				"loca/inde",
+				"resources/views/locations/index.blade.php"
+			],
+			[
+				"location/table",
+				"resources/views/locations/partial/table.blade.php"
+			],
+			[
+				"http/roue",
+				"app/Http/routes.php"
+			],
+			[
+				"location/inde",
+				"resources/views/locations/index.blade.php"
+			],
+			[
+				"unit/inde",
+				"resources/views/units/index.blade.php"
+			],
+			[
+				"l",
+				"app/Location.php"
+			],
+			[
+				"inde",
+				"public/index.php"
+			],
+			[
+				"app/unp",
+				"app/Unit.php"
+			],
+			[
+				"unit",
+				"app/Http/Requests/UnitCreateRequest.php"
+			],
+			[
+				"uni",
+				"app/Http/Requests/UnitUpdateRequest.php"
+			],
+			[
+				"unit/form",
+				"resources/views/units/partial/form.blade.php"
+			],
+			[
+				"unitcont",
+				"app/Http/Controllers/UnitController.php"
+			],
+			[
+				"testing/test",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php"
+			],
+			[
+				"th/u",
+				"resources/lang/th/unit.php"
+			],
+			[
+				"unit/in",
+				"resources/views/units/index.blade.php"
+			],
+			[
+				"unit/for",
+				"resources/views/units/partial/form.blade.php"
+			],
+			[
+				"tab",
+				"resources/views/units/partial/table.blade.php"
+			],
+			[
+				"th/man",
+				"resources/lang/th/main.php"
+			],
+			[
+				"unit/tale",
+				"resources/views/units/partial/table.blade.php"
+			],
+			[
+				"app/u",
+				"app/Unit.php"
+			],
+			[
+				"unit/ind",
+				"resources/views/units/index.blade.php"
+			],
+			[
+				"th/uni",
+				"resources/lang/th/unit.php"
+			],
+			[
+				"table",
+				"resources/views/units/partial/table.blade.php"
+			],
+			[
+				"units/ind",
+				"resources/views/units/index.blade.php"
+			],
+			[
+				"layout",
+				"resources/views/layouts/app.blade.php"
+			],
+			[
+				"app/ut",
+				"app/Unit.php"
+			],
+			[
+				"unit.",
+				"app/Unit.php"
+			],
+			[
+				"unitcontro",
+				"app/Http/Controllers/UnitController.php"
+			],
+			[
+				"produ",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"th/val",
+				"resources/lang/th/validation.php"
+			],
+			[
+				"layouts/",
+				"resources/views/layouts/app.blade.php"
+			],
+			[
+				"app/uni",
+				"app/Unit.php"
+			],
+			[
+				"layout/sy",
+				"resources/views/layouts/partial/style.blade.php"
+			],
+			[
+				"unitcontr",
+				"app/Http/Controllers/UnitController.php"
+			],
+			[
+				"th/min",
+				"resources/lang/th/main.php"
+			],
+			[
+				"unit.php",
+				"resources/lang/th/unit.php"
+			],
+			[
+				"layouts/app",
+				"resources/views/layouts/app.blade.php"
+			],
+			[
+				"hom",
+				"app/Http/Controllers/HomeController.php"
+			],
+			[
+				"top_",
+				"resources/views/layouts/patial/top_nav.blade.php"
+			],
+			[
+				"layouts/ap",
+				"resources/views/layouts/app.blade.php"
+			],
+			[
+				"prod",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"product/ind",
+				"resources/views/products/index.blade.php"
+			],
+			[
+				"layout/app",
+				"resources/views/layouts/app.blade.php"
+			],
+			[
+				"layouts/ind",
+				"resources/views/layouts/partial/theme_setting.blade.php"
+			],
+			[
+				"productcont",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"home/inde",
+				"resources/views/home/index.blade.php"
+			],
+			[
+				"homecont",
+				"app/Http/Controllers/HomeController.php"
+			],
+			[
+				"app",
+				"bootstrap/app.php"
+			],
+			[
+				"home",
+				"app/Http/Controllers/HomeController.php"
+			],
+			[
+				"route.",
+				"vendor/symfony/routing/Route.php"
+			],
+			[
+				"routes.",
+				"app/Http/routes.php"
+			],
+			[
+				"routes",
+				"app/Providers/RouteServiceProvider.php"
+			],
+			[
+				"create_stock",
+				"database/migrations/2015_11_08_165105_create_stock_table.php"
+			],
+			[
+				"create_stockre",
+				"database/migrations/2015_11_08_165420_create_stock_receive_table.php"
+			],
+			[
+				"grammar",
+				"vendor/laravel/framework/src/Illuminate/Database/Grammar.php"
+			],
+			[
+				"blu",
+				"vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php"
+			],
+			[
+				"create_products_tab",
+				"database/migrations/2015_11_08_153224_create_products_table.php"
+			],
+			[
+				"create_stock_",
+				"database/migrations/2015_11_08_152955_create_stock_table.php"
+			],
+			[
+				"create_projects",
+				"database/migrations/2015_11_08_152552_create_projects_table.php"
+			],
+			[
+				"create_location",
+				"database/migrations/2015_11_08_150727_create_location_table.php"
+			],
+			[
+				"create_nit",
+				"database/migrations/2015_11_08_145757_create_unit_table.php"
+			],
+			[
+				"create_producttable",
+				"database/migrations/2015_11_08_145432_create_product_table.php"
+			],
+			[
+				"bul",
+				"vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php"
+			],
+			[
+				"productcontroler",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"productcon",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"product",
+				"app/Product.php"
+			],
+			[
+				"product/inde",
+				"resources/views/product-types/index.blade.php"
+			],
+			[
+				"productcontroller",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"productcontro",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"productcontorl",
+				"app/Http/Controllers/ProductController.php"
+			],
+			[
+				"layout/script",
+				"resources/views/layouts/partial/scripts.blade.php"
+			],
+			[
+				"products/hso",
+				"resources/views/products/show.blade.php"
+			],
+			[
+				"productrepo",
+				"app/Repository/ProductRepository.php"
+			],
+			[
+				"product.",
+				"app/Product.php"
+			],
+			[
+				"productcontr",
+				"app/Http/Controllers/ProductController.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 297.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}

@@ -22,6 +22,8 @@ class ProductTypeUpdateRequest extends Request
 
         return [
             'name' => "required|regex:/^[A-Za-z0-9ก-๙]+/|unique:product_types,name,{$product_type_id}",
+            'code_prefix'   => 'integer|max:255',
+            'code_default'  => 'integer|max:255',
         ];
     }
 

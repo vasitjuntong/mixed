@@ -22,15 +22,6 @@
 		</span>
 		<span class="text">Requisition</span>
 	</a>
-	<a href="notification.html" class="shortcut-link">
-		<span class="shortcut-icon">
-			<i class="fa fa-globe"></i>
-			<span class="shortcut-alert">
-				5
-			</span>	
-		</span>
-		<span class="text">Notification</span>
-	</a>
 	<a href="product_list.html" class="shortcut-link">
 		<span class="shortcut-icon">
 			<i class="fa fa-list"></i>

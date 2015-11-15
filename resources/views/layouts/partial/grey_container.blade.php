@@ -1,7 +1,7 @@
 
 <div class="grey-container shortcut-wrapper">
 	<a href="index.html" class="shortcut-link">
-		<span class="shortcut-icon shortcut-link-active">
+		<span class="shortcut-icon">
 			<i class="fa fa-bar-chart-o"></i>
 		</span>
 		<span class="text">Report</span>
@@ -28,7 +28,7 @@
 		</span>
 		<span class="text">Product</span>
 	</a>
-	<a href="setting.html" class="shortcut-link">
+	<a href="setting.html" class="shortcut-link {{ urlActive('setting')?'shortcut-link-active':'' }}">
 		<span class="shortcut-icon">
 			<i class="fa fa-cog"></i></span>
 		<span class="text">Setting</span>

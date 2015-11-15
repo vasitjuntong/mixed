@@ -41,7 +41,7 @@
 					<span class="menu-hover"></span>
 				</a>
 			</li>
-			<li class="openable">
+			<li class="openable {{ urlActive('component')? 'active':'' }}">
 				<a href="#">
 					<span class="menu-icon">
 						<i class="fa fa-tag fa-lg"></i> 
@@ -60,7 +60,7 @@
 					<li><a  href="setting.html"><span class="submenu-label">Setting</span></a></li>
                     </ul>
 			</li>
-			<li class="openable active">
+			<li class="openable {{ urlActive('setting')? 'active':'' }}">
 				<a href="#">
 					<span class="menu-icon">
 						<i class="fa fa-file-text fa-lg"></i> 

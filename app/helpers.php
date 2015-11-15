@@ -11,3 +11,16 @@ function flash($title = null, $message = null)
 
 	return $flash->info($title, $message);
 }
+
+function urlActive($menu)
+{
+	$url = app('App\Helper\UrlActive');
+
+	if($menu == 'component'){
+		return $url->component();
+	}
+
+	if($menu == 'setting'){
+		return $url->settings();
+	}
+}

@@ -110,6 +110,9 @@
 
 		<!-- Bootstrap -->
 	    <script src="/bootstrap/js/bootstrap.js"></script>
+
+		<!-- Datatable -->
+		<script src='/js/jquery.dataTables.min.js'></script>	
 		
 		<!-- Colorbox -->
 		<script src='/js/jquery.colorbox.min.js'></script>	

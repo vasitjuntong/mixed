@@ -30,100 +30,72 @@
 		</div><!-- /search-block -->
 		<div class="main-menu">
 		  <ul>
-				<li class="">
-					<a href="index.html">
-						<span class="menu-icon">
-							<i class="fa fa-desktop fa-lg"></i> 
-						</span>
-						<span class="text">
-							Dashboard
-						</span>
-						<span class="menu-hover"></span>
-					</a>
-				</li>
-				<li class="openable">
-					<a href="#">
-						<span class="menu-icon">
-							<i class="fa fa-tag fa-lg"></i> 
-						</span>
-						<span class="text">
-							Component
-						</span>
-			
-						<span class="menu-hover"></span>
-					</a>
-					<ul class="submenu">
-						<li ><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
-						<li><a href="requisition.html"><span class="submenu-label">Requisition</span></a></li>
-						<li><a  href="notification.html"><span class="submenu-label">Notification</span></a></li>
-						<li><a href="product_list.html"><span class="submenu-label">Product</span></a></li>
-						<li><a  href="setting.html"><span class="submenu-label">Setting</span></a></li>
-                        </ul>
-				</li>
-				<li class="openable active">
-					<a href="#">
-						<span class="menu-icon">
-							<i class="fa fa-file-text fa-lg"></i> 
-						</span>
-						<span class="text">
-							Setting
-						</span>
-						<span class="menu-hover"></span>
-					</a>
-					<ul class="submenu">
-						<li>
-							<a href="/product-types">
-								<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
-							</a>
-						</li>
-						<li>
-							<a href="/units">
-								<span class="submenu-label">
-									{{ trans('main.side_menu.unit') }}
-								</span>
-							</a>
-						</li>
-						<li>
-							<a href="/locations">
-								<span class="submenu-label">{{ trans('main.side_menu.location') }}</span>
-							</a>
-						</li>
-						<li>
-							<a href="/projects">
-								<span class="submenu-label">{{ trans('main.side_menu.project') }}</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="timeline.html">
-						<span class="menu-icon">
-							<i class="fa fa-clock-o fa-lg"></i> 
-						</span>
-						<span class="text">
-							Timeline
-						</span>
-						<span class="menu-hover"></span>
-					</a>
-				</li>
-				<li>
-					<a href="inbox.html">
-						<span class="menu-icon">
-							<i class="fa fa-envelope fa-lg"></i> 
-						</span>
-						<span class="text">
-							Inbox
-						</span>
-						<span class="badge badge-danger bounceIn animation-delay6">7</span>
-						<span class="menu-hover"></span>
-					</a>
-				</li>
-				
-			
-					
-	     
-			
-		  </ul>
+			<li class="">
+				<a href="/">
+					<span class="menu-icon">
+						<i class="fa fa-desktop fa-lg"></i> 
+					</span>
+					<span class="text">
+						Dashboard
+					</span>
+					<span class="menu-hover"></span>
+				</a>
+			</li>
+			<li class="openable">
+				<a href="#">
+					<span class="menu-icon">
+						<i class="fa fa-tag fa-lg"></i> 
+					</span>
+					<span class="text">
+						Component
+					</span>
+		
+					<span class="menu-hover"></span>
+				</a>
+				<ul class="submenu">
+					<li ><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
+					<li><a href="requisition.html"><span class="submenu-label">Requisition</span></a></li>
+					<li><a  href="notification.html"><span class="submenu-label">Notification</span></a></li>
+					<li><a href="product_list.html"><span class="submenu-label">Product</span></a></li>
+					<li><a  href="setting.html"><span class="submenu-label">Setting</span></a></li>
+                    </ul>
+			</li>
+			<li class="openable active">
+				<a href="#">
+					<span class="menu-icon">
+						<i class="fa fa-file-text fa-lg"></i> 
+					</span>
+					<span class="text">
+						Setting
+					</span>
+					<span class="menu-hover"></span>
+				</a>
+				<ul class="submenu">
+					<li>
+						<a href="/product-types">
+							<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
+						</a>
+					</li>
+					<li>
+						<a href="/units">
+							<span class="submenu-label">
+								{{ trans('main.side_menu.unit') }}
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/locations">
+							<span class="submenu-label">{{ trans('main.side_menu.location') }}</span>
+						</a>
+					</li>
+					<li>
+						<a href="/projects">
+							<span class="submenu-label">{{ trans('main.side_menu.project') }}</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+	  	</ul>
 			
 			<div class="alert alert-info">
 				Welcome to Mixed System. Do not forget to check all my pages. 

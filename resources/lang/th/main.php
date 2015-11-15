@@ -1,6 +1,9 @@
 <?php 
 
 return [
+	'label' => [
+		'select' => 'กรุณาเลือก',
+	],
 	'breadcrump' => [
 		'home' => 'หน้าแรก',
 	],

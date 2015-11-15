@@ -22,7 +22,7 @@
 		</span>
 		<span class="text">Requisition</span>
 	</a>
-	<a href="product_list.html" class="shortcut-link">
+	<a href="/products" class="shortcut-link">
 		<span class="shortcut-icon">
 			<i class="fa fa-list"></i>
 		</span>

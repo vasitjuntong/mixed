@@ -2,31 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Unit;
+use App\Product;
+use App\ProductType;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductCreateRequest;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('products.index');
+        $products = Product::orderBy('id', 'desc')
+            ->paginate(20);
+
+        return view('products.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $productTypes = ProductType::orderBy('id', 'desc')
+            ->lists('name', 'id');
+        $units = Unit::orderBy('id', 'desc')
+            ->lists('name', 'id');
+
+        return view('products.create',compact(
+            'productTypes',
+            'units'
+        ));
     }
 
     /**
@@ -35,9 +39,21 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['pic_path'] = 'none';
+        $data['pic_name'] = 'none';
+
+        Product::create($data);
+
+        flash()
+            ->success(
+                trans('product.label.name'),
+                trans('product.message_alert.create_success')
+            );
+
+        return redirect('/products');
     }
 
     /**

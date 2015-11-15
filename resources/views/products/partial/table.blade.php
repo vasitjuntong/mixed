@@ -24,7 +24,7 @@
 		@empty
 			<tr>
 				<td colspan="7" class="text-danger text-center">
-					{{ trans('products.label.empty_data') }}
+					{{ trans('product.label.empty_data') }}
 				</td>
 			</tr>
 		@endforelse

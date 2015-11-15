@@ -134,7 +134,7 @@
 				{{ trans('product.attributes.pic_name') }}
 			</label>
 			<div class="upload-file">
-				<input type="file" id="upload-demo" class="upload-demo">
+				<input type="file" name="file" id="upload-demo" class="upload-demo">
 				<label data-title="Select file" for="upload-demo">
 					<span data-title="No file selected..."></span>
 				</label>

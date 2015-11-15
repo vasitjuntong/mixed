@@ -33,17 +33,20 @@ class ProductController extends Controller
         ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ProductCreateRequest $request)
     {
         $data = $request->all();
-        $data['pic_path'] = 'none';
-        $data['pic_name'] = 'none';
+
+        $file = $request->file('file');
+
+        if($file != null){
+            $responseFile = Product::named($file->getClientOriginalName())
+                ->move($file);
+
+            $data['pic_name'] = $responseFile->pic_name;
+            $data['pic_path'] = $responseFile->pic_path;
+            $data['thumbnail_path'] = $responseFile->thumbnail_path;
+        }
 
         Product::create($data);
 
@@ -56,46 +59,21 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock_min')->unsigned();
             $table->string('use_serial_no', 20);
             $table->string('pic_path');
+            $table->string('thumbnail_path');
             $table->string('pic_name');
             $table->timestamps();
 

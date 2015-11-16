@@ -27,6 +27,24 @@ class Product extends Model
 		'updated_at',
     ];
 
+    public static function boot()
+	{
+	    parent::boot();
+
+	    static::creating(function ($model)
+	    {
+	    	if($model->stock_min == null)
+	    		$model->stock_min = 0;
+	    });
+	 
+
+	    static::created(function ($model)
+	    {	
+	    	$model->mix_no = 100000 + $model->getKey();
+	    	$model->save();
+	    });
+	}
+
     public static function named($name)
     {
         return (new static )->saveAs($name);
@@ -50,5 +68,14 @@ class Product extends Model
             ->save($this->thumbnail_path);
 
         return $this;
+    }
+
+    public function removePic()
+    {
+    	if(file_exists($this->pic_path))
+    		unlink($this->pic_path);
+
+    	if(file_exists($this->thumbnail_path))
+    		unlink($this->thumbnail_path);
     }
 }

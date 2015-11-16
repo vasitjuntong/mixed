@@ -1,25 +1,4 @@
 <div class="row">
-	<div class="col-md-3">
-		<div class="form-group {{ $errors->has('mix_no') ? 'has-error' : '' }}">
-
-			<label for="mixno1" class="control-label">
-				{{ trans('product.attributes.mix_no') }}
-			</label>
-			<input 
-					type="text"
-					name="mix_no",
-					class="form-control" 
-					id="mixno"
-					placeholder="{{ trans('product.attributes.mix_no') }}"
-					value="{{ old('mix_no') ? old('mix_no') : ((isset($product) AND $product != null) ? $product->mix_no : '')  }}">
-
-			@if($errors->has('mix_no'))
-				<span id="helpBlock2" class="help-block text-error">
-					{{ $errors->first('mix_no') }}
-				</span>
-			@endif
-		</div>
-	</div>
 	    
 	<div class="col-md-3">  
 		<div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
@@ -147,23 +126,18 @@
 			<label class="control-label">
 				{{ trans('product.attributes.use_serial_no') }}
 			</label>
-			<input type="hidden" name="serial_no" value="{{ App\Product::USE_SERIAL_NO}}">
+			<input type="hidden" name="use_serial_no" value="{{ App\Product::UNUSE_SERIAL_NO}}">
 			<label class="label-checkbox">
 				<input 
 						type="checkbox" 
-						name="serial_no" 
-						value="{{ App\Product::UNUSE_SERIAL_NO}}"
-						{{ old('serial_no') == 1? 'checked': 
-							(isset($product) AND $product->serial_no == 1)? 'checked':'' }}
+						name="use_serial_no" 
+						value="{{ App\Product::USE_SERIAL_NO}}"
+						{{ old('serial_no') == \App\Product::USE_SERIAL_NO? 'checked': 
+							(isset($product) AND $product->serial_no == \App\Product::USE_SERIAL_NO)? 'checked':'' }}
 						>
 				<span class="custom-checkbox"></span>
 				{{ trans('product.attributes.use_serial_no') }}
 			</label>
-			@if($errors->has('serial_no'))
-				<span id="helpBlock2" class="help-block text-error">
-					{{ $errors->first('serial_no') }}
-				</span>
-			@endif
 		 </div>
 	</div>
 </div>

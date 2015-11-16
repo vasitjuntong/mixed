@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProductCreateRequest extends Request
+class ProductUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,11 +18,13 @@ class ProductCreateRequest extends Request
 
     public function rules()
     {
+        $product_id = $this->route()->parameters()['products'];
+
         return [
             'product_type_id'   => 'required',
             'unit_id'           => 'required',
             // 'mix_no'            => 'required|unique:products',
-            'code'              => 'required|unique:products|max:255',
+            'code'              => "required|regex:/^[A-Za-z0-9]+/|unique:products,code,{$product_id}",
             'description'       => 'required',
             // 'stock_min'         => 'integer',
             'file'              => 'mimes:jpeg,bmp,png',

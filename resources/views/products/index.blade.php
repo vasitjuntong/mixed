@@ -30,7 +30,7 @@
 	</div>
 </div>
 <div class="panel panel-default">
-  	<div class="panel-body row">
+  	<div class="panel-body">
 		@include('products.partial.table')
   	</div>
 </div>

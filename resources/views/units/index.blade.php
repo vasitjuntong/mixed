@@ -41,8 +41,10 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
-		@include('units.partial.table')
+	<div class="panel panel-default">
+		<div class="panel-body">
+			@include('units.partial.table')
+		</div>
 	</div>
 </div>
 

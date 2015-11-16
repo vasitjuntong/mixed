@@ -17,34 +17,29 @@
 @endsection
 
 @section('content')
-<div class="row">
-	<div class="col-md-offset-3 col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ trans('project.label.create') }}{{ trans('project.label.name') }}
-			</div>
-			<div class="panel-body">
-				<form method="POST" action="/projects">
 
-					@include('projects.partial.form')
-
-					<button 
-						type="submit" 
-						class="btn btn-success btn-sm">
-
-						{{ trans('main.button.create') }}
-					</button>
-
-				</form>
-			</div>
-		</div><!-- /panel -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		{{ trans('project.label.create') }}{{ trans('project.label.name') }}
 	</div>
-</div>
-<div class="row">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			@include('projects.partial.table')
-		</div>
+	<div class="panel-body">
+		<form method="POST" action="/projects">
+
+			@include('projects.partial.form')
+
+			<button 
+				type="submit" 
+				class="btn btn-success btn-sm">
+
+				{{ trans('main.button.create') }}
+			</button>
+
+		</form>
+	</div>
+</div><!-- /panel -->
+<div class="panel panel-default">
+	<div class="panel-body">
+		@include('projects.partial.table')
 	</div>
 </div>
 

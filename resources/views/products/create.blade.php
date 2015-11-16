@@ -35,7 +35,7 @@
 	           <div class="row">
 		           	<div class="col-md-12"> 
 		      			<button type="submit" class="btn btn-success btn-sm">
-		      				{{ trans('main.button.create') }}
+		      				{{ trans('product.buttons.create') }}
 		      			</button>
 		            </div>
 	           </div>

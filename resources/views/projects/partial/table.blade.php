@@ -12,7 +12,7 @@
 	<tbody>
 		@forelse($projects as $project)
 			<tr>
-				<td>#</td>
+				<td class="text-center">#</td>
 				<td>{{ $project->code }}</td>
 				<td>{{ $project->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $project->updated_at->format('d / m / Y H:i') }}</td>

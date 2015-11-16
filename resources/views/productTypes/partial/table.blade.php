@@ -12,7 +12,7 @@
 	<tbody>
 		@forelse($productTypes as $productType)
 			<tr>
-				<td>#</td>
+				<td class="text-center">#</td>
 				<td>{{ $productType->name }}</td>
 				<td>{{ $productType->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $productType->updated_at->format('d / m / Y H:i') }}</td>

@@ -26,7 +26,7 @@
 </div>
 <div class="panel panel-default">
 	<div class="panel-body">
-	   <a href="/products/create" class="btn btn-info">{{ trans('main.button.create') }}</a>
+	   <a href="/products/create" class="btn btn-info">{{ trans('product.buttons.create') }}</a>
 	</div>
 </div>
 <div class="panel panel-default">

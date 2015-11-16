@@ -6,6 +6,11 @@ return [
 		'create' 		=> 'สร้าง',
 		'empty_data' 	=> 'ไม่มีสินค้าในระบบ',
 	],
+	'buttons' => [
+		'create' => 'เพิ่มสินค้า',
+		'update' => 'แก้ไขสินค้า',
+		'delete' => 'ลบสินค้า',
+	],
 	'attributes' => [
 		'product_type_id' 	=> 'ประเภท',
 		'unit_id' 			=> 'หน่วย',

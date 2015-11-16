@@ -12,14 +12,14 @@
 	<tbody>
 		@forelse($units as $unit)
 			<tr>
-				<td>#</td>
+				<td class="text-center">#</td>
 				<td>{{ $unit->name }}</td>
 				<td>{{ $unit->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $unit->updated_at->format('d / m / Y H:i') }}</td>
 				<td>
 					<a href="/units/{{ $unit->id }}/edit" 
 						class="btn btn-warning btn-sm">
-						{{ trans('main.button.update') }}
+						<span class="fa fa-pencil"></span>
 					</a>
 				</td>
 				<td>
@@ -36,7 +36,7 @@
 
 						<button type="submit"
 								class="btn btn-danger btn-sm">
-							{{ trans('main.button.delete') }}
+							<span class="fa fa-trash-o"></span>
 						</button>
 
 					</form>

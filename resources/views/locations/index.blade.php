@@ -17,34 +17,28 @@
 @endsection
 
 @section('content')
-<div class="row">
-	<div class="col-md-offset-3 col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ trans('location.label.create') }}{{ trans('location.label.name') }}
-			</div>
-			<div class="panel-body">
-				<form method="POST" action="/locations">
-
-					@include('locations.partial.form')
-
-					<button 
-						type="submit" 
-						class="btn btn-success btn-sm">
-
-						{{ trans('main.button.create') }}
-					</button>
-
-				</form>
-			</div>
-		</div><!-- /panel -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		{{ trans('location.label.create') }}{{ trans('location.label.name') }}
 	</div>
-</div>
-<div class="row">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			@include('locations.partial.table')
-		</div>
+	<div class="panel-body">
+		<form method="POST" action="/locations">
+
+			@include('locations.partial.form')
+
+			<button 
+				type="submit" 
+				class="btn btn-success btn-sm">
+
+				{{ trans('main.button.create') }}
+			</button>
+
+		</form>
+	</div>
+</div><!-- /panel -->
+<div class="panel panel-default">
+	<div class="panel-body">
+		@include('locations.partial.table')
 	</div>
 </div>
 

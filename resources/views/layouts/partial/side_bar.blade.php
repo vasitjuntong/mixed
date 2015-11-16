@@ -53,11 +53,11 @@
 					<span class="menu-hover"></span>
 				</a>
 				<ul class="submenu">
-					<li ><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
+					<li><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
 					<li><a href="requisition.html"><span class="submenu-label">Requisition</span></a></li>
-					<li><a  href="notification.html"><span class="submenu-label">Notification</span></a></li>
-					<li><a href="product_list.html"><span class="submenu-label">Product</span></a></li>
-					<li><a  href="setting.html"><span class="submenu-label">Setting</span></a></li>
+					<li><a href="notification.html"><span class="submenu-label">Notification</span></a></li>
+					<li><a href="/products"><span class="submenu-label">Product</span></a></li>
+					<li><a href="setting.html"><span class="submenu-label">Setting</span></a></li>
                     </ul>
 			</li>
 			<li class="openable {{ urlActive('setting')? 'active':'' }}">

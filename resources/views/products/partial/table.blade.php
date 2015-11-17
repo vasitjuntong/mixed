@@ -2,8 +2,8 @@
 	<thead>
 		<tr>
 			<th width="10%" class="text-center">{{ trans('product.attributes.mix_no') }}</th>
-			<th width="10%" class="text-center">{{ trans('product.attributes.code') }}</th>
-			<th width="30%" class="text-center">{{ trans('product.attributes.description') }}</th>
+			<th width="10%">{{ trans('product.attributes.code') }}</th>
+			<th width="30%">{{ trans('product.attributes.description') }}</th>
 			<th width="10%" class="text-center">{{ trans('product.attributes.created_at') }}</th>
 			<th width="10%" class="text-center">{{ trans('product.attributes.updated_at') }}</th>
 			<th width="5%" class="text-center">{{ trans('product.label.update') }}</th>

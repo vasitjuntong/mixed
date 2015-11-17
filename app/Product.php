@@ -49,6 +49,21 @@ class Product extends Model
         });
 	}
 
+    public function getOnHandAttribute()
+    {
+        return 0;
+    }
+
+    public function getOnStockAttribute()
+    {
+        return 0;
+    }
+
+    public function getOnOrderAttribute()
+    {
+        return 0;
+    }
+
     public function receiveItems()
     {
         return $this->hasMany(ReceiveItem::class, 'product_id', 'id');

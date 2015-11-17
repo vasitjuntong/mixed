@@ -41,7 +41,7 @@
 					<span class="menu-hover"></span>
 				</a>
 			</li>
-			<li class="openable {{ urlActive('component')? 'active':'' }}">
+			<li class="openable {{ urlActive('component')? 'active openable':'' }}">
 				<a href="#">
 					<span class="menu-icon">
 						<i class="fa fa-tag fa-lg"></i> 
@@ -53,12 +53,28 @@
 					<span class="menu-hover"></span>
 				</a>
 				<ul class="submenu">
-					<li><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
-					<li><a href="requisition.html"><span class="submenu-label">Requisition</span></a></li>
-					<li><a href="notification.html"><span class="submenu-label">Notification</span></a></li>
-					<li><a href="/product-lists"><span class="submenu-label">{{ trans('main.side_menu.product_lists') }}</span></a></li>
-					<li><a href="setting.html"><span class="submenu-label">Setting</span></a></li>
-                    </ul>
+					<li class="{{ activeMenu(['receives', 'receives/*']) ? 'active':'' }}">
+						<a href="/receives">
+							<span class="submenu-label">
+								{{ trans('main.side_menu.receives') }}
+							</span>
+						</a>
+					</li>
+					<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
+						<a href="/requisitions">
+							<span class="submenu-label">
+								{{ trans('main.side_menu.requisitions') }}
+							</span>
+						</a>
+					</li>
+					<li class="{{ activeMenu(['product-lists', 'product-lists/*']) ? 'active':'' }}">
+						<a href="/product-lists">
+							<span class="submenu-label">
+								{{ trans('main.side_menu.product_lists') }}
+							</span>
+						</a>
+					</li>
+                </ul>
 			</li>
 			<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
 				<a href="#">

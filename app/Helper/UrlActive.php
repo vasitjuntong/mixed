@@ -11,6 +11,8 @@ class UrlActive{
 		$status = false;
 		
 		$url = [
+			'product-lists',
+			'product-lists/*',
 		];
 
 		foreach($url as $value){

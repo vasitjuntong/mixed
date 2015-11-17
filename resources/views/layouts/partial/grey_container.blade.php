@@ -28,7 +28,9 @@
 		</span>
 		<span class="text">Product</span>
 	</a>
-	<a href="setting.html" class="shortcut-link {{ urlActive('setting')?'shortcut-link-active':'' }}">
+	<a 	href="setting.html" 
+		class="shortcut-link hidden-xs {{ urlActive('setting')?'shortcut-link-active':'' }}"
+		>
 		<span class="shortcut-icon">
 			<i class="fa fa-cog"></i></span>
 		<span class="text">Setting</span>

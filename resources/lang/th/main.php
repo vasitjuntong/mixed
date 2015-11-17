@@ -18,6 +18,8 @@ return [
 	],
 	'side_menu' => [
 		'product_lists' => 'สินค้าทั้งหมด',
+		'receives' 		=> 'ใบรับ',
+		'requisitions' 	=> 'ใบเบิก',
 		'unit' 			=> 'หน่วยสินค้า',
 		'location' 		=> 'โกงดัง',
 		'project' 		=> 'โครงการ',

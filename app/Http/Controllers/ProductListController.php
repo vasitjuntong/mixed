@@ -10,7 +10,7 @@ class ProductListController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')
+        $products = Product::orderBy('updated_at', 'desc')
             ->paginate(20);
 
         return view('productLists.index', compact('products'));

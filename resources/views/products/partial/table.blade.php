@@ -1,33 +1,29 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th width="10%" class="text-center">Mix No</th>
-			<th width="10%" class="text-center">Product Code</th>
-			<th width="30%" class="text-center">Description</th>
-			<th width="10%" class="text-center">On Hand</th>
-			<th width="10%" class="text-center">On Stock</th>
-			<th width="10%" class="text-center">On Oder</th>
-			<th width="5%" class="text-center">Status</th>
-			<th width="5%" class="text-center"></th>
-			<th width="5%" class="text-center"></th>
+			<th width="10%" class="text-center">{{ trans('product.attributes.mix_no') }}</th>
+			<th width="10%" class="text-center">{{ trans('product.attributes.code') }}</th>
+			<th width="30%" class="text-center">{{ trans('product.attributes.description') }}</th>
+			<th width="10%" class="text-center">{{ trans('product.attributes.created_at') }}</th>
+			<th width="10%" class="text-center">{{ trans('product.attributes.updated_at') }}</th>
+			<th width="5%" class="text-center">{{ trans('product.label.update') }}</th>
+			<th width="5%" class="text-center">{{ trans('product.label.delete') }}</th>
 		</tr>
 	</thead>
 	<tbody>
 		@forelse($products as $product)
 			<tr>
 				<td class="text-center">{{ $product->mix_no }}</td>
-				<td class="text-center">{{ $product->code }}</td>
-				<td class="text-center">{{ $product->description }}</td>
-				<td class="text-center"></td>
-				<td class="text-center"></td>
-				<td class="text-center"></td>
-				<td class="text-center"></td>
+				<td>{{ $product->code }}</td>
+				<td>{{ $product->description }}</td>
+				<td class="text-center">{{ $product->created_at->format('d/m/Y H:i') }}</td>
+				<td class="text-center">{{ $product->updated_at->format('d/m/Y H:i')  }}</td>
 				<td class="text-center">
 					<a 
 						href="/products/{{ $product->id }}/edit"
 						class="btn btn-warning btn-xs"
 						>
-						<span class="fa fa-pencil"></span>
+						<span class="fa fa-edit"></span>
 					</a>
 				</td>
 				<td class="text-center">

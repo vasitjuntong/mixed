@@ -43,7 +43,40 @@ class Product extends Model
 	    	$model->mix_no = 100000 + $model->getKey();
 	    	$model->save();
 	    });
+
+        static::deleting(function($model){
+            $model->removePic();
+        });
 	}
+
+    public function receiveItems()
+    {
+        return $this->hasMany(ReceiveItem::class, 'product_id', 'id');
+    }
+
+    public static function deleteByCondition($id)
+    {
+        $query = Product::with([
+                'receiveItems',
+            ])
+            ->where('id', $id)
+            ->first();
+
+        if($query->receiveItems AND $query->receiveItems()->count())
+            return [
+                'status' => false,
+                'title' => trans('product.label.name'),
+                'message' => trans('product.message_alert.delete_unsuccess'),
+            ];
+
+        $response = $query->delete();
+
+        return [
+            'status' => $response,
+            'title' => trans('product.label.name'),
+            'message' => trans('product.message_alert.delete_success'),
+        ];
+    }
 
     public static function named($name)
     {

@@ -5,6 +5,7 @@ return [
 		'name' 			=> 'สินค้า',
 		'create' 		=> 'สร้าง',
 		'update' 		=> 'แก้ไข',
+		'delete' 		=> 'ลบ',
 		'empty_data' 	=> 'ไม่มีสินค้าในระบบ',
 	],
 	'buttons' => [

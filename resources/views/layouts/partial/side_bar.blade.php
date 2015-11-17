@@ -56,11 +56,11 @@
 					<li><a href="receive.html"><span class="submenu-label">Receive</span></a></li>
 					<li><a href="requisition.html"><span class="submenu-label">Requisition</span></a></li>
 					<li><a href="notification.html"><span class="submenu-label">Notification</span></a></li>
-					<li><a href="/products"><span class="submenu-label">Product</span></a></li>
+					<li><a href="/product-lists"><span class="submenu-label">{{ trans('main.side_menu.product_lists') }}</span></a></li>
 					<li><a href="setting.html"><span class="submenu-label">Setting</span></a></li>
                     </ul>
 			</li>
-			<li class="openable {{ urlActive('setting')? 'active':'' }}">
+			<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
 				<a href="#">
 					<span class="menu-icon">
 						<i class="fa fa-file-text fa-lg"></i> 
@@ -71,24 +71,33 @@
 					<span class="menu-hover"></span>
 				</a>
 				<ul class="submenu">
-					<li>
+					<li
+						class="{{ activeMenu(['products', 'products/*']) ? 'active':'' }}"
+					>
+						<a href="/products">
+							<span class="submenu-label">{{ trans('main.side_menu.product') }}</span>
+						</a>
+					</li>
+					<li
+						class="{{ activeMenu(['product-types', 'product-types/*']) ? 'active':'' }}"
+					>
 						<a href="/product-types">
 							<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
 						</a>
 					</li>
-					<li>
+					<li class="{{ activeMenu(['units', 'units/*']) ? 'active':'' }}">
 						<a href="/units">
 							<span class="submenu-label">
 								{{ trans('main.side_menu.unit') }}
 							</span>
 						</a>
 					</li>
-					<li>
+					<li class="{{ activeMenu(['locations', 'locations/*']) ? 'active':'' }}">
 						<a href="/locations">
 							<span class="submenu-label">{{ trans('main.side_menu.location') }}</span>
 						</a>
 					</li>
-					<li>
+					<li class="{{ activeMenu(['projects', 'projects/*']) ? 'active':'' }}">
 						<a href="/projects">
 							<span class="submenu-label">{{ trans('main.side_menu.project') }}</span>
 						</a>

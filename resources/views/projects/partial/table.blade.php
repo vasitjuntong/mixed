@@ -16,13 +16,13 @@
 				<td>{{ $project->code }}</td>
 				<td>{{ $project->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $project->updated_at->format('d / m / Y H:i') }}</td>
-				<td>
+				<td class="text-center">
 					<a href="/projects/{{ $project->id }}/edit" 
-						class="btn btn-warning btn-sm">
-						{{ trans('main.button.update') }}
+						class="btn btn-warning btn-xs">
+						<span class="fa fa-edit"></span>
 					</a>
 				</td>
-				<td>
+				<td class="text-center">
 					<form 	method="POST" 
 							action="/projects/{{ $project->id }}"
 							data-message-confirm="{{ trans('project.message_alert.delete_confirm') }}"
@@ -35,8 +35,8 @@
 						{{ csrf_field() }}
 
 						<button type="submit"
-								class="btn btn-danger btn-sm">
-							{{ trans('main.button.delete') }}
+								class="btn btn-danger btn-xs">
+							<span class="fa fa-trash-o"></span>
 						</button>
 
 					</form>

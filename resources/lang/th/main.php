@@ -17,6 +17,7 @@ return [
 		'cancel' 	=> 'Cancel',
 	],
 	'side_menu' => [
+		'product_lists' => 'สินค้าทั้งหมด',
 		'unit' 			=> 'หน่วยสินค้า',
 		'location' 		=> 'โกงดัง',
 		'project' 		=> 'โครงการ',

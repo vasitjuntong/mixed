@@ -16,13 +16,13 @@
 				<td>{{ $productType->name }}</td>
 				<td>{{ $productType->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $productType->updated_at->format('d / m / Y H:i') }}</td>
-				<td>
+				<td class="text-center">
 					<a href="/product-types/{{ $productType->id }}/edit" 
-						class="btn btn-warning btn-sm">
-						{{ trans('main.button.update') }}
+						class="btn btn-warning btn-xs">
+						<span class="fa fa-edit"></span>
 					</a>
 				</td>
-				<td>
+				<td class="text-center">
 					<form 	method="POST" 
 							action="/product-types/{{ $productType->id }}"
 							data-message-confirm="{{ trans('product_type.message_alert.delete_confirm') }}"
@@ -35,8 +35,8 @@
 						{{ csrf_field() }}
 
 						<button type="submit"
-								class="btn btn-danger btn-sm">
-							{{ trans('main.button.delete') }}
+								class="btn btn-danger btn-xs">
+							<span class="fa fa-trash-o"></span>
 						</button>
 
 					</form>

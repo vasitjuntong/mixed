@@ -11,8 +11,6 @@ class UrlActive{
 		$status = false;
 		
 		$url = [
-			'products',
-			'products/*',
 		];
 
 		foreach($url as $value){
@@ -31,6 +29,8 @@ class UrlActive{
 		$status = false;
 
 		$url = [
+			'products',
+			'products/*',
 			'product-types',
 			'product-types/*',
 			'units',

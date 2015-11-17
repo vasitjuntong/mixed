@@ -18,8 +18,8 @@
 				<td>{{ $location->updated_at->format('d / m / Y H:i') }}</td>
 				<td>
 					<a href="/locations/{{ $location->id }}/edit" 
-						class="btn btn-warning btn-sm">
-						{{ trans('main.button.update') }}
+						class="btn btn-warning btn-xs">
+						<span class="fa fa-edit"></span>
 					</a>
 				</td>
 				<td>
@@ -35,8 +35,8 @@
 						{{ csrf_field() }}
 
 						<button type="submit"
-								class="btn btn-danger btn-sm">
-							{{ trans('main.button.delete') }}
+								class="btn btn-danger btn-xs">
+							<span class="fa fa-trash-o"></span>
 						</button>
 
 					</form>

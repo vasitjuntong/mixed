@@ -24,3 +24,16 @@ function urlActive($menu)
 		return $url->settings();
 	}
 }
+
+function activeMenu($menus = array())
+{
+	$status = false;
+
+	foreach($menus as $menu){
+		if(request()->is($menu)){
+			$status = true;
+		}
+	}
+
+	return $status;
+}

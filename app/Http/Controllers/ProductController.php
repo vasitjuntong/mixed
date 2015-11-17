@@ -39,7 +39,7 @@ class ProductController extends Controller
         $data = $request->all();
 
         if($request->file('file') != null){
-            $this->makePic(
+            $data = $this->makePic(
                 $request->file('file'),
                 $data
             );
@@ -101,9 +101,30 @@ class ProductController extends Controller
         return redirect('/products');
     }   
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $response = Product::deleteByCondition($id);
+
+
+        if($request->ajax())
+            return $response;
+
+        if($response['status']){
+            flash()
+                ->success(
+                    trans('product.label.name'),
+                    $response['message']
+                );
+        }else{
+            flash()
+                ->success(
+                    trans('product.label.name'),
+                    $response['message']
+                );
+        }
+
+
+        return redirect('/products');
     }
 
     protected function makePic($file, $data)

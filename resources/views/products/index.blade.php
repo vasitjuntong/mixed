@@ -19,14 +19,7 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-body">
-		<span>In Stock</span><span class="badge badge-success m-left-xs">8</span>
-		<span>Stock Minimum</span><span class="badge badge-warning m-left-xs">2</span>
-		<span>Out of Stock</span><span class="badge badge-danger m-left-xs">2</span>
-	</div>
-</div>
-<div class="panel panel-default">
-	<div class="panel-body">
-	   <a href="/products/create" class="btn btn-info">{{ trans('product.buttons.create') }}</a>
+	   <a href="/products/create" class="btn btn-info btn-sm">{{ trans('product.buttons.create') }}</a>
 	</div>
 </div>
 <div class="panel panel-default">

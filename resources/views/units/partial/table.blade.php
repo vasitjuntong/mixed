@@ -16,13 +16,13 @@
 				<td>{{ $unit->name }}</td>
 				<td>{{ $unit->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $unit->updated_at->format('d / m / Y H:i') }}</td>
-				<td>
+				<td class="text-center">
 					<a href="/units/{{ $unit->id }}/edit" 
-						class="btn btn-warning btn-sm">
-						<span class="fa fa-pencil"></span>
+						class="btn btn-warning btn-xs">
+						<span class="fa fa-edit"></span>
 					</a>
 				</td>
-				<td>
+				<td class="text-center">
 					<form 	method="POST" 
 							action="/units/{{ $unit->id }}"
 							data-message-confirm="{{ trans('unit.message_alert.delete_confirm') }}"
@@ -35,7 +35,7 @@
 						{{ csrf_field() }}
 
 						<button type="submit"
-								class="btn btn-danger btn-sm">
+								class="btn btn-danger btn-xs">
 							<span class="fa fa-trash-o"></span>
 						</button>
 

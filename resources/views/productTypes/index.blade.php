@@ -37,7 +37,7 @@
 		</form>
 	</div>
 </div><!-- /panel -->
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('productTypes.partial.table')
 	</div>

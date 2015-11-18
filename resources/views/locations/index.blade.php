@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
 	<div class="panel-heading">
 		{{ trans('location.label.create') }}{{ trans('location.label.name') }}
 	</div>
@@ -36,7 +36,7 @@
 		</form>
 	</div>
 </div><!-- /panel -->
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('locations.partial.table')
 	</div>

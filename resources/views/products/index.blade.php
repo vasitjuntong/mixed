@@ -22,7 +22,7 @@
 	   <a href="/products/create" class="btn btn-info btn-sm">{{ trans('product.buttons.create') }}</a>
 	</div>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
   	<div class="panel-body">
 		@include('products.partial.table')
   	</div>

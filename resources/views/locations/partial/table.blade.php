@@ -16,13 +16,13 @@
 				<td>{{ $location->name }}</td>
 				<td>{{ $location->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $location->updated_at->format('d / m / Y H:i') }}</td>
-				<td>
+				<td class="text-center">
 					<a href="/locations/{{ $location->id }}/edit" 
 						class="btn btn-warning btn-xs">
 						<span class="fa fa-edit"></span>
 					</a>
 				</td>
-				<td>
+				<td class="text-center">
 					<form 	method="POST" 
 							action="/locations/{{ $location->id }}"
 							data-message-confirm="{{ trans('location.message_alert.delete_confirm') }}"

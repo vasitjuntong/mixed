@@ -31,7 +31,12 @@
 				<td class="text-center">
 					<form
 						method="POST"
-						action="/products/{{ $product->id }}">
+						action="/products/{{ $product->id }}"
+						data-message-confirm="{{ trans('product.message_alert.delete_confirm') }}"
+						data-message-cancel="{{ trans('product.message_alert.cancel_message') }}"
+						data-title-confirm="{{ trans('product.label.name') }}"
+						data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
+						data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
 
 						{{ csrf_field() }}
 						{{ method_field('delete') }}
@@ -45,7 +50,7 @@
 			</tr>
 		@empty
 			<tr>
-				<td colspan="7" class="text-danger text-center">
+				<td colspan="8" class="text-danger text-center">
 					{{ trans('product.label.empty_data') }}
 				</td>
 			</tr>

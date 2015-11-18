@@ -29,3 +29,9 @@
 </div>
 
 @endsection
+
+@section('script')
+	@parent
+
+	<script type="text/javascript" src="/js/libs/form_confirm_delete.js"></script>
+@endsection

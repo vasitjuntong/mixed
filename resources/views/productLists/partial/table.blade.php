@@ -4,6 +4,7 @@
 			<th width="10%" class="text-center">{{ trans('product_list.attributes.mix_no') }}</th>
 			<th width="10%">{{ trans('product_list.attributes.code') }}</th>
 			<th width="30%">{{ trans('product_list.attributes.description') }}</th>
+			<th width="10%">{{ trans('product_list.attributes.product_type_id') }}</th>
 			<th width="10%">{{ trans('product_list.attributes.unit_id') }}</th>
 			<th width="10%">{{ trans('product_list.attributes.on_hand') }}</th>
 			<th width="10%">{{ trans('product_list.attributes.on_stock') }}</th>
@@ -17,6 +18,7 @@
 				<td class="text-center">{{ $product->mix_no }}</td>
 				<td>{{ $product->code }}</td>
 				<td>{{ $product->description }}</td>
+				<td>{{ $product->productType->name }}</td>
 				<td>{{ $product->unit->name }}</td>
 				<td>{{ $product->on_hand }}</td>
 				<td>{{ $product->on_stock }}</td>

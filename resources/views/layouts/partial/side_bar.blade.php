@@ -36,7 +36,7 @@
 						<i class="fa fa-desktop fa-lg"></i> 
 					</span>
 					<span class="text">
-						Dashboard
+						{{ trans('main.side_menu.dashboard') }}
 					</span>
 					<span class="menu-hover"></span>
 				</a>
@@ -47,7 +47,7 @@
 						<i class="fa fa-tag fa-lg"></i> 
 					</span>
 					<span class="text">
-						Component
+						{{ trans('main.side_menu.component') }}
 					</span>
 		
 					<span class="menu-hover"></span>
@@ -56,21 +56,21 @@
 					<li class="{{ activeMenu(['receives', 'receives/*']) ? 'active':'' }}">
 						<a href="/receives">
 							<span class="submenu-label">
-								{{ trans('main.side_menu.receives') }}
+								{{ trans('main.side_menu.receive') }}
 							</span>
 						</a>
 					</li>
 					<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
 						<a href="/requisitions">
 							<span class="submenu-label">
-								{{ trans('main.side_menu.requisitions') }}
+								{{ trans('main.side_menu.requisition') }}
 							</span>
 						</a>
 					</li>
 					<li class="{{ activeMenu(['product-lists', 'product-lists/*']) ? 'active':'' }}">
 						<a href="/product-lists">
 							<span class="submenu-label">
-								{{ trans('main.side_menu.product_lists') }}
+								{{ trans('main.side_menu.product_list') }}
 							</span>
 						</a>
 					</li>
@@ -82,7 +82,7 @@
 						<i class="fa fa-file-text fa-lg"></i> 
 					</span>
 					<span class="text">
-						Setting
+						{{ trans('main.side_menu.setting') }}
 					</span>
 					<span class="menu-hover"></span>
 				</a>

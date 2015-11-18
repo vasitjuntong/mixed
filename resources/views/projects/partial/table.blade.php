@@ -3,8 +3,8 @@
 		<tr>
 			<th width="5%" class="text-center">#</th>
 			<th>{{ trans('project.attributes.code') }}</td>
-			<th width="20%" class="text-center">{{ trans('project.attributes.created_at') }}</td>
-			<th width="20%" class="text-center">{{ trans('project.attributes.updated_at') }}</td>
+			<th width="20%">{{ trans('project.attributes.created_at') }}</td>
+			<th width="20%">{{ trans('project.attributes.updated_at') }}</td>
 			<th width="5%" class="text-center">{{ trans('main.button.update') }}</td>
 			<th width="5%" class="text-center">{{ trans('main.button.delete') }}</td>
 		</tr>

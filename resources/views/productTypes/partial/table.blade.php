@@ -3,8 +3,8 @@
 		<tr>
 			<th width="5%" class="text-center">#</th>
 			<th>{{ trans('product_type.attributes.name') }}</td>
-			<th width="20%" class="text-center">{{ trans('product_type.attributes.created_at') }}</td>
-			<th width="20%" class="text-center">{{ trans('product_type.attributes.updated_at') }}</td>
+			<th width="20%">{{ trans('product_type.attributes.created_at') }}</td>
+			<th width="20%">{{ trans('product_type.attributes.updated_at') }}</td>
 			<th width="5%" class="text-center">{{ trans('main.button.update') }}</td>
 			<th width="5%" class="text-center">{{ trans('main.button.delete') }}</td>
 		</tr>

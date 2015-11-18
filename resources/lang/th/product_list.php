@@ -23,6 +23,7 @@ return [
 		'use_serial_no' 	=> 'ใช้ Serial NO',
 		'pic_path' 			=> 'Path รูป',
 		'pic_name' 			=> 'ชื่อรูป',
+		'status' 			=> 'สถานะ',
 		'created_at' 		=> 'เพิ่มเมื่อ',
 		'updated_at' 		=> 'อัพเดตเมื่อ',
 

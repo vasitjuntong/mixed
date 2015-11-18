@@ -64,6 +64,16 @@ class Product extends Model
         return 0;
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
+    }
+
+    public function productType()
+    {
+        return $this->belongsTo(ProductType::class, 'product_type_id', 'id');
+    }
+
     public function receiveItems()
     {
         return $this->hasMany(ReceiveItem::class, 'product_id', 'id');

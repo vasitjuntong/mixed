@@ -4,6 +4,7 @@
 			<th width="10%" class="text-center">{{ trans('product.attributes.mix_no') }}</th>
 			<th width="10%">{{ trans('product.attributes.code') }}</th>
 			<th width="30%">{{ trans('product.attributes.description') }}</th>
+			<th width="10%">{{ trans('product.attributes.unit_id') }}</th>
 			<th width="10%" class="text-center">{{ trans('product.attributes.created_at') }}</th>
 			<th width="10%" class="text-center">{{ trans('product.attributes.updated_at') }}</th>
 			<th width="5%" class="text-center">{{ trans('product.label.update') }}</th>
@@ -16,6 +17,7 @@
 				<td class="text-center">{{ $product->mix_no }}</td>
 				<td>{{ $product->code }}</td>
 				<td>{{ $product->description }}</td>
+				<td>{{ $product->unit->name }}</td>
 				<td class="text-center">{{ $product->created_at->format('d/m/Y H:i') }}</td>
 				<td class="text-center">{{ $product->updated_at->format('d/m/Y H:i')  }}</td>
 				<td class="text-center">

@@ -10,9 +10,12 @@
 		</tr>
 	</thead>
 	<tbody>
+		<?php $i = 0; ?>
 		@forelse($units as $unit)
 			<tr>
-				<td class="text-center">#</td>
+				<td class="text-center">
+					{{ $i + $units->firstItem() }}
+				</td>
 				<td>{{ $unit->name }}</td>
 				<td>{{ $unit->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $unit->updated_at->format('d / m / Y H:i') }}</td>
@@ -42,6 +45,7 @@
 					</form>
 				</td>
 			</tr>
+			<?php $i ++; ?>
 		@empty
 			<tr>
 				<td colspan="6" class="text-center text-danger">{{ trans('unit.label.empty_data') }}</td>

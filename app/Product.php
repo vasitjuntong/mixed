@@ -36,10 +36,10 @@ class Product extends Model
 	    	if($model->stock_min == null)
 	    		$model->stock_min = 0;
 	    });
-	 
+
 
 	    static::created(function ($model)
-	    {	
+	    {
 	    	$model->mix_no = 100000 + $model->getKey();
 	    	$model->save();
 	    });

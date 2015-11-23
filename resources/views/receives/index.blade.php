@@ -6,12 +6,12 @@
 		 	<li><i class="fa fa-home"></i>
 			 	<a href="index.html"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
-		 	<li class="active">{{ trans('product_list.label.name') }}</li>	 
+		 	<li class="active">{{ trans('receive.label.name') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
 		<div class="page-title">
-			<h3 class="no-margin">{{ trans('product_list.label.name') }}</h3>
+			<h3 class="no-margin">{{ trans('receive.label.name') }}</h3>
 		</div><!-- /page-title -->			
 	</div><!-- /main-header -->
 @endsection
@@ -20,16 +20,19 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<span>In Stock</span><span class="badge badge-success">8</span>
-		<span>Stock Minimum</span><span class="badge badge-warning">2</span>
-		<span>Out of Stock</span><span class="badge badge-danger">2</span>
+	   <a href="/receives/create" class="btn btn-info btn-sm">
+	   		<span class="fa fa-plus"></span>
+	   		{{ trans('receive.buttons.create') }}
+	   </a>
 	</div>
 </div>
 
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
-		@include('productLists.partial.table')
-		<span class="text-center block">{!! $products->render() !!}</span>
+
+  		@include('receives.partial.table')
+
+		<span class="text-center block">{!! $receives->render() !!}</span>
   	</div>
 </div>
 

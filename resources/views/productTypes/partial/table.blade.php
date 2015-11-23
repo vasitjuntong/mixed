@@ -10,9 +10,13 @@
 		</tr>
 	</thead>
 	<tbody>
+		<?php $i = 0; ?>
+
 		@forelse($productTypes as $productType)
 			<tr>
-				<td class="text-center">#</td>
+				<td class="text-center">
+					{{ $i + $productTypes->firstItem() }}
+				</td>
 				<td>{{ $productType->name }}</td>
 				<td>{{ $productType->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $productType->updated_at->format('d / m / Y H:i') }}</td>
@@ -42,6 +46,8 @@
 					</form>
 				</td>
 			</tr>
+
+			<?php $i ++; ?>
 		@empty
 			<tr>
 				<td colspan="6" class="text-center text-danger">{{ trans('product_type.label.empty_data') }}</td>

@@ -39,6 +39,7 @@
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('locations.partial.table')
+		<span class="text-center block">{!! $locations->render() !!}</span>
 	</div>
 </div>
 

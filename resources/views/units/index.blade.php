@@ -40,6 +40,7 @@
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('units.partial.table')
+		<span class="text-center block">{!! $units->render() !!}</span>
 	</div>
 </div>
 

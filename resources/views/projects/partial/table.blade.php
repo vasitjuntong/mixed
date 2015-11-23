@@ -10,9 +10,12 @@
 		</tr>
 	</thead>
 	<tbody>
+		<?php $i = 0; ?>
 		@forelse($projects as $project)
 			<tr>
-				<td class="text-center">#</td>
+				<td class="text-center">
+					{{ $i + $projects->firstItem() }}
+				</td>
 				<td>{{ $project->code }}</td>
 				<td>{{ $project->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $project->updated_at->format('d / m / Y H:i') }}</td>
@@ -42,6 +45,8 @@
 					</form>
 				</td>
 			</tr>
+
+			<?php $i ++; ?>
 		@empty
 
 			<tr>

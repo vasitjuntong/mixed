@@ -99,7 +99,7 @@ class ProductController extends Controller
             ->update($data);
 
         return redirect('/products');
-    }   
+    }
 
     public function destroy(Request $request, $id)
     {

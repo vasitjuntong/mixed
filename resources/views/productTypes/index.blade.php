@@ -40,6 +40,7 @@
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('productTypes.partial.table')
+		<span class="text-center block">{!! $productTypes->render() !!}</span>
 	</div>
 </div>
 

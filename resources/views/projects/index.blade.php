@@ -40,6 +40,7 @@
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('projects.partial.table')
+		<span class="text-center block">{!! $projects->render() !!}</span>
 	</div>
 </div>
 

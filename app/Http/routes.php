@@ -3,6 +3,9 @@
 get('/', 'HomeController@index');
 
 // Component.
+resource('/receives', 'ReceiveController');
+get('/receives/add-products/{id}', 'ReceiveController@addProducts');
+
 get('/product-lists', 'ProductListController@index');
 
 // Setting.

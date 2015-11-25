@@ -24,7 +24,7 @@ class AddProductReceiveRequest extends Request
     public function rules()
     {
         return [
-            'product_id'    => 'required',
+            'product_id'    => 'required|exists:products,code',
             'location_id'   => 'required',
         ];
     }

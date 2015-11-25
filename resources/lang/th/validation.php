@@ -24,7 +24,7 @@ return [
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'email'                => 'The :attribute must be a valid email address.',
-    'exists'               => 'The selected :attribute is invalid.',
+    'exists'               => ':attribute ไม่มีอยู่ในระบบ กรุณาตรวจสอบ',
     'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',

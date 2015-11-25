@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Project;
 use App\Receive;
+use App\Location;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReceiveCreateRequest;
+use App\Http\Requests\AddProductReceiveRequest;
 
 class ReceiveController extends Controller
 {
@@ -44,12 +47,23 @@ class ReceiveController extends Controller
     {
         $receive = Receive::find($id);
 
-        return view('receives.add_product', compact('receive'));
+        $locations = Location::orderBy('name', 'desc')
+            ->lists('name', 'id');
+
+        $locationLists = [null => trans('main.label.select')];
+        if($locations != null)
+            $locationLists = $locationLists + $locations->toArray();
+
+        return view('receives.add_product', compact(
+            'receive', 
+            'products', 
+            'locationLists'
+        ));
     }
 
-    public function storeProduct()
+    public function storeProducts(AddProductReceiveRequest $request)
     {
-        
+        return $request->all();
     }
 
     public function show($id)

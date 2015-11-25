@@ -11,7 +11,7 @@
 			 	<a href="/receives"> {{ trans('receive.label.name')}}</a>
 		 	</li>
 		 	<li><i class="fa fa-home"></i>
-			 	<a href="/receives/{{ $receive->id }}"> {{ trans('receive.label.edit')}}</a>
+			 	<a href="/receives/{{ $receive->id }}/edit"> {{ trans('receive.label.edit')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('receive.label.add_product') }}</li>	 
 		</ul>
@@ -26,16 +26,21 @@
 
 @section('content')
 
-<div class="col-md-12">
+<div class="col-md-12" id="app">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			{{ trans('receive.label.add_product') }}
 		</div>
 		<div class="panel-body">
-			<form method="POST" action="/receives/add-products" enctype="multipart/form-data">
-				{{ csrf_field() }}
 
-				@include('receives.partial.add_product_form')
+			{!! Form::open([
+				'method' => 'POST',
+				'url' => '/receives/add-products',
+			]) !!}
+			
+				<div class="row">
+					@include('receives.partial.add_product_form')
+				</div>
 	            
 	           <div class="row">
 		           	<div class="col-md-12"> 
@@ -44,9 +49,9 @@
 		      			</button>
 		            </div>
 	           </div>
-			</form>
+			{!! Form::close() !!}
 		</div>
-	</div><!-- /panel -->
+	</div>
 </div>
 
 @endsection
@@ -59,7 +64,10 @@
 
 @section('script')
 	@parent
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
+	<script type="text/javascript" src="/js/typeahead.min.js"></script>
+	<script type="text/javascript" src="/js/libs/vue_addproduct.js"></script>
 	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
 	<script>
 		$(function(){

@@ -16,7 +16,11 @@
 		
 		<tr>
 			<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
-			<td>{{ $receive->document_no }}</td>
+			<td>
+				<a href="/receives/add-products/{{ $receive->id }}">
+					{{ $receive->document_no }}
+				</a>
+			</td>
 			<td>{{ $receive->po_no }}</td>
 			<td>{{ $receive->ref_no }}</td>
 			<td>{{ $receive->stock }}</td>

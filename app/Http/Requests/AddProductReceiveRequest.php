@@ -24,7 +24,7 @@ class AddProductReceiveRequest extends Request
     public function rules()
     {
         return [
-            'product_id'    => 'required|exists:products,code',
+            'product_code'    => 'required|exists:products,code',
             'location_id'   => 'required',
         ];
     }
@@ -32,7 +32,7 @@ class AddProductReceiveRequest extends Request
     public function attributes()
     {
         return [
-            'product_id'    => trans('product.attributes.code'),
+            'product_code'    => trans('product.attributes.code'),
             'location_id'   => trans('location.attributes.name'),
         ];
     }

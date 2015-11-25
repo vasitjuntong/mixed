@@ -61,9 +61,14 @@ class ReceiveController extends Controller
         ));
     }
 
-    public function storeProducts(AddProductReceiveRequest $request)
+    public function storeProducts(AddProductReceiveRequest $request, $receive_id)
     {
-        return $request->all();
+        $receive = Receive::find($receive_id);
+
+        $receive->receiveItems()
+            ->create($request->all());
+
+        return redirect("/receives/add-products/{$receive_id}");
     }
 
     public function show($id)

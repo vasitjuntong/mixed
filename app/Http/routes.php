@@ -5,7 +5,7 @@ get('/', 'HomeController@index');
 // Component.
 resource('/receives', 'ReceiveController');
 get('/receives/add-products/{id}', 'ReceiveController@addProducts');
-post('/receives/add-products', 'ReceiveController@storeProducts');
+post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');
 
 get('/product-lists', 'ProductListController@index');
 

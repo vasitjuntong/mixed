@@ -35,9 +35,9 @@
 
 			{!! Form::open([
 				'method' => 'POST',
-				'url' => '/receives/add-products',
+				'url' => "/receives/add-products/{$receive->id}",
 			]) !!}
-			
+
 				<div class="row">
 					@include('receives.partial.add_product_form')
 				</div>

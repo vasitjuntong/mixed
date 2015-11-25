@@ -2,8 +2,9 @@ new Vue({
 	el: '#app',
 	data: {
 		product_id: '',
+		product_code: '',
+		product_description: '',
 		mix_no: '',
-		description: '',
 		location_id: ''
 	},
 	ready:function(){
@@ -20,14 +21,8 @@ new Vue({
 			    if (current) {
 			    	console.log(current);
 			    	that.$set('mix_no', current.mix_no);
-			    	that.$set('description', current.description);
-			        // Some item from your model is active!
-			        if (current.name == $input.val()) {
-			            // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
-			        } else {
-			            // This means it is only a partial match, you can either add a new item 
-			            // or take the active if you don't want new items
-			        }
+			    	that.$set('product_description', current.description);
+			    	that.$set('product_id', current.id);
 			    } else {
 			        // Nothing is active so it is a new value (or maybe empty value)
 			    }

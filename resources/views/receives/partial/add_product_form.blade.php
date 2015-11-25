@@ -1,20 +1,23 @@
+{!! Form::hidden('product_id', null, [
+	'v-model' => 'product_id',
+]) !!}
 <div class="col-md-4">
-	<div class="form-group {{ $errors->has('product_id') ? 'has-error':'' }} ">
+	<div class="form-group {{ $errors->has('product_code') ? 'has-error':'' }} ">
 
-		<label for="product_id" class="control-label">
-			{{ trans('receive_item.attributes.product_id') }}
+		<label for="product_code" class="control-label">
+			{{ trans('receive_item.attributes.product_code') }}
 		</label>
 
-		{!! Form::text('product_id', null, [
+		{!! Form::text('product_code', null, [
 			'class' => 'form-control input-sm typeahead',
-			'placeholder' => trans('receive_item.attributes.product_id'),
-			'v-model' => 'product_id',
+			'placeholder' => trans('receive_item.attributes.product_code'),
+			'v-model' => 'product_code',
 			'autocomplete' => 'off',
 		]) !!}
 
-		@if($errors->has('product_id'))
+		@if($errors->has('product_code'))
 			<span id="helpBlock2" class="help-block text-error">
-				{{ $errors->first('product_id') }}
+				{{ $errors->first('product_code') }}
 			</span>
 		@endif
 	</div>
@@ -38,14 +41,14 @@
 <div class="col-md-4">
 	<div class="form-group">
 
-		<label for="description" class="control-label">
+		<label for="product_description" class="control-label">
 			{{ trans('product.attributes.description') }}
 		</label>
 
-		{!! Form::text('description', null, [
+		{!! Form::text('product_description', null, [
 			'class' => 'form-control input-sm',
 			'placeholder' => trans('product.attributes.description'),
-			'v-model' => 'description',
+			'v-model' => 'product_description',
 			'readonly' => 'readonly',
 		]) !!}
 	</div>

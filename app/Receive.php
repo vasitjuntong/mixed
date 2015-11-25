@@ -33,4 +33,9 @@ class Receive extends Model
 	    		$model->status = static::CREATE;
 	    });
     }
+
+    public function receiveItems()
+    {
+    	return $this->hasMany(ReceiveItem::class);
+    }
 }

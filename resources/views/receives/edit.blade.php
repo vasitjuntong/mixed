@@ -7,10 +7,10 @@
 		 	<li><i class="fa fa-home"></i>
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
-		 	<li><i class="fa fa-home"></i>
+		 	<li><i class="fa fa-download"></i>
 			 	<a href="/receives"> {{ trans('receive.label.name')}}</a>
 		 	</li>
-		 	<li class="active">{{ trans('receive.label.create') }}</li>	 
+		 	<li class="active">{{ trans('receive.label.update') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
@@ -30,9 +30,9 @@
 		</div>
 		<div class="panel-body">
 				{{ csrf_field()}}
-			{!! Form::open([
-				'method' 	=> 'post',
-				'url' 		=> '/receives',
+			{!! Form::model($receive, [
+				'method' 	=> 'PATCH',
+				'url' 		=> "/receives/{$receive->id}",
 			]) !!}
 
 				@include('receives.partial.form')

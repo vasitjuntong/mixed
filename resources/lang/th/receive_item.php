@@ -19,7 +19,7 @@ return [
 		'product_id' 	=> 'สินค้า',
 		'mix_no'		=> 'Mix NO',
 		'product_code' 	=> 'Code สินค้า',
-		'description' 	=> 'รายละเอียดสินค้า',
+		'product_description' 	=> 'รายละเอียดสินค้า',
 		'location_id'	=> 'ID โกดัง',
 		'location_name' => 'โกดัง',
 		'qty'			=> 'จำนวน',

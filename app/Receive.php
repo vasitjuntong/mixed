@@ -32,6 +32,13 @@ class Receive extends Model
 	    	if($model->status == null)
 	    		$model->status = static::CREATE;
 	    });
+
+	    static::created(function ($model)
+	    {
+	    	$model->document_no = 'DC' . (1000000 + $model->id);
+
+	    	$model->save();
+	    });
     }
 
     public function receiveItems()

@@ -31,19 +31,11 @@ class ReceiveItem extends Model
 
 	    static::creating(function ($model)
 	    {
-	    	$receiveItem = ReceiveItem::where('product_id', $model->product_id)
-	    		->where('location_id', $model->location_id)
-	    		->first();
-
 	    	if($model->status == null)
 	    		$model->status = static::CREATE;
 
 	    	if($model->qty == null)
 	    		$model->qty = 1;
-
-	    	if($receiveItem != null){
-	    		$model->qty = $model->qty + $receiveItem->qty;
-	    	}
 
 	    	if($model->location_id != null){
 	    		$location = Location::find($model->location_id, ['name']);
@@ -51,9 +43,17 @@ class ReceiveItem extends Model
 	    		if($location)
 	    			$model->location_name = $location->name;
 	    	}
-
-	    	$receiveItem->delete();
-
 	    });
+
+	    static::created(function ($model)
+    	{
+
+    	});
+
+    	static::updating(function ($model)
+    	{
+    		if($model->qty == null)
+    			$model->qty = 1;
+    	});
     }
 }

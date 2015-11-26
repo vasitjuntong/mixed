@@ -24,7 +24,6 @@ class ReceiveCreateRequest extends Request
     public function rules()
     {
         return [
-            'document_no'   => 'required',
             'po_no'         => 'required',
             'ref_no'        => 'required|unique:receives',
             'project_id'    => 'required',

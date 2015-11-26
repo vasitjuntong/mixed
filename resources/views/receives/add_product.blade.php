@@ -7,18 +7,20 @@
 		 	<li><i class="fa fa-home"></i>
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
-		 	<li><i class="fa fa-home"></i>
+		 	<li><i class="fa fa-download"></i>
 			 	<a href="/receives"> {{ trans('receive.label.name')}}</a>
 		 	</li>
-		 	<li><i class="fa fa-home"></i>
-			 	<a href="/receives/{{ $receive->id }}/edit"> {{ trans('receive.label.edit')}}</a>
+		 	<li><i class="fa fa-edit"></i>
+			 	<a href="/receives/{{ $receive->id }}/edit"> {{ trans('receive.label.update')}}</a>
 		 	</li>
-		 	<li class="active">{{ trans('receive.label.add_product') }}</li>	 
+		 	<li class="active">{{ trans('receive_item.label.name') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
 		<div class="page-title">
-			<h3 class="no-margin">{{ trans('receive.label.name') }}</h3>
+			<h3 class="no-margin">
+				{{ trans('receive.label.name') }} {{ $receive->document_no }}
+			</h3>
 		</div><!-- /page-title -->			
 	</div><!-- /main-header -->
 
@@ -26,30 +28,37 @@
 
 @section('content')
 
-<div class="col-md-12" id="app">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			{{ trans('receive.label.add_product') }}
+<div class="row">
+	<div class="col-md-12" id="app">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				{{ trans('receive.label.add_product') }}
+			</div>
+			<div class="panel-body">
+
+				{!! Form::open([
+					'method' => 'POST',
+					'url' => "/receives/add-products/{$receive->id}",
+				]) !!}
+
+					<div class="row">
+						@include('receives.partial.add_product_form')
+					</div>
+		            
+		           <div class="row">
+			           	<div class="col-md-12"> 
+			      			<button type="submit" class="btn btn-success btn-sm">
+			      				{{ trans('receive.buttons.create') }}
+			      			</button>
+			            </div>
+		           </div>
+				{!! Form::close() !!}
+			</div>
 		</div>
-		<div class="panel-body">
-
-			{!! Form::open([
-				'method' => 'POST',
-				'url' => "/receives/add-products/{$receive->id}",
-			]) !!}
-
-				<div class="row">
-					@include('receives.partial.add_product_form')
-				</div>
-	            
-	           <div class="row">
-		           	<div class="col-md-12"> 
-		      			<button type="submit" class="btn btn-success btn-sm">
-		      				{{ trans('receive.buttons.create') }}
-		      			</button>
-		            </div>
-	           </div>
-			{!! Form::close() !!}
+		<div class="panel panel-default">
+			<div class="panel-body">
+			   @include('receives.partial.product_table')
+			</div>
 		</div>
 	</div>
 </div>

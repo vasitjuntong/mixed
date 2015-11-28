@@ -95,7 +95,6 @@ class ReceiveController extends Controller
         else{
             $receive->receiveItems()
                 ->create($request->all());
-            dd('count 0');
         }
 
         return redirect("/receives/add-products/{$receive_id}");

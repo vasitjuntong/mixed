@@ -7,7 +7,7 @@
 		 	<li><i class="fa fa-home"></i>
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
-		 	<li><i class="fa fa-home"></i>
+		 	<li><i class="fa fa-product-hunt"></i>
 			 	<a href="/products"> {{ trans('product.label.name')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('product.label.create') }}</li>	 
@@ -35,6 +35,7 @@
 	           <div class="row">
 		           	<div class="col-md-12"> 
 		      			<button type="submit" class="btn btn-success btn-sm">
+		      				<i class="fa fa-plus"></i>
 		      				{{ trans('product.buttons.create') }}
 		      			</button>
 		            </div>

@@ -29,6 +29,7 @@
 			<button 
 				type="submit" 
 				class="btn btn-success btn-sm">
+				<i class="fa fa-plus"></i>
 
 				{{ trans('main.button.create') }}
 			</button>

@@ -27,7 +27,7 @@
 			<label for="type1" class="control-label">
 				{{ trans('product.attributes.product_type_id') }}
 			</label>
-			<select name="product_type_id" class="form-control chzn-select">
+			<select name="product_type_id" class="form-control chosen-select">
 
 				<option value="">
 					{{ trans('main.label.select') }}
@@ -39,9 +39,7 @@
 						value="{{ $id }}" 
 						{{ old('product_type_id') == $id? 'selected': 
 							(isset($product) AND $product->product_type_id == $id)? 'selected':'' }}
-						>
-						{{ $name }}
-					</option>
+						>{{ $name }}</option>
 				@endforeach
 			</select>
 			@if($errors->has('product_type_id'))
@@ -59,7 +57,7 @@
 			<label for="type1" class="control-label">
 				{{ trans('product.attributes.unit_id') }}
 			</label>
-			<select class="form-control chzn-select" name="unit_id">
+			<select class="form-control chosen-select" name="unit_id">
 
 				<option value="">
 					{{ trans('main.label.select') }}
@@ -70,9 +68,7 @@
 						value="{{ $id }}"
 						{{ old('unit_id') == $id? 'selected': 
 							(isset($product) AND $product->unit_id == $id)? 'selected':'' }}
-						>
-						{{ $name }}
-					</option>
+						>{{ $name }}</option>
 				@endforeach
 			</select>
 			@if($errors->has('unit_id'))

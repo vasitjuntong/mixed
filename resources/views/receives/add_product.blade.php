@@ -80,7 +80,9 @@
 	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
 	<script>
 		$(function(){
-			$(".chosen-select").chosen();
+			$(".chosen-select").chosen({
+				search_contians: true
+			});
 		})
 	</script>
 @endsection

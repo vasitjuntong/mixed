@@ -45,7 +45,7 @@
 			</label>
 
 			{!! Form::select('location_id', $locationLists, null, [
-				'class' => 'form-control',
+				'class' => 'form-control chosen-select',
 			]) !!}
 
 			@if($errors->has('location_id'))

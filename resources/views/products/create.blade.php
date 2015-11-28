@@ -45,3 +45,23 @@
 	</div><!-- /panel -->
 </div>
 @endsection
+
+@section('style')
+	@parent
+
+	<link href="/css/chosen/chosen.min.css" rel="stylesheet">
+@endsection
+
+@section('script')
+	@parent
+
+	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
+
+	<script>
+		$(function(){
+			$('.chosen-select').chosen({
+				search_contains: true
+			});
+		});
+	</script>
+@endsection

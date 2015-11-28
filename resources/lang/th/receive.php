@@ -21,13 +21,13 @@ return [
 		'ref_no' 		=> 'Referrence NO',
 		'project_id' 	=> 'โครงการ',
 		'project_code' 	=> 'Code โครงการ',
-		'status' 		=> 'สถานะใบเบิก',
+		'status' 		=> 'สถานะรับสินค้า',
 		'remark'		=> 'หมายเหตุ',
-		'created_at'	=> 'เบิกเมื่อ',
+		'created_at'	=> 'วันขอรับสินค้า',
 		'updated_at'	=> 'แก้ไข',
 
 		'stock' 		=> 'Stock',
-		'create_by'		=> 'ผู้ขอเบิก',
+		'create_by'		=> 'ผู้ขอรับสินค้า',
 	],
 	'message_alert' => [
 		'create_success' 	=> 'เพิ่มใบรับสินค้าเรียบร้อย',

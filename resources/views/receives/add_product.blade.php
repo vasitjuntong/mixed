@@ -55,11 +55,30 @@
 				{!! Form::close() !!}
 			</div>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-body">
-			   @include('receives.partial.product_table')
+
+	   	@include('receives.partial.product_table')
+
+		@if($receiveItems->count())
+			<div class="panel panel-default">
+				<div class="panel-body">
+				   {!! Form::open([
+				   		'method' => 'post',
+				   		'url' => "/receives/status-padding/{$receive->id}",
+				   		'class' => 'form-confirm',
+				   		'data-title-confirm' => trans('receive.message_alert.review_confirm'),
+				   		'data-message-cancel' => trans('receive.message_alert.review_cancel'),
+				   		'data-confirm-ok' => trans('main.confirm_button.ok'),
+				   		'data-confirm-cancel' => trans('main.confirm_button.cancel')
+				   	]) !!}
+
+				   	<button type="submit" class="btn btn-success">
+				   		{{ trans('receive.buttons.confirm_receive') }}
+				   	</button>
+
+				   	{!! Form::close() !!}
+				</div>
 			</div>
-		</div>
+		@endif
 	</div>
 </div>
 
@@ -78,6 +97,7 @@
 	<script type="text/javascript" src="/js/typeahead.min.js"></script>
 	<script type="text/javascript" src="/js/libs/vue_addproduct.js"></script>
 	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
 	<script>
 		$(function(){
 			$(".chosen-select").chosen({

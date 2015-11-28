@@ -8,6 +8,7 @@ Route::group(['prefix' => 'receives'], function(){
 	get('/add-products/{id}', 'ReceiveController@addProducts');
 	post('/add-products/{receive_id}', 'ReceiveController@storeProducts');
 	get('/review/{id}', 'ReceiveController@review');
+	post('/status-padding/{id}', 'ReceiveController@statusPadding');
 });
 
 get('/product-lists', 'ProductListController@index');

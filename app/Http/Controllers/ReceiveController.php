@@ -101,22 +101,22 @@ class ReceiveController extends Controller
 
     public function show($id)
     {
-        $receive = Receive::with([
-                'receiveItems',
-            ])
-            ->where('id', $id)
-            ->first();
+        // $receive = Receive::with([
+        //         'receiveItems',
+        //     ])
+        //     ->where('id', $id)
+        //     ->first();
 
-        $receiveItems = $receive->receiveItems()
-            ->orderBy('id', 'asc')
-            ->get();
+        // $receiveItems = $receive->receiveItems()
+        //     ->orderBy('id', 'asc')
+        //     ->get();
 
-        return view('receives.add_product', compact(
-            'receive', 
-            'products', 
-            'locationLists',
-            'receiveItems'
-        ));
+        // return view('receives.add_product', compact(
+        //     'receive', 
+        //     'products', 
+        //     'locationLists',
+        //     'receiveItems'
+        // ));
     }
 
     public function edit($id)
@@ -152,6 +152,20 @@ class ReceiveController extends Controller
         $receiveItems = $receive->receiveItems;
 
         return view('receives.review', compact('receive', 'receiveItems'));
+    }
+
+    public function statusPadding($id)
+    {   
+        $receive = Receive::find($id);
+
+        $receive->setStatusPadding();
+
+        return [
+            'status' => true,
+            'title' => 'Success',
+            'message' => 'success',
+            'url' => url('/receives/review/'. $id),
+        ];
     }
 
     public function destroy($id)

@@ -46,6 +46,21 @@ class Receive extends Model
     	return $this->hasMany(ReceiveItem::class);
     }
 
+    public function setStatusPadding()
+    {
+    	DB::transaction(function(){
+	    	$this->status = static::PADDING;
+
+	    	foreach($this->receiveItems as $item){
+	    		$item->status = static::PADDING;
+
+	    		$item->save();
+	    	}
+
+	    	$this->save();
+    	});
+    }
+
    	public function statusHtml()
    	{
 

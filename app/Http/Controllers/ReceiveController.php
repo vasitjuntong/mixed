@@ -80,7 +80,7 @@ class ReceiveController extends Controller
             ->where('location_id', array_get($request->all(), 'location_id'))
             ->count();
 
-        if($count){
+        if($count) {
             $receiveItem = $receive->receiveItems()
                 ->where('product_id', array_get($request->all(), 'product_id'))
                 ->where('location_id', array_get($request->all(), 'location_id'))
@@ -91,8 +91,7 @@ class ReceiveController extends Controller
             );
 
             $receiveItem->save();
-        }
-        else{
+        } else {
             $receive->receiveItems()
                 ->create($request->all());
         }
@@ -133,16 +132,26 @@ class ReceiveController extends Controller
     public function update(ReceiveUpdateRequest $request, $id)
     {
         $data = $request->all();
-
         $project = Project::find($request->get('project_id'), ['code']);
-
         $data['project_code'] = $project->code;
 
         $receive = Receive::find($id);
-
         $receive->update($data);
 
         return redirect("/receives/add-products/{$receive->id}");
+    }
+
+    public function review($id)
+    {
+        $receive = Receive::with([
+                'receiveItems'    
+            ])
+            ->where('id', $id)
+            ->first();
+
+        $receiveItems = $receive->receiveItems;
+
+        return view('receives.review', compact('receive', 'receiveItems'));
     }
 
     public function destroy($id)

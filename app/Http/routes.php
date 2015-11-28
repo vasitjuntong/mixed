@@ -3,9 +3,12 @@
 get('/', 'HomeController@index');
 
 // Component.
-resource('/receives', 'ReceiveController');
-get('/receives/add-products/{id}', 'ReceiveController@addProducts');
-post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');
+Route::group(['prefix' => 'receives'], function(){
+	resource('/', 'ReceiveController');
+	get('/add-products/{id}', 'ReceiveController@addProducts');
+	post('/add-products/{receive_id}', 'ReceiveController@storeProducts');
+	get('/review/{id}', 'ReceiveController@review');
+});
 
 get('/product-lists', 'ProductListController@index');
 

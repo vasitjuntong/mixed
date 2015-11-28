@@ -14,28 +14,28 @@
 	<tbody>
 		@forelse($receives as $receive)
 		
-		<tr>
-			<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
-			<td>
-				<a href="/receives/add-products/{{ $receive->id }}">
-					{{ $receive->document_no }}
-				</a>
-			</td>
-			<td>{{ $receive->po_no }}</td>
-			<td>{{ $receive->ref_no }}</td>
-			<td>{{ $receive->stock }}</td>
-			<td>{{ $receive->create_by }}</td>
-			<td>{{ $receive->remark }}</td>
-			<td>{{ $receive->status }}</td>
-		</tr>
+			<tr>
+				<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
+				<td>
+					<a href="/receives/add-products/{{ $receive->id }}">
+						{{ $receive->document_no }}
+					</a>
+				</td>
+				<td>{{ $receive->po_no }}</td>
+				<td>{{ $receive->ref_no }}</td>
+				<td>{{ $receive->stock }}</td>
+				<td>{{ $receive->create_by }}</td>
+				<td>{{ $receive->remark }}</td>
+				<td>{!! $receive->statusHtml() !!}</td>
+			</tr>
 
 		@empty
 
-		<tr>
-			<td class="text-center text-danger" colspan="8">
-				{{ trans('receive.label.empty_data') }}
-			</td>
-		</tr>
+			<tr>
+				<td class="text-center text-danger" colspan="8">
+					{{ trans('receive.label.empty_data') }}
+				</td>
+			</tr>
 
 		@endforelse
 	</tbody>

@@ -45,4 +45,10 @@ class Receive extends Model
     {
     	return $this->hasMany(ReceiveItem::class);
     }
+
+   	public function statusHtml()
+   	{
+
+   		return statusHtmlRender($this->status);
+   	}
 }

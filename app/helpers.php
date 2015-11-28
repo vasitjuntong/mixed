@@ -37,3 +37,25 @@ function activeMenu($menus = array())
 
 	return $status;
 }
+
+function statusHtmlRender($status)
+{
+	switch ($status) {
+		case 'create':
+				return '<span class="badge bg-info">create</span>';
+			break;
+		case 'padding':
+				return '<span class="badge bg-warning">padding</span>';
+			break;
+		case 'success':
+				return '<span class="badge bg-success">success</span>';
+			break;
+		case 'cancel':
+				return '<span class="badge bg-danger">cancel</span>';
+			break;
+		
+		default:
+			
+			break;
+	}
+}

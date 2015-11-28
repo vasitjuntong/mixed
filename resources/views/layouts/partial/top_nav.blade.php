@@ -1,5 +1,4 @@
-
-<div id="top-nav" class="fixed skin-6">
+<div id="top-nav" class="fixed skin-6 hidden-print">
 	<a href="#" class="brand">
 		<span>Mixed</span>
 		<span class="text-toggle"> System</span>

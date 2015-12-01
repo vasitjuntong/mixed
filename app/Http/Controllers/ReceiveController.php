@@ -171,13 +171,27 @@ class ReceiveController extends Controller
     public function statusPadding($id)
     {   
         $receive = Receive::find($id);
+        try{
+            DB::transaction(function() use ($receive) {
+                $receive->setStatusPadding();
+            });
+        } catch(Exception $e) {
+            Log::error('set-status-padding-unsuccess',[
+                $e
+            ]);
 
-        $receive->setStatusPadding();
+            return [
+                'status' => false,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.status_padding_unsuccess_message'),
+                'url' => url('/receives/review/'. $id),
+            ];
+        } 
 
         return [
             'status' => true,
-            'title' => 'Success',
-            'message' => 'success',
+            'title' => trans('receive.label.name'),
+            'message' => trans('receive.message_alert.status_padding_message'),
             'url' => url('/receives/review/'. $id),
         ];
     }
@@ -228,7 +242,7 @@ class ReceiveController extends Controller
             ];
         } catch(Exception $e) {
 
-            Log::error('Receive item unsuccess', array($e));
+            Log::error('receive-item-unsuccess', array($e));
 
             return [
                 'status' => false,

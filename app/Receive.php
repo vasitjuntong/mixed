@@ -49,17 +49,19 @@ class Receive extends Model
 
     public function setStatusPadding()
     {
-    	DB::transaction(function(){
-	    	$this->status = static::PADDING;
+    	$this->status = static::PADDING;
 
-	    	foreach($this->receiveItems as $item){
-	    		$item->status = ReceiveItem::PADDING;
+    	foreach($this->receiveItems as $item){
+    		$item->status = ReceiveItem::PADDING;
 
-	    		$item->save();
-	    	}
+    		Log::debug('set-status-receive-padding: line item', [
+    			'receive' => $this->toArray(),
+			]);
 
-	    	$this->save();
-    	});
+    		$item->save();
+    	}
+
+    	$this->save();
     }
 
     public function setStatusSuccess($successItems)
@@ -69,6 +71,10 @@ class Receive extends Model
     	foreach($this->receiveItems as $item){
     		if(in_array($item->id, $successItems)){
     			$item->status = ReceiveItem::SUCCESS;
+
+		    	Log::debug('set-status-receive-item-success: line item', [
+		    		'receive&items' => $this->toArray(),
+				]);
 
     			$item->save();
     		}
@@ -87,7 +93,7 @@ class Receive extends Model
     		$this->save();
     	}
 
-    	Log::debug('set status receive item success', [
+    	Log::debug('set-status-receive-item-success', [
     		'success' => $success,
     		'totalItem' => $totalItem,
 		]);

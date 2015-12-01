@@ -49,5 +49,7 @@ return [
 		'success_confirm_cancel' => 'คุณไม่ต้องการรับสินค้าเข้าระบบ',
 		'status_success_message' => 'รับสินค้าเข้าระบบเรียบร้อย',
 		'status_success_unsuccess_message'   => 'ไม่สามารถทำรายการได้ ลองใหม่อีกครั้ง',
+		'status_padding_message' => 'ใบรับสินค้าอยู่ในสถานะ Padding',
+		'status_padding_unsuccess_message'   => 'ไม่สามารถทำรายการได้ ลองใหม่อีกครั้ง',
 	],
 ];

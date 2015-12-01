@@ -12,6 +12,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReceiveCreateRequest;
 use App\Http\Requests\ReceiveUpdateRequest;
 use App\Http\Requests\AddProductReceiveRequest;
+use DB;
+use Exception;
+use Log;
 
 class ReceiveController extends Controller
 {
@@ -49,8 +52,19 @@ class ReceiveController extends Controller
         $receive = Receive::with([
                 'receiveItems',
             ])
-            ->where('id', $id)
+            ->whereId($id)
+            ->whereStatus(Receive::CREATE)
             ->first();
+
+        if($receive == null){
+            flash()->error(
+                trans('receive.label.name'),
+                trans('receive.message_alert.warning_receive_is_not_create')
+            );
+
+            return redirect()
+                ->back();
+        }
 
         $locations = Location::orderBy('name', 'desc')
             ->lists('name', 'id');
@@ -166,6 +180,63 @@ class ReceiveController extends Controller
             'message' => 'success',
             'url' => url('/receives/review/'. $id),
         ];
+    }
+
+    public function statusSuccess($id)
+    {
+        $receive = Receive::with([
+                'receiveItems',
+            ])
+            ->whereStatus(Receive::PADDING)
+            ->whereId($id)
+            ->first();
+
+        if($receive == null){
+            flash()->error(
+                trans('receive.label.name'),
+                trans('receive.message_alert.warning_receive_is_not_padding')
+            );
+
+            return redirect()
+                ->back();
+        }
+
+        $receiveItems = $receive->receiveItems()
+            ->paginate(20);
+
+        return view('receives.status_success', compact(
+            'receive',
+            'receiveItems'
+        ));
+    }
+
+    public function storeStatusSuccess(Request $request, $id)
+    {
+        $receive = Receive::find($id);
+
+        try{
+            DB::transaction(function() use ($receive, $request) {
+
+                $receive->setStatusSuccess($request->get('receive_item_ids'));
+            });
+
+            return [
+                'status' => true,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.status_success_message'),
+                'url' => url("/receives/status-success/{$receive->id}"),
+            ];
+        } catch(Exception $e) {
+
+            Log::error('Receive item unsuccess', array($e));
+
+            return [
+                'status' => false,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.status_success_unsuccess_message'),
+                'url' => url("/receives/status-success/{$receive->id}"),
+            ];
+        }
     }
 
     public function destroy($id)

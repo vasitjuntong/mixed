@@ -1,6 +1,7 @@
 <?php
 
 get('/', 'HomeController@index');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 // Component.
 Route::group(['prefix' => 'receives'], function(){
@@ -9,6 +10,9 @@ Route::group(['prefix' => 'receives'], function(){
 	post('/add-products/{receive_id}', 'ReceiveController@storeProducts');
 	get('/review/{id}', 'ReceiveController@review');
 	post('/status-padding/{id}', 'ReceiveController@statusPadding');
+
+	get('/status-success/{id}', 'ReceiveController@statusSuccess');
+	post('/status-success/{id}', 'ReceiveController@storeStatusSuccess');
 });
 
 get('/product-lists', 'ProductListController@index');

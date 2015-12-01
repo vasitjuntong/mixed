@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Log;
 
 class Receive extends Model
 {
@@ -52,13 +53,44 @@ class Receive extends Model
 	    	$this->status = static::PADDING;
 
 	    	foreach($this->receiveItems as $item){
-	    		$item->status = static::PADDING;
+	    		$item->status = ReceiveItem::PADDING;
 
 	    		$item->save();
 	    	}
 
 	    	$this->save();
     	});
+    }
+
+    public function setStatusSuccess($successItems)
+    {
+    	$statusReceive = false;
+
+    	foreach($this->receiveItems as $item){
+    		if(in_array($item->id, $successItems)){
+    			$item->status = ReceiveItem::SUCCESS;
+
+    			$item->save();
+    		}
+    	}
+
+    	$totalItem = $this->receiveItems()
+    		->count(['id']);
+
+    	$success = $this->receiveItems()
+    		->whereStatus(ReceiveItem::SUCCESS)
+    		->count(['id']);
+
+    	if($success == $totalItem){
+    		$this->status = static::SUCCESS;
+
+    		$this->save();
+    	}
+
+    	Log::debug('set status receive item success', [
+    		'success' => $success,
+    		'totalItem' => $totalItem,
+		]);
     }
 
    	public function statusHtml()

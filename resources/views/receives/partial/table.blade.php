@@ -3,12 +3,13 @@
 		<tr>
 			<th width="10%">{{ trans('receive.attributes.created_at') }}</th>
 			<th width="10%">{{ trans('receive.attributes.document_no' )}}</th>
-			<th width="11%">{{ trans('receive.attributes.po_no') }}</th>
-			<th width="13%">{{ trans('receive.attributes.ref_no') }}</th>
-			<th width="11%">{{ trans('receive.attributes.stock') }}</th>
-			<th width="20%">{{ trans('receive.attributes.create_by') }}</th>
-			<th width="13%">{{ trans('receive.attributes.remark') }}</th>
-			<th width="12%">{{ trans('receive.attributes.status') }}</th>
+			<th width="10%">{{ trans('receive.attributes.po_no') }}</th>
+			<th width="10%">{{ trans('receive.attributes.ref_no') }}</th>
+			<th width="10%">{{ trans('receive.attributes.stock') }}</th>
+			<th width="10%">{{ trans('receive.attributes.create_by') }}</th>
+			<th width="20%">{{ trans('receive.attributes.remark') }}</th>
+			<th width="10%">{{ trans('receive.attributes.status') }}</th>
+			<th width="10%" class="text-center">{{ trans('receive.attributes.success_status') }}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,6 +28,11 @@
 				<td>{{ $receive->create_by }}</td>
 				<td>{{ $receive->remark }}</td>
 				<td>{!! $receive->statusHtml() !!}</td>
+				<td class="text-center">
+					<a href="/receives/status-success/{{ $receive->id }}" class="btn btn-success btn-xs">
+						<span class="fa fa-download"></span>
+					</a>
+				</td>
 			</tr>
 
 		@empty

@@ -29,6 +29,7 @@ return [
 
 		'stock' 		=> 'Stock',
 		'create_by'		=> 'ผู้ขอรับสินค้า',
+		'success_status' => 'เลือกสินค้าเข้าระบบ'
 	],
 	'message_alert' => [
 		'create_success' 	=> 'เพิ่มใบรับสินค้าเรียบร้อย',
@@ -40,5 +41,13 @@ return [
 
 		'review_confirm' 	=> 'คุณต้องการยืนยันการรับสินค้าหรือไม่?',
 		'review_cancel'		=> 'คุณไม่ต้องรับสินค้า',
+
+		'warning_receive_is_not_padding' => 'สถานะใบรับสินค้าต้องเป็น Padding เท่านั้น',
+		'warning_receive_is_not_create' => 'สถานะใบรับสินค้าต้องเป็น Create เท่านั้น',
+
+		'success_confirm' 	=> 'คุณต้องการรับสินค้าเข้าระบบหรือไม่?',
+		'success_confirm_cancel' => 'คุณไม่ต้องการรับสินค้าเข้าระบบ',
+		'status_success_message' => 'รับสินค้าเข้าระบบเรียบร้อย',
+		'status_success_unsuccess_message'   => 'ไม่สามารถทำรายการได้ ลองใหม่อีกครั้ง',
 	],
 ];

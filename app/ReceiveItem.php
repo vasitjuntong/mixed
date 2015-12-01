@@ -56,4 +56,10 @@ class ReceiveItem extends Model
     			$model->qty = 1;
     	});
     }
+
+   	public function statusHtml()
+   	{
+
+   		return statusHtmlRender($this->status);
+   	}
 }

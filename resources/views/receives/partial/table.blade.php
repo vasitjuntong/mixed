@@ -18,9 +18,15 @@
 			<tr>
 				<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
 				<td>
-					<a href="/receives/add-products/{{ $receive->id }}">
-						{{ $receive->document_no }}
-					</a>
+					@if($receive->status == \App\Receive::SUCCESS)
+						<a href="/receives/review/{{ $receive->id }}">
+							{{ $receive->document_no }}
+						</a>
+					@else
+						<a href="/receives/add-products/{{ $receive->id }}">
+							{{ $receive->document_no }}
+						</a>
+					@endif
 				</td>
 				<td>{{ $receive->po_no }}</td>
 				<td>{{ $receive->ref_no }}</td>

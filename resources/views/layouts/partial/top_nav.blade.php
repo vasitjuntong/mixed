@@ -183,7 +183,11 @@
 		</li>
 		<li class="profile dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				<strong>Akarin Rachakrut</strong>
+				<strong>
+					@if(Auth::check())
+						{{ Auth::user()->name }}
+					@endif
+				</strong>
 				<span><i class="fa fa-chevron-down"></i></span>
 			</a>
 			<ul class="dropdown-menu">
@@ -191,8 +195,16 @@
 					<a class="clearfix" href="#">
 						<img src="img/user.jpg" alt="User Avatar">
 						<div class="detail">
-							<strong>Akarin Rachakrut</strong>
-							<p class="grey">Akarin@mixed.co.th</p> 
+							<strong>
+								@if(Auth::check())
+									{{ Auth::user()->name }}
+								@endif
+							</strong>
+							<p class="grey">
+								@if(Auth::check())
+									{{ Auth::user()->email }}
+								@endif
+							</p> 
 						</div>
 					</a>
 				</li>
@@ -200,7 +212,11 @@
 				
 				<li><a tabindex="-1" href="#" class="theme-setting"><i class="fa fa-cog fa-lg"></i> Setting</a></li>
 				<li class="divider"></li>
-				<li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i class="fa fa-lock fa-lg"></i> Log out</a></li>
+				<li>
+					<a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm">
+						<i class="fa fa-lock fa-lg"></i> Log out
+					</a>
+				</li>
 			</ul>
 		</li>
 	</ul>

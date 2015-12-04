@@ -48,8 +48,8 @@ class Handler extends ExceptionHandler
         }
 
         if ($this->isHttpException($e)) {
-            
-            return response()->view('errors.404', [], 404);
+            return $e;
+            // return response()->view('errors.404', [], 404);
         } else {
             // Custom error 500 view on production
             if (app()->environment() == 'production') {

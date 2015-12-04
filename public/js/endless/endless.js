@@ -59,16 +59,12 @@ $(function	()	{
 	
 	//
 	$('.login-link').click(function(e) {
-		e.preventDefault();
-		href = $(this).attr('href');
 		
 		$('.login-wrapper').addClass('fadeOutUp');
 
 		setTimeout(function() {
-			window.location = href;
-		}, 900);
-			
-		return false;	
+			return true;
+		}, 900);	
 	});
 	
 	//Logout Confirmation

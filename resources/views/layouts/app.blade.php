@@ -99,7 +99,7 @@
 		</div>
 
 		<div class="text-center">
-			<a class="btn btn-success m-right-sm" href="login.html">Logout</a>
+			<a class="btn btn-success m-right-sm" href="/auth/logout">Logout</a>
 			<a class="btn btn-danger logoutConfirm_close">Cancel</a>
 		</div>
 	</div>

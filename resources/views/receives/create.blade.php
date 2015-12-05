@@ -40,7 +40,7 @@
 	           <div class="row">
 		           	<div class="col-md-12"> 
 		      			<button type="submit" class="btn btn-success btn-sm">
-		      				{{ trans('receive.buttons.create') }}
+		      				{{ trans('main.button.create') }}
 		      			</button>
 		            </div>
 	           </div>

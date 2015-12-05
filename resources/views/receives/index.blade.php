@@ -19,10 +19,18 @@
 @section('content')
 
 <div class="panel panel-default">
-	<div class="panel-body">
-	   <a href="/receives/create" class="btn btn-info btn-sm">
+	<div class="panel-body text-right">
+	   <a 
+	   		id="create"
+	   		href="/receives/create" 
+	   		class="btn btn-warning btn-sm">
+
 	   		<span class="fa fa-plus"></span>
-	   		{{ trans('receive.buttons.create') }}
+	   		{{ trans('receive.label.new_receive') }}
+	   </a>
+	   <a href="/receives/movement" class="btn btn-success btn-sm">
+	   		<span class="fa fa-clock-o"></span>
+	   		{{ trans('receive.label.movement') }}
 	   </a>
 	</div>
 </div>
@@ -35,5 +43,34 @@
 		<span class="text-center block">{!! $receives->render() !!}</span>
   	</div>
 </div>
+
+<div id="modal_content"></div>
+
+@endsection
+
+@section('script')
+	@parent
+	
+	<script>
+		$(function(){
+			$('a#create').click(function(e){
+				e.preventDefault();
+				
+				var that = $(this);
+				var modal_content = $('div#modal_content');
+
+				$.ajax({
+					type: 'get',
+					url: that.attr('href'),
+					success: function(result){
+						modal_content.html(result);
+						$('#modal-create').modal('show');
+					}
+				});
+
+				return false;
+			});
+		});
+	</script>
 
 @endsection

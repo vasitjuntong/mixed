@@ -42,16 +42,16 @@ function statusHtmlRender($status)
 {
 	switch ($status) {
 		case 'create':
-				return '<span class="badge bg-info">create</span>';
+				return '<label class="label label-info">create</label>';
 			break;
 		case 'padding':
-				return '<span class="badge bg-warning">padding</span>';
+				return '<label class="label label-warning">padding</label>';
 			break;
 		case 'success':
-				return '<span class="badge bg-success">success</span>';
+				return '<label class="label label-success">success</label>';
 			break;
 		case 'cancel':
-				return '<span class="badge bg-danger">cancel</span>';
+				return '<label class="label label-danger">cancel</label>';
 			break;
 		
 		default:

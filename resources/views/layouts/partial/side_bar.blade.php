@@ -11,7 +11,7 @@
 			</a>
 		</div><!-- /size-toggle -->	
 		<div class="user-block clearfix">
-			<img src="img/user.jpg" alt="User Avatar">
+			<img src="/img/user.jpg" alt="User Avatar">
 			<div class="detail">
 				@if(Auth::check())
 					<strong>{{ Auth::user()->name }}</strong>
@@ -21,18 +21,10 @@
 					<li><a href="/profile">Profile</a></li>
 				</ul>
 			</div>
-		</div><!-- /user-block -->
-	{{-- <div class="search-block">
-			<div class="input-group">
-				<input type="text" class="form-control input-sm" placeholder="search here...">
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-sm" type="button"><i class="fa fa-search"></i></button>
-				</span>
-			</div><!-- /input-group -->
-		</div><!-- /search-block --> --}}
+		</div>
 		<div class="main-menu">
 		  <ul>
-			<li class="">
+			<li class="{{ activeMenu(['/', '/home', '/dashboard']) ? 'active openable':'' }}">
 				<a href="/">
 					<span class="menu-icon">
 						<i class="fa fa-desktop fa-lg"></i> 
@@ -81,7 +73,7 @@
 			<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
 				<a href="#">
 					<span class="menu-icon">
-						<i class="fa fa-file-text fa-lg"></i> 
+						<i class="fa fa-cog fa-lg"></i> 
 					</span>
 					<span class="text">
 						{{ trans('main.side_menu.setting') }}
@@ -121,6 +113,27 @@
 						</a>
 					</li>
 				</ul>
+			</li>
+			<li class="openable {{ urlActive('user')? 'active openable':'' }}">
+				<a href="#">
+					<span class="menu-icon">
+						<i class="fa fa-tag fa-lg"></i> 
+					</span>
+					<span class="text">
+						{{ trans('main.side_menu.user') }}
+					</span>
+		
+					<span class="menu-hover"></span>
+				</a>
+				<ul class="submenu">
+					<li class="{{ activeMenu(['/users/create']) ? 'active':'' }}">
+						<a href="/users/create">
+							<span class="submenu-label">
+								Create User
+							</span>
+						</a>
+					</li>
+                </ul>
 			</li>
 	  	</ul>
 			

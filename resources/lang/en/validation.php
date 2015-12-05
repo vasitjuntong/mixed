@@ -2,17 +2,6 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
     'accepted'             => 'The :attribute must be accepted.',
     'active_url'           => 'The :attribute is not a valid URL.',
     'after'                => 'The :attribute must be a date after :date.',
@@ -35,11 +24,11 @@ return [
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'email'                => 'The :attribute must be a valid email address.',
-    'exists'               => 'The selected :attribute is invalid.',
+    'exists'               => ':attribute ไม่มีอยู่ในระบบ กรุณาตรวจสอบ',
     'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
-    'integer'              => 'The :attribute must be an integer.',
+    'integer'              => ':attribute จำนวนเต็มเท่านั้น',
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
@@ -58,7 +47,7 @@ return [
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'regex'                => 'The :attribute format is invalid.',
-    'required'             => 'The :attribute field is required.',
+    'required'             => ':attribute ไม่เท่ากับค่าว่าง',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
@@ -73,7 +62,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'The :attribute has already been taken.',
+    'unique'               => ':attribute มีอยู่ในระบบ กรุณาตรวจสอบ',
     'url'                  => 'The :attribute format is invalid.',
 
     /*

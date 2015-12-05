@@ -193,7 +193,7 @@
 			<ul class="dropdown-menu">
 				<li>
 					<a class="clearfix" href="#">
-						<img src="img/user.jpg" alt="User Avatar">
+						<img src="/img/user.jpg" alt="User Avatar">
 						<div class="detail">
 							<strong>
 								@if(Auth::check())

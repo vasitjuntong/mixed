@@ -17,7 +17,7 @@ class ReceiveUpdateRequest extends Request
 
         return [
             'po_no'         => 'required',
-            'ref_no'        => "required|unique:receives,ref_no,{$receive_id}",
+            'ref_no'        => "required",
             'project_id'    => 'required',
         ];
     }

@@ -26,10 +26,15 @@ class ReceiveController extends Controller
         return view('receives.index', compact('receives'));
 }
 
-    public function create()
+    public function create(Request $request)
     {
         $projects = Project::orderBy('code', 'desc')
             ->lists('code', 'id');
+
+        if($request->ajax()){
+
+            return view('receives.create_modal', compact('projects'));
+        }
         
         return view('receives.create', compact('projects'));
     }
@@ -37,12 +42,25 @@ class ReceiveController extends Controller
     public function store(ReceiveCreateRequest $request)
     {
         $data = $request->all();
-
         $project = Project::find($request->get('project_id'), ['code']);
-
         $data['project_code'] = $project->code;
 
-        $receive = Receive::create($data);
+        $receive = '';
+
+        DB::transaction(function() use (&$receive, $data) {
+            $receive = Receive::create($data);
+        });
+
+        if($request->ajax()){
+
+            \Log::info('create-receive: success', array(
+                $receive,
+            ));
+
+            return [
+                'urlRedirect' => url("/receives/add-products/{$receive->id}"),
+            ];
+        }
 
         return redirect("/receives/add-products/{$receive->id}");
     }

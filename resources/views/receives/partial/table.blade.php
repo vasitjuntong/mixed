@@ -5,11 +5,11 @@
 			<th width="10%">{{ trans('receive.attributes.document_no' )}}</th>
 			<th width="10%">{{ trans('receive.attributes.po_no') }}</th>
 			<th width="10%">{{ trans('receive.attributes.ref_no') }}</th>
-			<th width="10%">{{ trans('receive.attributes.stock') }}</th>
+			<th width="10%">{{ trans('receive.attributes.project_id') }}</th>
 			<th width="10%">{{ trans('receive.attributes.create_by') }}</th>
-			<th width="20%">{{ trans('receive.attributes.remark') }}</th>
-			<th width="10%">{{ trans('receive.attributes.status') }}</th>
-			<th width="10%" class="text-center">{{ trans('receive.attributes.success_status') }}</th>
+			<th>{{ trans('receive.attributes.remark') }}</th>
+			<th width="5%">{{ trans('receive.attributes.status') }}</th>
+			{{-- <th width="10%" class="text-center">{{ trans('receive.attributes.success_status') }}</th> --}}
 		</tr>
 	</thead>
 	<tbody>
@@ -18,27 +18,21 @@
 			<tr>
 				<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
 				<td>
-					@if($receive->status == \App\Receive::SUCCESS)
-						<a href="/receives/review/{{ $receive->id }}">
-							{{ $receive->document_no }}
-						</a>
-					@else
-						<a href="/receives/add-products/{{ $receive->id }}">
-							{{ $receive->document_no }}
-						</a>
-					@endif
+					<a href="/receives/review/{{ $receive->id }}">
+						{{ $receive->document_no }}
+					</a>
 				</td>
 				<td>{{ $receive->po_no }}</td>
 				<td>{{ $receive->ref_no }}</td>
-				<td>{{ $receive->stock }}</td>
+				<td>{{ $receive->project->code }}</td>
 				<td>{{ $receive->create_by }}</td>
 				<td>{{ $receive->remark }}</td>
 				<td>{!! $receive->statusHtml() !!}</td>
-				<td class="text-center">
+				{{-- <td class="text-center">
 					<a href="/receives/status-success/{{ $receive->id }}" class="btn btn-success btn-xs">
 						<span class="fa fa-download"></span>
 					</a>
-				</td>
+				</td> --}}
 			</tr>
 
 		@empty

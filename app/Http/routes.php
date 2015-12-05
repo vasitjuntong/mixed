@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 	get('/dashboard', 'HomeController@index');
 	get('/', 'HomeController@index');
+	get('/home', 'HomeController@index');
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 	// Component.

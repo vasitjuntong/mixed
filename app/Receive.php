@@ -32,19 +32,19 @@ class Receive extends Model
 	    {
 	    	if($model->status == null)
 	    		$model->status = static::CREATE;
-	    });
 
-	    static::created(function ($model)
-	    {
-	    	$model->document_no = 'DC' . (1000000 + $model->id);
-
-	    	$model->save();
+            $model->document_no = $model->genDoNo();
 	    });
     }
 
     public function receiveItems()
     {
     	return $this->hasMany(ReceiveItem::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
     }
 
     public function setStatusPadding()
@@ -104,4 +104,46 @@ class Receive extends Model
 
    		return statusHtmlRender($this->status);
    	}
+
+    public function genDoNo()
+    {
+        $prefix = "GR" . date('Ym');
+        $number = 001;
+
+        $receiveNumber = ReceiveNumber::whereName($prefix)
+            ->first();
+
+        if(is_null($receiveNumber)){
+            ReceiveNumber::create([
+                'name' => $prefix,
+                'number' => $number,
+            ]);
+        }else{
+            $number = $receiveNumber->number + 1;
+
+            $receiveNumber->number = $number;
+            $receiveNumber->save();
+        }
+
+        $number = $this->genO($number);
+
+        return "{$prefix}-{$number}";
+    }
+
+    public function genO($number)
+    {
+        $count = strlen($number);
+
+        switch($count){
+            case 1:
+                return '00' . $number;
+                break;
+            case 2: 
+                return '0' . $number;
+                break;
+            default:
+                return $number;
+                break;
+        }
+    }
 }

@@ -18,6 +18,7 @@
 
 @section('content')
 
+@can('add_form')
 <div class="panel panel-default">
 	<div class="panel-heading">
 		{{ trans('unit.label.create') }}{{ trans('unit.label.name') }}
@@ -37,6 +38,8 @@
 		</form>
 	</div>
 </div><!-- /panel -->
+@endcan
+
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">
 		@include('units.partial.table')

@@ -114,7 +114,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="openable {{ urlActive('user')? 'active openable':'' }}">
+			{{-- <li class="openable {{ urlActive('user')? 'active openable':'' }}">
 				<a href="#">
 					<span class="menu-icon">
 						<i class="fa fa-tag fa-lg"></i> 
@@ -134,7 +134,7 @@
 						</a>
 					</li>
                 </ul>
-			</li>
+			</li> --}}
 	  	</ul>
 			
 			<div class="alert alert-info">

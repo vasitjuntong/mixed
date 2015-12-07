@@ -4,10 +4,10 @@
 	<div id="breadcrumb">
 		<ul class="breadcrumb">
 		 	<li><i class="fa fa-home"></i>
-			 	<a href="index.html"> {{ trans('main.breadcrump.home')}}</a>
+			 	<a href="/l"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
 		 	<li><i class="fa fa-user"></i>
-			 	<a href="index.html"> {{ trans('user.label.name')}}</a>
+			 	<a href="/users"> {{ trans('user.label.name')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('user.label.assign_role') }}</li>	 
 		</ul>

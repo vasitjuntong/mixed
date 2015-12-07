@@ -30,5 +30,6 @@ return [
 		'product' 		=> 'Product',
 		'product_type' 	=> 'Product Type',
 		'receive' 		=> 'Receive',
+		'user' 			=> 'User',
 	],
 ];

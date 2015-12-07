@@ -18,7 +18,7 @@
 
 @section('content')
 
-@can('add_form')
+@can('create_form')
 <div class="panel panel-default">
 	<div class="panel-heading">
 		{{ trans('unit.label.create') }}{{ trans('unit.label.name') }}

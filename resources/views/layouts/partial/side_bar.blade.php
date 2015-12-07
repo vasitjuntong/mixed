@@ -35,106 +35,119 @@
 					<span class="menu-hover"></span>
 				</a>
 			</li>
-			<li class="openable {{ urlActive('component')? 'active openable':'' }}">
-				<a href="#">
-					<span class="menu-icon">
-						<i class="fa fa-tag fa-lg"></i> 
-					</span>
-					<span class="text">
-						{{ trans('main.side_menu.component') }}
-					</span>
-		
-					<span class="menu-hover"></span>
-				</a>
-				<ul class="submenu">
-					<li class="{{ activeMenu(['receives', 'receives/*']) ? 'active':'' }}">
-						<a href="/receives">
-							<span class="submenu-label">
-								{{ trans('main.side_menu.receive') }}
-							</span>
-						</a>
-					</li>
-					<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
-						<a href="/requisitions">
-							<span class="submenu-label">
-								{{ trans('main.side_menu.requisition') }}
-							</span>
-						</a>
-					</li>
-					<li class="{{ activeMenu(['product-lists', 'product-lists/*']) ? 'active':'' }}">
-						<a href="/product-lists">
-							<span class="submenu-label">
-								{{ trans('main.side_menu.product_list') }}
-							</span>
-						</a>
-					</li>
-                </ul>
-			</li>
-			<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
-				<a href="#">
-					<span class="menu-icon">
-						<i class="fa fa-cog fa-lg"></i> 
-					</span>
-					<span class="text">
-						{{ trans('main.side_menu.setting') }}
-					</span>
-					<span class="menu-hover"></span>
-				</a>
-				<ul class="submenu">
-					<li
-						class="{{ activeMenu(['products', 'products/*']) ? 'active':'' }}"
-					>
-						<a href="/products">
-							<span class="submenu-label">{{ trans('main.side_menu.product') }}</span>
-						</a>
-					</li>
-					<li
-						class="{{ activeMenu(['product-types', 'product-types/*']) ? 'active':'' }}"
-					>
-						<a href="/product-types">
-							<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
-						</a>
-					</li>
-					<li class="{{ activeMenu(['units', 'units/*']) ? 'active':'' }}">
-						<a href="/units">
-							<span class="submenu-label">
-								{{ trans('main.side_menu.unit') }}
-							</span>
-						</a>
-					</li>
-					<li class="{{ activeMenu(['locations', 'locations/*']) ? 'active':'' }}">
-						<a href="/locations">
-							<span class="submenu-label">{{ trans('main.side_menu.location') }}</span>
-						</a>
-					</li>
-					<li class="{{ activeMenu(['projects', 'projects/*']) ? 'active':'' }}">
-						<a href="/projects">
-							<span class="submenu-label">{{ trans('main.side_menu.project') }}</span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			{{-- <li class="openable {{ urlActive('user')? 'active openable':'' }}">
-				<a href="#">
-					<span class="menu-icon">
-						<i class="fa fa-tag fa-lg"></i> 
-					</span>
-					<span class="text">
-						{{ trans('main.side_menu.user') }}
-					</span>
-		
-					<span class="menu-hover"></span>
-				</a>
-				<ul class="submenu">
-					<li class="{{ activeMenu(['/users/create']) ? 'active':'' }}">
-						<a href="/users/create">
-							<span class="submenu-label">
-								Create User
-							</span>
-						</a>
-					</li>
-                </ul>
-			</li> --}}
+			@if(hasRole('component'))
+				<li class="openable {{ urlActive('component')? 'active openable':'' }}">
+					<a href="#">
+						<span class="menu-icon">
+							<i class="fa fa-tag fa-lg"></i> 
+						</span>
+						<span class="text">
+							{{ trans('main.side_menu.component') }}
+						</span>
+			
+						<span class="menu-hover"></span>
+					</a>
+					<ul class="submenu">
+						@if(Auth::user()->hasRole('manager_receive'))
+							<li class="{{ activeMenu(['receives', 'receives/*']) ? 'active':'' }}">
+								<a href="/receives">
+									<span class="submenu-label">
+										{{ trans('main.side_menu.receive') }}
+									</span>
+								</a>
+							</li>
+						@endif
+						@if(Auth::user()->hasRole('manager_requesition'))
+							<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
+								<a href="/requisitions">
+									<span class="submenu-label">
+										{{ trans('main.side_menu.requisition') }}
+									</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_product_list'))
+							<li class="{{ activeMenu(['product-lists', 'product-lists/*']) ? 'active':'' }}">
+								<a href="/product-lists">
+									<span class="submenu-label">
+										{{ trans('main.side_menu.product_list') }}
+									</span>
+								</a>
+							</li>
+						@endif
+	                </ul>
+				</li>
+			@endif
+
+			@if(hasRole('setting'))
+				<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
+					<a href="#">
+						<span class="menu-icon">
+							<i class="fa fa-cog fa-lg"></i> 
+						</span>
+						<span class="text">
+							{{ trans('main.side_menu.setting') }}
+						</span>
+						<span class="menu-hover"></span>
+					</a>
+					<ul class="submenu">
+						@if(Auth::user()->hasRole('manager_product'))
+							<li
+								class="{{ activeMenu(['products', 'products/*']) ? 'active':'' }}"
+							>
+								<a href="/products">
+									<span class="submenu-label">{{ trans('main.side_menu.product') }}</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_product_type'))
+							<li
+								class="{{ activeMenu(['product-types', 'product-types/*']) ? 'active':'' }}"
+							>
+								<a href="/product-types">
+									<span class="submenu-label">{{ trans('main.side_menu.product_type') }}</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_unit'))
+							<li class="{{ activeMenu(['units', 'units/*']) ? 'active':'' }}">
+								<a href="/units">
+									<span class="submenu-label">
+										{{ trans('main.side_menu.unit') }}
+									</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_location'))
+							<li class="{{ activeMenu(['locations', 'locations/*']) ? 'active':'' }}">
+								<a href="/locations">
+									<span class="submenu-label">{{ trans('main.side_menu.location') }}</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_project'))
+							<li class="{{ activeMenu(['projects', 'projects/*']) ? 'active':'' }}">
+								<a href="/projects">
+									<span class="submenu-label">{{ trans('main.side_menu.project') }}</span>
+								</a>
+							</li>
+						@endif
+
+						@if(Auth::user()->hasRole('manager_user'))
+							<li class="{{ activeMenu(['users', 'users/*']) ? 'active':'' }}">
+								<a href="/users">
+									<span class="submenu-label">{{ trans('main.side_menu.user') }}</span>
+								</a>
+							</li>
+						@endif
+					</ul>
+				</li>
+			@endif
 	  	</ul>
 			
 			<div class="alert alert-info">

@@ -16,9 +16,9 @@
 	<a href="/requisitions" class="shortcut-link {{ activeMenu(['requisitions', 'requisitions/*']) }}">
 		<span class="shortcut-icon">
 			<i class="fa fa-upload"></i>
-            <span class="shortcut-alert">
+            {{-- <span class="shortcut-alert">
 				4
-			</span>	
+			</span>	 --}}
 		</span>
 		<span class="text">{{ trans('main.side_menu.requisition') }}</span>
 	</a>
@@ -28,11 +28,11 @@
 		</span>
 		<span class="text">{{ trans('main.side_menu.product_list') }}</span>
 	</a>
-	<a 	href="setting.html" 
+	{{-- <a 	href="setting.html" 
 		class="shortcut-link hidden-xs {{ urlActive('setting')?'shortcut-link-active':'' }}"
 		>
 		<span class="shortcut-icon">
 			<i class="fa fa-cog"></i></span>
 		<span class="text">{{ trans('main.side_menu.setting') }}</span>
-	</a>
+	</a> --}}
 </div><!-- /grey-container -->

@@ -43,6 +43,8 @@ class UrlActive{
 			'projects/*',
 			'locations',
 			'locations/*',
+			'users',
+			'users/*',
 		];
 
 		foreach($url as $value){

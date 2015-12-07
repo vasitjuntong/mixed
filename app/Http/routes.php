@@ -41,21 +41,41 @@ Route::group(['middleware' => 'auth'], function(){
 	get('/product-lists', 'ProductListController@index');
 
 	// Setting.
-	resource('/products', 'ProductController');
-	resource('/product-types', 'ProductTypeController');
-	resource('/units', 'UnitController');
-	resource('/locations', 'LocationController');
-	resource('/projects', 'ProjectController');
+	Route::group(['middleware' => ['auth', 'product']], function(){
+		resource('/products', 'ProductController');
+	});
 
-	Route::group(['prefix' => 'api'], function(){
-		get('product-typeahead', function(){
+	Route::group(['middleware' => ['auth', 'product_type']], function(){
+		resource('/product-types', 'ProductTypeController');
+	});
 
-			$product = App\Product::select('id', 'code as name', 'mix_no', 'description')
-				->orderBy('name', 'desc')
-				->get();
+	Route::group(['middleware' => ['auth', 'unit']], function(){
+		resource('/units', 'UnitController');
+	});
+	
+	Route::group(['middleware' => ['auth', 'location']], function(){
+		resource('/locations', 'LocationController');
+	});
+	
+	Route::group(['middleware' => ['auth', 'project']], function(){
+		resource('/projects', 'ProjectController');
+	});
 
-			return $product;
-		});
+	Route::group(['middleware' => ['auth', 'user']], function(){
+		resource('/users', 'UserController');
+		get('/users/assign-role/{id}', 'UserController@assignRole');
+		post('/users/assign-role/{id}', 'UserController@storeAssignRole');
+	});
+});
+
+Route::group(['prefix' => 'api'], function(){
+	get('product-typeahead', function(){
+
+		$product = App\Product::select('id', 'code as name', 'mix_no', 'description')
+			->orderBy('name', 'desc')
+			->get();
+
+		return $product;
 	});
 });
 	

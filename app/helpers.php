@@ -59,3 +59,36 @@ function statusHtmlRender($status)
 			break;
 	}
 }
+
+function hasRole($menu)
+{
+	if($menu == 'component'){
+		$receive = Auth::user()->hasRole('manager_receive');
+		$requesition = Auth::user()->hasRole('manager_requesition');
+		$product_list = Auth::user()->hasRole('manager_product_list');
+
+		if($receive || $requesition || $product_list){
+
+			return true;
+		}else{
+
+			return false;
+		}
+	}
+
+	if($menu == 'setting'){
+		$product = Auth::user()->hasRole('manager_product');
+		$product_type = Auth::user()->hasRole('manager_product_type');
+		$unit = Auth::user()->hasRole('manager_unit');
+		$location = Auth::user()->hasRole('manager_location');
+		$project = Auth::user()->hasRole('manager_project');
+		$user = Auth::user()->hasRole('manager_user');
+
+		if($product || $product_type || $unit || $location || $project || $user) {
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+}

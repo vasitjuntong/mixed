@@ -88,5 +88,11 @@ class RolesSeeder extends Seeder
 		foreach($roles as $role){
 			$user->assignRole($role->name);
 		}
+		
+		$user = User::whereEmail('hikaru.benz@gmail.com')->first();
+
+		foreach($roles as $role){
+			$user->assignRole($role->name);
+		}
     }
 }

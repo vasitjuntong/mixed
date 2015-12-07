@@ -25,14 +25,9 @@
 				<td>{{ $receive->po_no }}</td>
 				<td>{{ $receive->ref_no }}</td>
 				<td>{{ $receive->project->code }}</td>
-				<td>{{ $receive->create_by }}</td>
+				<td>{{ $receive->user->name }}</td>
 				<td>{{ $receive->remark }}</td>
 				<td>{!! $receive->statusHtml() !!}</td>
-				{{-- <td class="text-center">
-					<a href="/receives/status-success/{{ $receive->id }}" class="btn btn-success btn-xs">
-						<span class="fa fa-download"></span>
-					</a>
-				</td> --}}
 			</tr>
 
 		@empty

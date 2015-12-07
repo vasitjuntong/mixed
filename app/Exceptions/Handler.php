@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Log;
 
 class Handler extends ExceptionHandler
 {
@@ -42,8 +43,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        Log::error('error:', [$e]);
+
         // 404 page when a model is not found
         if ($e instanceof ModelNotFoundException) {
+
             return response()->view('errors.404', [], 404);
         }
 

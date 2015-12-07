@@ -12,6 +12,7 @@ return [
 		'name' => 'Name',
 		'email' => 'Email',
 		'password' => 'Password',
+		'role' => 'Role',
 		'created_at' => 'Create',
 		'updated_at' => 'Update',
 	],

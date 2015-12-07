@@ -15,6 +15,7 @@ use App\Http\Requests\AddProductReceiveRequest;
 use DB;
 use Exception;
 use Log;
+use Auth;
 
 class ReceiveController extends Controller
 {
@@ -44,6 +45,7 @@ class ReceiveController extends Controller
         $data = $request->all();
         $project = Project::find($request->get('project_id'), ['code']);
         $data['project_code'] = $project->code;
+        $data['user_id'] = $request->user()->id;
 
         $receive = '';
 
@@ -170,7 +172,7 @@ class ReceiveController extends Controller
         $receive = Receive::find($id);
         $receive->update($data);
 
-        return redirect("/receives/add-products/{$receive->id}");
+        return redirect("/receives/review/{$receive->id}");
     }
 
     public function review($id)

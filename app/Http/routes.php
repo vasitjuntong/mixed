@@ -27,16 +27,13 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 	// Component.
-	Route::group(['prefix' => 'receives'], function(){
-		resource('/', 'ReceiveController');
-		get('/add-products/{id}', 'ReceiveController@addProducts');
-		post('/add-products/{receive_id}', 'ReceiveController@storeProducts');
-		get('/review/{id}', 'ReceiveController@review');
-		post('/status-padding/{id}', 'ReceiveController@statusPadding');
-
-		get('/status-success/{id}', 'ReceiveController@statusSuccess');
-		post('/status-success/{id}', 'ReceiveController@storeStatusSuccess');
-	});
+	resource('/receives', 'ReceiveController');
+	get('/receives/add-products/{id}', 'ReceiveController@addProducts');
+	post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');
+	get('/receives/review/{id}', 'ReceiveController@review');
+	post('/receives/status-padding/{id}', 'ReceiveController@statusPadding');
+	get('/receives/status-success/{id}', 'ReceiveController@statusSuccess');
+	post('/receives/status-success/{id}', 'ReceiveController@storeStatusSuccess');
 
 	get('/product-lists', 'ProductListController@index');
 

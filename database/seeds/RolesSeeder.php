@@ -1,10 +1,11 @@
 <?php
 
 use App\Role;
+use App\User;
 use App\Permission;
 use Illuminate\Database\Seeder;
 
-class RolesSeederTable extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +17,16 @@ class RolesSeederTable extends Seeder
         Role::create([
         	'name' => 'manager_receive',
         	'label' => 'Manager of Receive.',
+    	]);
+
+        Role::create([
+        	'name' => 'manager_requesition',
+        	'label' => 'Manager of Requesition.',
+    	]);
+
+        Role::create([
+        	'name' => 'manager_product_list',
+        	'label' => 'Manager of Product list.',
     	]);
 
         Role::create([
@@ -70,6 +81,12 @@ class RolesSeederTable extends Seeder
 			foreach($permissions as $permission){
 				$role->givePermissionTo($permission);
 			}
+		}
+
+		$user = User::whereEmail('n_vasit@hotmail.com')->first();
+
+		foreach($roles as $role){
+			$user->assignRole($role->name);
 		}
     }
 }

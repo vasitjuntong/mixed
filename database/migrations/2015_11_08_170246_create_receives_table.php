@@ -15,6 +15,8 @@ class CreateReceivesTable extends Migration
         Schema::create('receives', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('user_id')
+                ->unsigned();
             $table->string('document_no', 100);
             $table->string('po_no', 100);
             $table->string('ref_no');
@@ -31,6 +33,10 @@ class CreateReceivesTable extends Migration
 
             $table->foreign('project_id')
               ->references('id')->on('projects')
+              ->onDelete('cascade');
+
+            $table->foreign('user_id')
+              ->references('id')->on('users')
               ->onDelete('cascade');
         });
 

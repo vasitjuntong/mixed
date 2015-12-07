@@ -17,7 +17,11 @@ return [
 		'create' => 'Create',
 		'update' => 'Update',
 		'delete' => 'Delete',
+		'add_product' => 'Add Product',
+		'back_to_receive' => 'Back To Receive',
 		'confirm_receive' => 'Confirm Receive',
+		'process_success' => 'Process Success',
+		'process_padding' => 'Process Padding',
 	],
 	'attributes' => [
 		'document_no' 	=> 'DN',
@@ -45,8 +49,8 @@ return [
 		'review_confirm' 	=> 'คุณต้องการยืนยันการรับสินค้าหรือไม่?',
 		'review_cancel'		=> 'คุณไม่ต้องรับสินค้า',
 
-		'warning_receive_is_not_padding' => 'สถานะใบรับสินค้าต้องเป็น Padding เท่านั้น',
-		'warning_receive_is_not_create' => 'สถานะใบรับสินค้าต้องเป็น Create เท่านั้น',
+		'warning_receive_is_not_padding' => 'Receive status padding only.',
+		'warning_receive_is_not_create' => 'Receive status padding create.',
 
 		'success_confirm' 	=> 'คุณต้องการรับสินค้าเข้าระบบหรือไม่?',
 		'success_confirm_cancel' => 'คุณไม่ต้องการรับสินค้าเข้าระบบ',

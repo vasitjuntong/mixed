@@ -13,6 +13,7 @@ class Receive extends Model
     const CANCEL 	= 'cancel';
 
     protected $fillable = [
+        'user_id',
 		'document_no',
 		'po_no',
 		'ref_no',

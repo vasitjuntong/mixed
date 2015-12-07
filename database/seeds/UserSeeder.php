@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 
-class UserTableSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,6 +22,6 @@ class UserTableSeeder extends Seeder
     		'email' => 'hikaru.benz@gmail.com',
 		]);
 		
-        factory(User::class, 10)->create();
+        factory(User::class, 20)->create();
     }
 }

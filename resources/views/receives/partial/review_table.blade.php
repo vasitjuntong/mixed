@@ -7,6 +7,7 @@
 			<th>{{ trans('receive_item.attributes.product_description') }}</th>
 			<th width="10%">{{ trans('receive_item.attributes.qty') }}</th>
 			<th width="20%">{{ trans('receive_item.attributes.remark') }}</th>
+			<th class="hidden-print" width="10%">{{ trans('receive_item.attributes.status') }}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,6 +22,7 @@
 				<td>{!! $receiveItem->product_description !!}</td>
 				<td>{{ $receiveItem->qty }}</td>
 				<td>{{ $receiveItem->remark }}</td>
+				<td class="hidden-print">{!! $receiveItem->statusHtml() !!}</td>
 			</tr>
 
 		@empty

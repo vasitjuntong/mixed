@@ -23,7 +23,14 @@
 	</div>
 </div>
 
-<!-- Jquery -->
-{{-- <script src="/js/jquery-1.10.2.min.js"></script> --}}
-
+<link href="/css/chosen/chosen.min.css" rel="stylesheet">
 <script src="/js/libs/form-create.js"></script>
+<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
+
+<script>
+	$(function(){
+		$('.chosen-select').chosen({
+			search_contains: true
+		});
+	});
+</script>

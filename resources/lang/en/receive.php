@@ -17,6 +17,8 @@ return [
 		'create' => 'Create',
 		'update' => 'Update',
 		'delete' => 'Delete',
+		'search' => 'Search Receive',
+		'refresh' => 'Refresh',
 		'add_product' => 'Add Product',
 		'back_to_receive' => 'Back To Receive',
 		'confirm_receive' => 'Confirm Receive',
@@ -38,6 +40,16 @@ return [
 		'create_by'		=> 'Create By',
 		'success_status' => 'Action'
 	],
+	'form_search' => [
+		'document_no' 	=> 'DN',
+		'po_no' 	  	=> 'PO NO',
+		'ref_no' 		=> 'Referrence NO',
+		'project' 		=> 'Project',
+		'create_by' 	=> 'Create By',
+		'created_at_start' => 'Create Start',
+		'created_at_end' => 'Create End',
+	],
+
 	'message_alert' => [
 		'create_success' 	=> 'เพิ่มใบรับสินค้าเรียบร้อย',
 		'update_success' 	=> 'แก้ไขใบรับสินค้าเรียบร้อย',

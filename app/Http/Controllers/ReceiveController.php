@@ -21,12 +21,17 @@ use App\Http\Requests\AddProductReceiveRequest;
 
 class ReceiveController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $receives = Receive::orderBy('id', 'desc')
-            ->paginate(20);
+        $filter = $request->all();
+        $limit = $request->get('limit', 20);
 
-        return view('receives.index', compact('receives'));
+        $receives = Receive::whereByFilter($filter, $limit);
+
+        return view('receives.index', [
+            'receives' => $receives,
+            'filter' => $filter,
+        ]);
 }
 
     public function create(Request $request)

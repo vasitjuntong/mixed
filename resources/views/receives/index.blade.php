@@ -19,6 +19,12 @@
 @section('content')
 
 <div class="panel panel-default">
+	<div class="panel-body">
+	   @include('receives.partial.form_search')
+	</div>
+</div>
+
+<div class="panel panel-default">
 	<div class="panel-body text-right">
 	   <a 
 	   		id="create"
@@ -48,8 +54,15 @@
 
 @endsection
 
+@section('style')
+	@parent
+	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
+@endsection
+
 @section('script')
 	@parent
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>	
+	<script src="/js/bootstrap-datetimepicker.js"></script>	
 	
 	<script>
 		$(function(){
@@ -70,6 +83,13 @@
 
 				return false;
 			});
+
+			$('#datetimepicker-start').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+			$('#datetimepicker-end').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
 		});
 	</script>
 

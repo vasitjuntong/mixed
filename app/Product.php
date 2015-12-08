@@ -62,7 +62,7 @@ class Product extends Model
 
     public function getOnStockAttribute()
     {
-        return 0;
+        return $this->stock->qty;
     }
 
     public function getOnOrderAttribute()

@@ -219,8 +219,7 @@ class ReceiveController extends Controller
                 trans('receive.message_alert.warning_receive_is_not_padding')
             );
 
-            return redirect()
-                ->back();
+            return redirect('/receives');
         }
 
         $receiveItems = $receive->receiveItems()
@@ -234,19 +233,31 @@ class ReceiveController extends Controller
 
     public function storeStatusSuccess(Request $request, $id)
     {
-        $receive = Receive::find($id);
+        $receive = Receive::with([
+                'receiveItems',
+                'receiveItems.product',
+                'receiveItems.product.stock',
+            ])
+            ->whereId($id)
+            ->first();
 
         try{
-            DB::transaction(function() use ($receive, $request) {
+            DB::transaction(function() use (&$receive, $request) {
 
                 $receive->setStatusSuccess($request->get('receive_item_ids'));
             });
+
+            $url = url('/receives');
+
+            if($receive->status != Receive::SUCCESS){
+                $url = url("/receives/status-success/{$receive->id}");
+            }
 
             return [
                 'status' => true,
                 'title' => trans('receive.label.name'),
                 'message' => trans('receive.message_alert.status_success_message'),
-                'url' => url("/receives/status-success/{$receive->id}"),
+                'url' => $url,
             ];
         } catch(Exception $e) {
 

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    protected $fillable = [
-    	'product_id', 'qty',
-	];
+	protected $primaryKey = 'product_id';
+
+    protected $fillable = ['qty'];
 
 	public function product()
 	{

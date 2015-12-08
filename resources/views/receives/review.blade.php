@@ -29,20 +29,19 @@
 	@include('receives.partial.review_table')
 	<div class="panel panel-default">
 		<div class="panel-body hidden-print">
-    		<div class="row">
-    			<div class="col-md-2 text-left">
-    				<a class="btn btn-warning btn-sm" href="/receives">
-    					<i class="fa fa-chevron-left"></i>
-    					{{ trans('receive.buttons.back_to_receive') }}
-    				</a>
-    			</div>
-    			<div class="col-md-10 text-right">
-    				<a class="btn btn-success btn-sm" id="invoicePrint">
-		    			<i class="fa fa-print"></i> Print
-					</a>
-					<div class="btn-group">
+		  	<div class="btn-group" role="group" aria-label="...">
+				<a class="btn btn-warning btn-sm" href="/receives">
+					<i class="fa fa-chevron-left"></i>
+					{{ trans('receive.buttons.back_to_receive') }}
+				</a>
+			</div>
+			<div class="btn-group pull-right" role="group" aria-label="...">
+				<a class="btn btn-success btn-sm" id="invoicePrint">
+	    			<i class="fa fa-print"></i> Print
+				</a>
+				<div class="btn-group">
 				  	<button type="button" 
-				  		class="btn btn-default dropdown-toggle" 
+				  		class="btn btn-default btn-sm dropdown-toggle" 
 			  			data-toggle="dropdown" 
 			  			aria-haspopup="true" 
 			  			aria-expanded="false">
@@ -55,8 +54,8 @@
 				    			{{ trans('receive.buttons.update') }}
 			    			</a>
 			    		</li>
-				  		<li class="divider"></li>
 				  		@if($receive->status == \App\Receive::PADDING)
+				  			<li class="divider"></li>
 					    	<li>
 					    		<a href="/receives/status-success/{{ $receive->id }}">
 					    			<i class="fa fa-flag fa-lg"></i>
@@ -66,6 +65,7 @@
 				    	@endif
 
 				    	@if($receive->status == \App\Receive::CREATE)
+				  			<li class="divider"></li>
 					    	<li>
 							   	{!! Form::open([
 							   		'id' => 'process_padding',
@@ -86,14 +86,17 @@
 				    		</li>
 				    	@endif
 				  	</ul>
-					</div>
+				</div>
+
+				@if($receive->status == \App\Receive::CREATE)
 		    		<a class="btn btn-info btn-sm" href="/receives/add-products/{{ $receive->id }}">
 		    			<i class="fa fa-plus"></i> {{ trans('receive.buttons.add_product') }}
 					</a>
-    			</div>
-    		</div>
+				@endif
+			</div>
 		</div>
 	</div>
+</div>
 
 @endsection
 

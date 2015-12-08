@@ -86,22 +86,20 @@ class Receive extends Model
     		}
     	}
 
-    	$totalItem = $this->receiveItems()
+    	$padding = $this->receiveItems()
+    		->whereStatus(ReceiveItem::PADDING)
     		->count(['id']);
 
-    	$success = $this->receiveItems()
-    		->whereStatus(ReceiveItem::SUCCESS)
-    		->count(['id']);
-
-    	if($success == $totalItem){
+    	if($padding == 0){
     		$this->status = static::SUCCESS;
 
     		$this->save();
+
+            // Add stock by receive item from receive.
+            $this->addStock();
     	}
 
     	Log::debug('set-status-receive-item-success', [
-    		'success' => $success,
-    		'totalItem' => $totalItem,
 		]);
     }
 
@@ -150,6 +148,29 @@ class Receive extends Model
             default:
                 return $number;
                 break;
+        }
+    }
+
+    public function addStock()
+    {
+        $items = $this->receiveItems;
+
+        foreach($items as $item){
+            $stock = $item->product->stock()->first();
+            $stockNow = $stock->qty;
+
+            $stockAdd = $item->qty;
+
+            $stock->qty = $stockNow + $stockAdd;
+
+            Log::info('add-stock: receive item', [
+                'product' => $item->product->toArray(),
+                'stockNow' => $stockNow,
+                'stockAdd' => $stockAdd,
+                'StockNew' => $stock->qty,
+            ]);
+
+            $stock->save();
         }
     }
 }

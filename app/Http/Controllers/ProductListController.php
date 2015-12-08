@@ -10,7 +10,12 @@ class ProductListController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('mix_no', 'asc')
+        $products = Product::with([
+                'productType',
+                'unit',
+                'stock',
+            ])
+            ->orderBy('mix_no', 'asc')
             ->paginate(20);
 
         return view('productLists.index', compact('products'));

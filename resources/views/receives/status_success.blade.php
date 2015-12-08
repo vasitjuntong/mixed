@@ -21,7 +21,7 @@
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
 	  	<div class="row">
-	  		<dl class="col-md-offset-3 col-md-3">
+	  		<dl class="col-sm-offset-3 col-sm-3 col-md-offset-3 col-md-3">
 			  	<dt>{{ trans('receive.attributes.created_at') }}</dt>
 			  	<dd>{{ $receive->created_at->format('d/m/Y H:i') }}</dd>
 			  	<dt>{{ trans('receive.attributes.document_no') }}</dt>
@@ -31,7 +31,7 @@
 			  	<dt>{{ trans('receive.attributes.ref_no') }}</dt>
 			  	<dd>{{ $receive->ref_no ?: '-' }}</dd>
 			</dl>
-	  		<dl class="col-md-3">
+	  		<dl class="col-sm-3 col-md-3">
 			  	<dt>{{ trans('receive.attributes.status') }}</dt>
 			  	<dd>{!! $receive->statusHtml() !!}</dd>
 			  	<dt>{{ trans('receive.attributes.create_by') }}</dt>

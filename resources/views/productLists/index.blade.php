@@ -20,9 +20,9 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<span>In Stock</span><span class="badge badge-success">8</span>
-		<span>Stock Minimum</span><span class="badge badge-warning">2</span>
-		<span>Out of Stock</span><span class="badge badge-danger">2</span>
+		<span>In Stock</span><span class="badge badge-success">0</span>
+		<span>Stock Minimum</span><span class="badge badge-warning">0</span>
+		<span>Out of Stock</span><span class="badge badge-danger">0</span>
 	</div>
 </div>
 

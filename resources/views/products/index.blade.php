@@ -25,6 +25,13 @@
    		</a>
 	</div>
 </div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+	  	@include('products.partial.form_search') 
+	</div>
+</div>
+
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
 		@include('products.partial.table')

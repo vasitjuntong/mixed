@@ -12,6 +12,7 @@ return [
 		'create' => 'Create',
 		'update' => 'Update',
 		'delete' => 'Delete',
+		'search' => 'Search Product',
 	],
 	'attributes' => [
 		'product_type_id' 	=> 'Product Type',

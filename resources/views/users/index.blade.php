@@ -21,8 +21,6 @@
 
 @section('content')
 
-@include('users.partial.form_search')
-
 <div class="panel panel-default">
 	<div class="panel-body">
 	   	<a 
@@ -34,6 +32,8 @@
    		</a>
 	</div>
 </div>
+
+@include('users.partial.form_search')
 
 <div class="panel panel-default table-responsive">
 	<div class="panel-body">

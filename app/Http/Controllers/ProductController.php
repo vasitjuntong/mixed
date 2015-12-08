@@ -13,12 +13,17 @@ use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')
-            ->paginate(20);
+        $filter = $request->all();
+        $limit = 20;       
 
-        return view('products.index', compact('products'));
+        $products = Product::whereByFilter($filter, $limit);
+
+        return view('products.index', [
+            'products' => $products,
+            'filter' => $filter,
+        ]);
     }
 
     public function create()

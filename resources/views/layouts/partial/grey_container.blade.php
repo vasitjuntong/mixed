@@ -6,7 +6,7 @@
 		</span>
 		<span class="text">{{ trans('main.side_menu.report') }}</span>
 	</a>
-	<a href="/receives" class="shortcut-link {{ activeMenu(['receives', 'receives/*']) }}">
+	<a href="/receives" class="shortcut-link {{ activeMenu(['receives', 'receives/*'])?'shortcut-link-active':''  }}">
 		<span class="shortcut-icon">
 			<i class="fa fa-download"></i>
 			

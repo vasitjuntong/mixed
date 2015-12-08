@@ -11,7 +11,10 @@
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
 		<div class="page-title">
-			<h3 class="no-margin">{{ trans('user.label.name') }}</h3>
+			<h3 class="no-margin">
+				<i class="fa fa-user fa-lg"></i>
+				{{ trans('user.label.name') }}
+			</h3>
 		</div><!-- /page-title -->			
 	</div><!-- /main-header -->
 @endsection
@@ -45,10 +48,28 @@
 
 @section('script')
 	@parent
-
+	
+	<script type="text/javascript" src="/js/libs/form_confirm_delete.js"></script>
 	<script>
 		$(function(){
 			$('a#create').click(function(e){
+				e.preventDefault();
+
+				var that = $(this);
+
+				$.ajax({
+					type: 'get',
+					url: that.attr('href'),
+					success: function(data){
+						$('div#modal-content').html(data);
+						$('#modal-create').modal('show');
+					}
+				});
+
+				return false;
+			});
+
+			$('a#user-update').click(function(e){
 				e.preventDefault();
 
 				var that = $(this);

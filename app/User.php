@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Log;
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -36,4 +38,44 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function receives()
+    {
+        return $this->hasMany(Receive::class);
+    }
+
+    public static function deleteByCondition($id)
+    {
+        $query = self::with(array(
+                'receives'
+            ))
+            ->whereId($id)
+            ->first();
+
+        if($query->receives()->count()){
+
+            Log::info('user activity: delete user is unsuccess.', [
+                'user_id' => $query->id,
+                'receives' => $query->receives()->count(),
+            ]);
+
+            return [
+                'status' => false,
+                'title' => trans('user.label.name'),
+                'message' => trans('user.message_alert.delete_unsuccess'),
+            ];
+        }
+
+        Log::info('user activity: delete user is success.', [
+            $query->toArray(),
+        ]);
+
+        $response = $query->delete();
+
+        return [
+            'status' => $response,
+            'title' => trans('user.label.name'),
+            'message' => trans('user.message_alert.delete_success'),
+        ];
+    }
 }

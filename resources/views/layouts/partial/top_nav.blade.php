@@ -14,7 +14,7 @@
 		<span class="icon-bar"></span>
 	</button>
 	<ul class="nav-notification clearfix">
-		<li class="dropdown">
+		{{-- <li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				<i class="fa fa-envelope fa-lg"></i>
 				<span class="notification-label bounceIn animation-delay4">7</span>
@@ -180,7 +180,7 @@
 				</li>
 				<li><a href="#">View all notifications</a></li>					  
 			</ul>
-		</li>
+		</li> --}}
 		<li class="profile dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				<strong>
@@ -210,7 +210,7 @@
 				</li>
 				<li><a tabindex="-1" href="profile.html" class="main-link"><i class="fa fa-edit fa-lg"></i> Edit profile</a></li>
 				
-				<li><a tabindex="-1" href="#" class="theme-setting"><i class="fa fa-cog fa-lg"></i> Setting</a></li>
+				{{-- <li><a tabindex="-1" href="#" class="theme-setting"><i class="fa fa-cog fa-lg"></i> Setting</a></li> --}}
 				<li class="divider"></li>
 				<li>
 					<a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm">

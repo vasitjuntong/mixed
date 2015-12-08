@@ -6,6 +6,8 @@
 			<th width="10">{{ trans('user.attributes.role') }}</td>
 			<th width="15%">{{ trans('user.attributes.created_at') }}</td>
 			<th width="15%">{{ trans('user.attributes.updated_at') }}</td>
+			<th class="text-center" width="10%">{{ trans('user.label.update') }}</td>
+			<th class="text-center" width="10%">{{ trans('user.label.delete') }}</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,6 +22,30 @@
 				</td>
 				<td>{{ $user->created_at->format('d / m / Y H:i') }}</td>
 				<td>{{ $user->updated_at->format('d / m / Y H:i') }}</td>
+				<td class="text-center">
+					<a id="user-update" class="btn btn-warning btn-xs" href="/users/{{ $user->id }}/edit">
+						<i class="fa fa-edit"></i>
+					</a>
+				</td>
+				<td class="text-center">
+					<form 	method="POST" 
+							action="/users/{{ $user->id }}"
+							data-message-confirm="{{ trans('user.message_alert.delete_confirm') }}"
+							data-message-cancel="{{ trans('user.message_alert.cancel_message') }}"
+							data-title-confirm="{{ trans('user.label.name') }}"
+							data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
+							data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
+						
+						{{ method_field('delete') }}
+						{{ csrf_field() }}
+
+						<button type="submit"
+								class="btn btn-danger btn-xs">
+							<span class="fa fa-trash-o"></span>
+						</button>
+
+					</form>
+				</td>
 			</tr>
 		@empty
 			<tr>

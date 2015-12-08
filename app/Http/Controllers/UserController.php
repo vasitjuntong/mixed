@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -63,7 +64,6 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-
         User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -96,7 +96,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('users.edit_modal', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -106,9 +110,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+
+        if($request->has('password')){
+            $user->password = bcrypt($request->get('password'));
+        }
+
+        $user->save();
+
+        if($request->ajax()){
+            return [
+                'urlRedirect' => url('/users'),
+            ];
+        }
     }
 
     public function assignRole($id)
@@ -168,8 +186,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $response = User::deleteByCondition($id);
+
+        if($request->ajax())
+            return $response;
+
+        if($response['status']){
+            flash()
+                ->success(
+                    trans('user.label.name'),
+                    $response['message']
+                );
+        }else{
+            flash()
+                ->success(
+                    trans('user.label.name'),
+                    $response['message']
+                );
+        }
+
+        return redirect('/users');
     }
 }

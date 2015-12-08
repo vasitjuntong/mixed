@@ -13,7 +13,7 @@ class UserUpdateRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class UserUpdateRequest extends Request
      */
     public function rules()
     {
+        $user_id = $this->route()->parameters()['users'];
+
         return [
-            //
+            'name' => "required|unique:users,name,{$user_id}",
+            'email' => "required|unique:users,email,{$user_id}",
+            'password' => "between:5,20|regex:/^[A-Za-z0-9]+/",
         ];
     }
 }

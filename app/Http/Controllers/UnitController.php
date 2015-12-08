@@ -101,7 +101,6 @@ class UnitController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-
         $response = Unit::deleteByCondition($id);
 
 
@@ -124,6 +123,5 @@ class UnitController extends Controller
 
 
         return redirect('/units');
-
     }
 }

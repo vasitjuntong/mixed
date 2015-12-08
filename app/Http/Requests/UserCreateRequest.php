@@ -26,7 +26,7 @@ class UserCreateRequest extends Request
         return [
             'name' => 'required|unique:users|max:255',
             'email' => 'required|unique:users|email|max:255',
-            'password' => 'required',
+            'password' => 'required|between:5,20|regex:/^[A-Za-z0-9]+/',
         ];
     }
 }

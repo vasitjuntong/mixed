@@ -2,23 +2,23 @@
 
 return [
 	'label' => [
-		'name' => 'ประเภทสินค้า',
-		'create' => 'สร้าง',
-		'empty_data' => 'ไม่มีประเภทสินค้าในระบบ',
+		'name' => 'Product Type',
+		'create' => 'Create',
+		'update' => 'Update',
+		'delete' => 'Delete',
+		'empty_data' => 'Data not found.',
 	],
 	'attributes' => [
-		'name' => 'ประเภทสินค้า',
-		'code_prefix' => 'ตัวเลขนำหน้า',
-		'code_default' => 'ตัวเลขนำหน้า (Default)',
-		'created_at' => 'เพิ่มเมื่อ',
-		'updated_at' => 'อัพเดตเมื่อ',
+		'name' => 'Product Type',
+		'created_at' => 'Create',
+		'updated_at' => 'Update',
 	],
 	'message_alert' => [
-		'create_success' 	=> 'เพิ่มประเภทสินค้าเรียบร้อย',
-		'update_success' 	=> 'แก้ไขประเภทสินค้าเรียบร้อย',
-		'delete_success' 	=> 'ลบข้อมูลประเภทสินค้าเรียบร้อย',
-		'delete_unsuccess' 	=> 'ไม่สามารลบข้อมูลประเภทสินค้าได้ มีการใช้งานประเภทสินค้าในระบบ',
-		'delete_confirm' 	=> 'คุณต้องการลบข้อมูลประเภทสินค้าหรือไม่?',
-		'cancel_message' 	=> 'ยกเลิกการลบข้อมูลประเภทสินค้า',
+		'create_success' 	=> 'Product type create is successfully.',
+		'update_success' 	=> 'Product type update is successfully.',
+		'delete_success' 	=> 'Product type delete is successfully.',
+		'delete_unsuccess' 	=> 'Product type processing on system. Can\'t delete product type.',
+		'delete_confirm' 	=> 'Are you sure for delete product type?',
+		'cancel_message' 	=> 'Product type is delete cancel.',
 	],
 ];

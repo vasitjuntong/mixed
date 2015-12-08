@@ -20,7 +20,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		{{ trans('product_type.label.create') }}{{ trans('product_type.label.name') }}
+		{{ trans('product_type.label.create') }} {{ trans('product_type.label.name') }}
 	</div>
 	<div class="panel-body">
 		<form method="POST" action="/product-types">

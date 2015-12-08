@@ -7,14 +7,14 @@
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
 		 	<li><i class="fa fa-home"></i>
-			 	<a href="/product-types"> {{ trans('productType.label.name')}}</a>
+			 	<a href="/product-types"> {{ trans('product_type.label.name')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('main.button.update') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
 		<div class="page-title">
-			<h3 class="no-margin">{{ trans('productType.label.name') }}</h3>
+			<h3 class="no-margin">{{ trans('product_type.label.name') }}</h3>
 		</div><!-- /page-title -->			
 	</div><!-- /main-header -->
 @endsection
@@ -24,7 +24,7 @@
 		<div class="col-sm-12 col-md-offset-3 col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					{{ trans('main.button.update') }}{{ trans('productType.label.name') }}
+					{{ trans('main.button.update') }} {{ trans('product_type.label.name') }}
 				</div>
 				<div class="panel-body">
 					<form method="POST" action="/product-types/{{ $productType->id }}">

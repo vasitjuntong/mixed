@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
 	post('/receives/status-padding/{id}', 'ReceiveController@statusPadding');
 	get('/receives/status-success/{id}', 'ReceiveController@statusSuccess');
 	post('/receives/status-success/{id}', 'ReceiveController@storeStatusSuccess');
+	post('/receives/update-qty', 'ReceiveController@updateQty');
 
 	get('/product-lists', 'ProductListController@index');
 

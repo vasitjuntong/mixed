@@ -21,7 +21,18 @@
 					</td>
 					<td>{{ $receiveItem->location_name }}</td>
 					<td>{!! $receiveItem->product_description !!}</td>
-					<td>{{ $receiveItem->qty }}</td>
+					<td>
+						<a href="#" 
+							id="editable-qty" 
+							data-qty="integer"
+							data-method="get"
+						 	data-pk="{{ $receiveItem->id }}" 
+						 	data-url="/receives/update-qty" 
+						 	data-title="Enter QTY">
+
+							{{ $receiveItem->qty }}
+						</a>
+					</td>
 					<td>{{ $receiveItem->remark }}</td>
 				</tr>
 

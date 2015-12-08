@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Log;
+use Auth;
+use Exception;
+use Validator;
 use App\Product;
 use App\Project;
 use App\Receive;
 use App\Location;
+use App\ReceiveItem;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReceiveCreateRequest;
 use App\Http\Requests\ReceiveUpdateRequest;
 use App\Http\Requests\AddProductReceiveRequest;
-use DB;
-use Exception;
-use Log;
-use Auth;
 
 class ReceiveController extends Controller
 {
@@ -271,6 +273,36 @@ class ReceiveController extends Controller
                 'url' => url("/receives/status-success/{$receive->id}"),
             ];
         }
+    }
+
+    public function updateQty(Request $request)
+    {
+        $id = $request->get('pk');
+        $qty = $request->get('value');
+
+        $mgs = [];
+        $roles = [
+            'value' => 'required|integer|digits_between:1,10',
+        ];
+        $attributes = [
+            'value' => trans('receive_item.attributes.qty')
+        ];
+
+        $validator = Validator::make($request->all(), $roles, $mgs, $attributes);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error', 
+                'mgs' => $validator->errors()->first('value')
+            ]);
+        }
+
+        $item = ReceiveItem::find($id);
+
+        $item->qty = $qty;
+
+        $item->save();
+
     }
 
     public function destroy($id)

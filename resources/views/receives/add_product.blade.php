@@ -88,18 +88,35 @@
 	@parent
 
 	<link href="/css/chosen/chosen.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-editable.css" rel="stylesheet">
 @endsection
 
 @section('script')
 	@parent
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
-	<script type="text/javascript" src="/js/typeahead.min.js"></script>
-	<script type="text/javascript" src="/js/libs/vue_addproduct.js"></script>
-	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
-	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
+	<script src="/js/bootstrap-editable.min.js"></script>
+	<script src="/js/typeahead.min.js"></script>
+	<script src="/js/libs/vue_addproduct.js"></script>
+	<script src="/js/chosen.jquery.min.js"></script>
+	<script src="/js/libs/form_confirm.js"></script>
 	<script>
 		$(function(){
+			$.ajaxSetup({
+		        headers: {
+		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		        }
+			});
+
+			$('a#editable-qty').editable({
+				success: function(response, newValue) {
+					if(response.status=='error') return response.mgs;
+			        console.log(response);
+			    },
+			    error: function(response){
+			    	console.log(response);
+			    }
+			});
 			$(".chosen-select").chosen({
 				search_contians: true
 			});

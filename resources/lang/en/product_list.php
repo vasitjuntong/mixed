@@ -12,10 +12,12 @@ return [
 		'create' => 'Create',
 		'update' => 'Update',
 		'delete' => 'Delete',
+		'search' => 'Search Product',
 	],
 	'attributes' => [
 		'product_type_id' 	=> 'Product Type',
-		'unit_id' 			=> 'Update',
+		'unit_id' 			=> 'Unit',
+		'unit' 				=> 'Unit',
 		'mix_no' 			=> 'Mix NO',
 		'code' 				=> 'Product Code',
 		'description' 		=> 'Description',

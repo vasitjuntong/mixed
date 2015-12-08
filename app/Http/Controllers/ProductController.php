@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $filter = $request->all();
-        $limit = 20;       
+        $limit = 20;
 
         $products = Product::whereByFilter($filter, $limit);
 

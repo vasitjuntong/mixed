@@ -20,6 +20,12 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
+	  	@include('productLists.partial.form_search') 
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
 		<span>In Stock</span><span class="badge badge-success">0</span>
 		<span>Stock Minimum</span><span class="badge badge-warning">0</span>
 		<span>Out of Stock</span><span class="badge badge-danger">0</span>
@@ -29,7 +35,7 @@
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
 		@include('productLists.partial.table')
-		<span class="text-center block">{!! $products->render() !!}</span>
+		<span class="text-center block">{!! $products->appends($filter)->render() !!}</span>
   	</div>
 </div>
 

@@ -126,6 +126,42 @@ class Product extends Model
             ->paginate($limit);
     }
 
+    public static function whereByFilterWithStock(array $filter, $limit = 20)
+    {
+        return static::with([
+                'unit',
+                'productType',
+                'receiveItems',
+                'stock',
+            ])
+            ->where(function($query) use ($filter) {
+                $mix_no = array_get($filter, 'mix_no');
+                if( ! is_null($mix_no)){
+                    $query->where('mix_no', 'like', "%{$mix_no}%");
+                }
+
+                $code = array_get($filter, 'code');
+                if( ! is_null($code)){
+                    $query->where('code', 'like', "%{$code}%");
+                }
+
+                $description = array_get($filter, 'description');
+                if( ! is_null($description)){
+                    $query->where('description', 'like', "%{$description}%");
+                }
+
+                $unit = array_get($filter, 'unit');
+                if( ! is_null($unit)){
+                    $query->whereHas('unit', function($query) use ($unit) {
+                        $query->where('name', 'like', "%{$unit}%");
+                    });
+                }
+
+            })
+            ->orderBy('id', 'desc')
+            ->paginate($limit);
+    }
+
     public static function deleteByCondition($id)
     {
         $query = Product::with([

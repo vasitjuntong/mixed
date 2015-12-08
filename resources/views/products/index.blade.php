@@ -35,7 +35,7 @@
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
 		@include('products.partial.table')
-		<span class="text-center block">{!! $products->render() !!}</span>
+		<span class="text-center block">{!! $products->appends($filter)->render() !!}</span>
   	</div>
 </div>
 

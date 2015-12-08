@@ -27,7 +27,7 @@
 			]) !!}
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 		<div class="form-group">
 			<label class="control-label" for="unit">{{ trans('product.attributes.unit') }}</label>
 			{!! Form::text('unit', array_get($filter, 'unit') ?: null, [

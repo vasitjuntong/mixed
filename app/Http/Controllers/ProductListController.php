@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cache;
 
 class ProductListController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with([
-                'productType',
-                'unit',
-                'stock',
-            ])
-            ->orderBy('mix_no', 'asc')
-            ->paginate(20);
+        $filter = $request->all();
+        $limit = $request->get('limit', 20);
 
-        return view('productLists.index', compact('products'));
+        Cache::put('limit_per_page', $limit, 10);
+
+        $products = Product::whereByFilterWithStock($filter, $limit);
+
+        return view('productLists.index', [
+            'products' => $products,
+            'filter' => $filter,
+        ]);
     }
 }

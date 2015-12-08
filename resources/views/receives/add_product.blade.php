@@ -108,6 +108,9 @@
 		        }
 			});
 
+			$.fn.editableform.buttons = '<button class="btn btn-success btn-sm editable-submit" type="submit"><i class="fa fa-check"></i></button>'
+				+ ' <button class="btn btn-danger btn-sm editable-cancel" type="button"><i class="fa fa-times"></i></button>';
+
 			$('a#editable-qty').editable({
 				success: function(response, newValue) {
 					if(response.status=='error') return response.mgs;

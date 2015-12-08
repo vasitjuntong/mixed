@@ -22,6 +22,8 @@ return [
 		'product_description' 	=> 'Description',
 		'location_id'	=> 'Location',
 		'location_name' => 'Location',
+		'unit_id'		=> 'Unit',
+		'unit' 			=> 'Unit',
 		'qty'			=> 'QTY',
 		'remark'		=> 'Remark',
 		'status' 		=> 'Status',

@@ -68,12 +68,25 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::group(['prefix' => 'api'], function(){
 	get('product-typeahead', function(){
+		$data = [];
 
-		$product = App\Product::select('id', 'code as name', 'mix_no', 'description')
-			->orderBy('name', 'desc')
-			->get();
+		$products = App\Product::with([
+				'unit'
+			])
+			->orderBy('code', 'desc')
+			->get(['id', 'unit_id', 'code', 'mix_no', 'description']);
 
-		return $product;
+		foreach($products as $product){
+			$data[] = [
+				'id' => $product->id,
+				'name' => $product->code,
+				'mix_no' => $product->mix_no,
+				'description' => $product->description,
+				'unit' => $product->unit->name,
+			];
+		}
+
+		return $data;
 	});
 });
 	

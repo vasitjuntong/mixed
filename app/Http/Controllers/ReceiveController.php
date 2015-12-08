@@ -73,6 +73,8 @@ class ReceiveController extends Controller
     {
         $receive = Receive::with([
                 'receiveItems',
+                'receiveItems.product',
+                'receiveItems.product.unit',
             ])
             ->whereId($id)
             ->whereStatus(Receive::CREATE)

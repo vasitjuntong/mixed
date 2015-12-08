@@ -5,6 +5,7 @@ new Vue({
 		product_code: '',
 		product_description: '',
 		mix_no: '',
+		unit: '',
 		location_id: ''
 	},
 	ready:function(){
@@ -23,6 +24,7 @@ new Vue({
 			    	that.$set('mix_no', current.mix_no);
 			    	that.$set('product_description', current.description);
 			    	that.$set('product_id', current.id);
+			    	that.$set('unit', current.unit);
 			    } else {
 			        // Nothing is active so it is a new value (or maybe empty value)
 			    }

@@ -7,6 +7,7 @@
 					<th width="10%">{{ trans('receive_item.attributes.product_code' )}}</th>
 					<th width="10%">{{ trans('receive_item.attributes.location_name') }}</th>
 					<th>{{ trans('receive_item.attributes.product_description') }}</th>
+					<th width="10">{{ trans('receive_item.attributes.unit') }}</th>
 					<th width="10%">{{ trans('receive_item.attributes.qty') }}</th>
 					<th width="20%">{{ trans('receive_item.attributes.remark') }}</th>
 				</tr>
@@ -21,6 +22,7 @@
 					</td>
 					<td>{{ $receiveItem->location_name }}</td>
 					<td>{!! $receiveItem->product_description !!}</td>
+					<td>{{ $receiveItem->product->unit->name }}</td>
 					<td>
 						<a href="#" 
 							id="editable-qty" 

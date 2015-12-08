@@ -1,6 +1,6 @@
 {!! Form::open([
 	'method' => 'get',
-	'url' => '/products',
+	'url' => '/product-lists',
 ]) !!}
 <div class="row">
 	<div class="col-md-3">

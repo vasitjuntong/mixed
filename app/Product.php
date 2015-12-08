@@ -42,6 +42,12 @@ class Product extends Model
 	    {
 	    	$model->mix_no = 100000 + $model->getKey();
 	    	$model->save();
+
+            $stock = new Stock([
+                'qty' => 0,
+            ]);
+
+            $model->stock()->save($stock);
 	    });
 
         static::deleting(function($model){
@@ -67,6 +73,11 @@ class Product extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
     }
 
     public function productType()

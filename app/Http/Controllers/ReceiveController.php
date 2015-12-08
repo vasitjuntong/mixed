@@ -139,22 +139,6 @@ class ReceiveController extends Controller
 
     public function show($id)
     {
-        // $receive = Receive::with([
-        //         'receiveItems',
-        //     ])
-        //     ->where('id', $id)
-        //     ->first();
-
-        // $receiveItems = $receive->receiveItems()
-        //     ->orderBy('id', 'asc')
-        //     ->get();
-
-        // return view('receives.add_product', compact(
-        //     'receive', 
-        //     'products', 
-        //     'locationLists',
-        //     'receiveItems'
-        // ));
     }
 
     public function edit($id)

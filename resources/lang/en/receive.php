@@ -49,6 +49,7 @@ return [
 		'ref_no' 		=> 'Referrence NO',
 		'project' 		=> 'Project',
 		'create_by' 	=> 'Create By',
+		'item_status' 	=> 'Item Status',
 		'created_at_start' => 'Create Start',
 		'created_at_end' => 'Create End',
 	],

@@ -43,6 +43,47 @@
 			]) !!}
 		</div>
 	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<label class="control-label" for="item_status">{{ trans('receive.form_search.item_status') }}</label>
+			<label class="label-checkbox" style="margin-top: 5px;">
+				<input type="checkbox" 
+					name="item_status[]" 
+					value="{{ \App\ReceiveItem::CREATE }}"
+					{{ in_array(\App\ReceiveItem::CREATE, array_get($filter, 'item_status')) ? 'checked':'' }}
+					>
+				<span class="custom-checkbox"></span>
+				<span class="label label-info">{{ \App\ReceiveItem::CREATE }}</span>
+			</label>
+			<label class="label-checkbox" style="margin-top: 5px;">
+				<input type="checkbox" 
+					name="item_status[]" 
+					value="{{ \App\ReceiveItem::PADDING }}"
+					{{ in_array(\App\ReceiveItem::PADDING, array_get($filter, 'item_status')) ? 'checked':'' }}
+					>
+				<span class="custom-checkbox"></span>
+				<span class="label label-warning">{{ \App\ReceiveItem::PADDING }}</span>
+			</label>
+			<label class="label-checkbox" style="margin-top: 5px;">
+				<input type="checkbox" 
+					name="item_status[]" 
+					value="{{ \App\ReceiveItem::SUCCESS }}"
+					{{ in_array(\App\ReceiveItem::SUCCESS, array_get($filter, 'item_status')) ? 'checked':'' }}
+					>
+				<span class="custom-checkbox"></span>
+				<span class="label label-success">{{ \App\ReceiveItem::SUCCESS }}</span>
+			</label>
+			<label class="label-checkbox" style="margin-top: 5px;">
+				<input type="checkbox" 
+					name="item_status[]" 
+					value="{{ \App\ReceiveItem::CANCEL }}"
+					{{ in_array(\App\ReceiveItem::CANCEL, array_get($filter, 'item_status')) ? 'checked':'' }}
+					>
+				<span class="custom-checkbox"></span>
+				<span class="label label-danger">{{ \App\ReceiveItem::CANCEL }}</span>
+			</label>
+		</div>
+	</div>
 </div>
 <div class="row">
 	<div class="col-md-3">

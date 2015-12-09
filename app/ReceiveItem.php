@@ -102,6 +102,11 @@ class ReceiveItem extends Model
                 });
             }
 
+            $item_status = array_get($filter, 'item_status');
+            if( ! is_null($item_status)){
+                $query->whereIn('status', $item_status);
+            }
+
             $created_at_start = array_get($filter, 'created_at_start');
             $created_at_end = array_get($filter, 'created_at_end');
 
@@ -164,6 +169,11 @@ class ReceiveItem extends Model
                     $query->orWhere('name', 'like', "%{$create_by}%");
                     $query->orWhere('email', 'like', "%{$create_by}%");
                 });
+            }
+
+            $item_status = array_get($filter, 'item_status');
+            if( ! is_null($item_status)){
+                $query->whereIn('status', $item_status);
             }
 
             $created_at_start = array_get($filter, 'created_at_start');

@@ -15,7 +15,7 @@
 				<i class="fa fa-refresh"></i>
 			</div>
 			<div class="loading-overlay">
-				<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+				{{-- <i class="loading-icon fa fa-refresh fa-spin fa-lg"></i> --}}
 			</div>
 		</div>
 	</div><!-- /.col --><!-- /.col -->

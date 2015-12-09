@@ -149,6 +149,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -201,6 +202,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

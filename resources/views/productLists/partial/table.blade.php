@@ -36,3 +36,4 @@
 		@endforelse
 	</tbody>
 </table>
+<span class="text-center block">{!! $receiveItems->appends($filter)->render() !!}</span>

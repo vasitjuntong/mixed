@@ -19,6 +19,7 @@ return [
 		'delete' => 'Delete',
 		'search' => 'Search Receive',
 		'refresh' => 'Refresh',
+		'excel' => 'Excel',
 		'add_product' => 'Add Product',
 		'back_to_receive' => 'Back To Receive',
 		'confirm_receive' => 'Confirm Receive',

@@ -6,8 +6,8 @@
 			<th width="10">{{ trans('user.attributes.role') }}</td>
 			<th width="15%">{{ trans('user.attributes.created_at') }}</td>
 			<th width="15%">{{ trans('user.attributes.updated_at') }}</td>
-			<th class="text-center" width="10%">{{ trans('user.label.update') }}</td>
-			<th class="text-center" width="10%">{{ trans('user.label.delete') }}</td>
+			<th class="text-center" width="5%">{{ trans('user.label.update') }}</td>
+			<th class="text-center" width="5%">{{ trans('user.label.delete') }}</td>
 		</tr>
 	</thead>
 	<tbody>

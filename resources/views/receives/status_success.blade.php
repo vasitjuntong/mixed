@@ -46,7 +46,7 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 	   	<a 	href="/receives/status-success/{{ $receive->id }}"
-	   		class="btn btn-success" 
+	   		class="btn btn-success btn-sm"  
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('receive.label.name') }}"
 	   		data-message-confirm="{{ trans('receive.message_alert.success_confirm') }}"
@@ -56,7 +56,7 @@
 	   		{{ trans('receive.buttons.success_status') }}
    		</a>
 	   	<a 	href="/receives/status-cancel/{{ $receive->id }}"
-	   		class="btn btn-danger" 
+	   		class="btn btn-danger btn-sm" 
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('receive.label.name') }}"
 	   		data-message-confirm="{{ trans('receive.message_alert.cancel_confirm') }}"

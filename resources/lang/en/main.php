@@ -1,6 +1,7 @@
 <?php 
 
 return [
+	'app_name' => 'Mixed',
 	'label' => [
 		'select' => 'Select',
 	],

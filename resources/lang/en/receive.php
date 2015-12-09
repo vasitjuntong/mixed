@@ -27,9 +27,9 @@ return [
 		'process_padding' => 'Process Padding',
 	],
 	'attributes' => [
-		'document_no' 	=> 'DN',
-		'po_no' 	  	=> 'PO NO',
-		'ref_no' 		=> 'Referrence NO',
+		'document_no' 	=> 'DN.',
+		'po_no' 	  	=> 'PO. NO.',
+		'ref_no' 		=> 'Referrence NO.',
 		'project_id' 	=> 'Project',
 		'project_code' 	=> 'Project',
 		'status' 		=> 'Status',

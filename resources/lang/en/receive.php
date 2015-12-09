@@ -71,7 +71,7 @@ return [
 		'success_confirm' 			=> 'Are you sure success items?',
 		'success_confirm_cancel'	=> 'Cancel success items.',
 		'cancel_confirm' 			=> 'Are you sure cancel items?',
-		'cancel_confirm_cancel' 	=> 'Cancel success items.',
+		'cancel_confirm_cancel' 	=> 'Cancel items.',
 		'status_success_message' 			 => 'Item status is success.',
 		'status_success_unsuccess_message'   => 'Someting is wrong. Please try again.',
 		'status_padding_message' 			 => 'Item status is Padding',

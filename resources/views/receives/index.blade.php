@@ -32,6 +32,10 @@
 	   		<span class="fa fa-clock-o"></span>
 	   		{{ trans('receive.label.movement') }}
 	   </a>
+	   <a href="{{ $urlDownloadExcel }}" class="btn btn-success btn-sm">
+	   		<span class="fa fa-download"></span>
+	   		{{ trans('receive.buttons.excel') }}
+	   </a>
 	</div>
 </div>
 

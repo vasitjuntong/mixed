@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Excel;
 use Log;
 use Auth;
 use Exception;
@@ -29,6 +30,7 @@ class ReceiveController extends Controller
 
         return view('receives.index', [
             'receives' => $receives,
+            'urlDownloadExcel' => url("/receives/download-excel?{$request->getQueryString()}"),
         ]);
 }
 
@@ -303,6 +305,56 @@ class ReceiveController extends Controller
 
         $item->save();
 
+    }
+
+    public function downloadExcel(Request $request)
+    {
+        $filter = $request->all();
+
+        $receives = Receive::whereByFilterAll($filter);
+
+        $datetime = date('d-m-Y_H-i');
+
+        Excel::create("receive_{$datetime}", function($excel) use ($receives) {
+            $excel->sheet('Receive', function($sheet) use ($receives) {
+                $sheet->setAutoSize(true);
+                $sheet->row(1, array(
+                    trans('receive.attributes.created_at'),
+                    trans('receive.attributes.document_no'),
+                    trans('receive.attributes.po_no'),
+                    trans('receive.attributes.ref_no'),
+                    trans('receive.attributes.project_code'),
+                    trans('receive.attributes.create_by'),
+                    trans('receive.attributes.remark'),
+                ));
+                    
+                $sheet->row(1, function($row){
+                    $row->setBorder('solid', 'solid', 'solid', 'solid');
+
+                    $row->setFont(array(
+                        'size'       => '16',
+                        'bold'       =>  true
+                    ));
+                });
+
+                 $i = 2;
+
+                foreach($receives as $receive){
+                    $sheet->row($i, array(
+                        // Receive data
+                        $receive->created_at->format('d/m/Y H:i'),
+                        $receive->document_no,
+                        $receive->po_no,
+                        $receive->ref_no,
+                        $receive->project_code,
+                        $receive->user->name,
+                        $receive->remark,
+                    ));
+                    $i ++;
+                }
+            });
+
+        })->export('xls');
     }
 
     public function destroy($id)

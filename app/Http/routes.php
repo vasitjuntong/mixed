@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
 	get('/receives/movement/download-excel', 'ReceiveMovementController@downloadExcel');
 
 	// Component.
+	get('/receives/download-excel', 'ReceiveController@downloadExcel');
 	resource('/receives', 'ReceiveController');
 	get('/receives/add-products/{id}', 'ReceiveController@addProducts');
 	post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');

@@ -33,7 +33,7 @@ class ReceiveMovementController extends Controller
 
         $datetime = date('d-m-Y_H-i');
 
-        Excel::create("receive_{$datetime}", function($excel) use ($receiveItems) {
+        Excel::create("movement_receive_{$datetime}", function($excel) use ($receiveItems) {
             $excel->sheet('Receive', function($sheet) use ($receiveItems) {
                 $sheet->setAutoSize(true);
                 $sheet->row(1, array(

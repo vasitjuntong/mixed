@@ -209,9 +209,51 @@ class Receive extends Model
 		]);
     }
 
+    public function setStatusCancel($items)
+    {
+        $statusReceive = false;
+
+        foreach($this->receiveItems as $item){
+            if(in_array($item->id, $items)){
+                $item->status = ReceiveItem::CANCEL;
+
+                Log::debug('set-status-receive-item-cancel: line item', [
+                    'receive&items' => $this->toArray(),
+                ]);
+
+                $item->save();
+            }
+        }
+
+        $padding = $this->receiveItems()
+            ->whereStatus(ReceiveItem::PADDING)
+            ->count(['id']);
+
+        if($padding == 0){
+            $total = $this->receiveItems()
+                ->count(['id']);
+
+            $cancel = $this->receiveItems()
+                ->whereStatus(ReceiveItem::CANCEL)
+                ->count(['id']);
+
+            if($total == $cancel){
+                $this->status = static::CANCEL;
+            }else{
+                $this->status = static::SUCCESS;
+            }
+
+            $this->save();
+
+            // Add stock by receive item from receive.
+            $this->addStock();
+        }
+
+        Log::debug('set-status-receive-item-cancel', []);
+    }
+
    	public function statusHtml()
    	{
-
    		return statusHtmlRender($this->status);
    	}
 

@@ -25,6 +25,7 @@ return [
 		'confirm_receive' => 'Confirm Receive',
 		'process_success' => 'Process Success',
 		'process_padding' => 'Process Padding',
+		'cancel_status'   => 'Cancel Status',
 	],
 	'attributes' => [
 		'document_no' 	=> 'DN.',
@@ -66,11 +67,14 @@ return [
 		'warning_receive_is_not_create' => 'Receive status create only.',
 		'warning_product_is_exists' => 'Product already exists.',
 
-		'success_confirm' 	=> 'คุณต้องการรับสินค้าเข้าระบบหรือไม่?',
-		'success_confirm_cancel' => 'คุณไม่ต้องการรับสินค้าเข้าระบบ',
-		'status_success_message' => 'รับสินค้าเข้าระบบเรียบร้อย',
+		'success_confirm' 			=> 'คุณต้องการรับสินค้าเข้าระบบหรือไม่?',
+		'success_confirm_cancel'	=> 'คุณไม่ต้องการรับสินค้าเข้าระบบ',
+		'cancel_confirm' 			=> 'Are you sure cancel items?',
+		'cancel_confirm_cancel' 	=> 'Cancel.',
+		'status_success_message' 			 => 'รับสินค้าเข้าระบบเรียบร้อย',
 		'status_success_unsuccess_message'   => 'ไม่สามารถทำรายการได้ ลองใหม่อีกครั้ง',
-		'status_padding_message' => 'ใบรับสินค้าอยู่ในสถานะ Padding',
+		'status_padding_message' 			 => 'ใบรับสินค้าอยู่ในสถานะ Padding',
 		'status_padding_unsuccess_message'   => 'ไม่สามารถทำรายการได้ ลองใหม่อีกครั้ง',
+		'status_cancel_message'   			 => 'Items status is cancel.',
 	],
 ];

@@ -48,7 +48,7 @@
 		           <div class="row">
 			           	<div class="col-md-12"> 
 			      			<button type="submit" class="btn btn-success btn-sm">
-			      				{{ trans('receive.buttons.create') }}
+			      				{{ trans('receive.buttons.add_product') }}
 			      			</button>
 			            </div>
 		           </div>

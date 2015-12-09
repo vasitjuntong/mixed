@@ -23,13 +23,15 @@
 				
 				<tr>
 					<td class="text-center">
-						<label class="label-checkbox">
-							<input type="checkbox" 
-								id="checkbox_products"
-								name="products[]"
-								value="{{ $item->id }}">
-							<span class="custom-checkbox"></span>
-						</label>
+						@if($item->status == \App\ReceiveItem::PADDING)
+							<label class="label-checkbox">
+								<input type="checkbox" 
+									id="checkbox_products"
+									name="products[]"
+									value="{{ $item->id }}">
+								<span class="custom-checkbox"></span>
+							</label>
+						@endif
 					</td>
 					<td>{{ $item->mix_no }}</td>
 					<td>

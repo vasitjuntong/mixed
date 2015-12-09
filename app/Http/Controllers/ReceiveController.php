@@ -271,6 +271,47 @@ class ReceiveController extends Controller
         }
     }
 
+    public function storeStatusCancel(Request $request, $id)
+    {
+        $receive = Receive::with([
+                'receiveItems',
+                'receiveItems.product',
+                'receiveItems.product.stock',
+            ])
+            ->whereId($id)
+            ->first();
+
+        try{
+            DB::transaction(function() use (&$receive, $request) {
+
+                $receive->setStatusCancel($request->get('receive_item_ids'));
+            });
+
+            $url = url('/receives');
+
+            if($receive->status == Receive::PADDING){
+                $url = url("/receives/status-success/{$receive->id}");
+            }
+
+            return [
+                'status' => true,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.status_cancel_message'),
+                'url' => $url,
+            ];
+        } catch(Exception $e) {
+
+            Log::error('receive-item-unsuccess', array($e));
+
+            return [
+                'status' => false,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.status_success_unsuccess_message'),
+                'url' => url("/receives/status-success/{$receive->id}"),
+            ];
+        }
+    }
+
     public function updateQty(Request $request)
     {
         $id = $request->get('pk');

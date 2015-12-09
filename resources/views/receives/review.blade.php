@@ -43,11 +43,11 @@
 				  	<button type="button" 
 				  		class="btn btn-default btn-sm dropdown-toggle" 
 			  			data-toggle="dropdown" 
-			  			aria-haspopup="true" 
 			  			aria-expanded="false">
+			  			<i class="fa fa-cog"></i>
 					    Action <span class="caret"></span>
 				  	</button>
-				  	<ul class="dropdown-menu">
+				  	<ul class="dropdown-menu dropdown-menu-right">
 				    	<li>
 				    		<a href="/receives/{{ $receive->id }}/edit">
 				    			<i class="fa fa-edit"></i>

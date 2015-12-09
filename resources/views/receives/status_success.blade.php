@@ -50,10 +50,20 @@
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('receive.label.name') }}"
 	   		data-message-confirm="{{ trans('receive.message_alert.success_confirm') }}"
+	   		data-message-cancel="{{ trans('receive.message_alert.success_confirm_cancel') }}"
 	   		data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
-	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}"
-	   		data-message-cancel="{{ trans('receive.message_alert.success_confirm_cancel') }}">
+	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
 	   		{{ trans('receive.buttons.confirm_receive') }}
+   		</a>
+	   	<a 	href="/receives/status-cancel/{{ $receive->id }}"
+	   		class="btn btn-danger" 
+	   		id="chk_all"
+	   		data-title-confirm="{{ trans('receive.label.name') }}"
+	   		data-message-confirm="{{ trans('receive.message_alert.cancel_confirm') }}"
+	   		data-message-cancel="{{ trans('receive.message_alert.cancel_confirm_cancel') }}"
+	   		data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
+	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
+	   		{{ trans('receive.buttons.cancel_status') }}
    		</a>
 	</div>
 </div>
@@ -102,7 +112,6 @@
 						  values.push($(this).val());
 						});
 
-						console.log(that.attr('href'));
 						$.ajaxSetup({
 					        headers: {
 					            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -115,7 +124,6 @@
 							data: {receive_item_ids: values},
 
 							success:function(data){
-								console.log(data); 
 								if(data.status){
 									swal({   
 										title: data.title,   

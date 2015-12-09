@@ -89,6 +89,19 @@ class Receive extends Model
                     $query->orWhere('email', 'like', "%{$create_by}%");
                 });
             }
+
+            $created_at_start = array_get($filter, 'created_at_start');
+            $created_at_end = array_get($filter, 'created_at_end');
+
+            if($created_at_start != null && $created_at_end != null){
+                $created_at_start = changeFormatDateToDb($created_at_start);
+                $created_at_end = changeFormatDateToDb($created_at_end);
+
+                $query->whereBetween('created_at', [
+                    "{$created_at_start} 00:00:00",
+                    "{$created_at_end} 23:59:59",
+                ]);
+            }
         })
         ->paginate($limit);
     }

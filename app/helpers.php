@@ -92,3 +92,15 @@ function hasRole($menu)
 
 	}
 }
+
+function changeFormatDateToDb($date, $spec = '/')
+{
+	list($d, $m, $y) = explode($spec, $date);
+
+	return "{$y}-{$m}-{$d}";
+}
+
+
+
+
+

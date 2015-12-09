@@ -46,14 +46,14 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 	   	<a 	href="/receives/status-success/{{ $receive->id }}"
-	   		class="btn btn-info" 
+	   		class="btn btn-success" 
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('receive.label.name') }}"
 	   		data-message-confirm="{{ trans('receive.message_alert.success_confirm') }}"
 	   		data-message-cancel="{{ trans('receive.message_alert.success_confirm_cancel') }}"
 	   		data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
 	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
-	   		{{ trans('receive.buttons.confirm_receive') }}
+	   		{{ trans('receive.buttons.succss_status') }}
    		</a>
 	   	<a 	href="/receives/status-cancel/{{ $receive->id }}"
 	   		class="btn btn-danger" 

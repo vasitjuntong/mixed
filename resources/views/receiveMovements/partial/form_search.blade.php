@@ -50,7 +50,7 @@
 				<input type="checkbox" 
 					name="item_status[]" 
 					value="{{ \App\ReceiveItem::CREATE }}"
-					{{ in_array(\App\ReceiveItem::CREATE, array_get($filter, 'item_status')) ? 'checked':'' }}
+					{{ in_array(\App\ReceiveItem::CREATE, $item_status) ? 'checked':'' }}
 					>
 				<span class="custom-checkbox"></span>
 				<span class="label label-info">{{ \App\ReceiveItem::CREATE }}</span>
@@ -59,7 +59,7 @@
 				<input type="checkbox" 
 					name="item_status[]" 
 					value="{{ \App\ReceiveItem::PADDING }}"
-					{{ in_array(\App\ReceiveItem::PADDING, array_get($filter, 'item_status')) ? 'checked':'' }}
+					{{ in_array(\App\ReceiveItem::PADDING, $item_status) ? 'checked':'' }}
 					>
 				<span class="custom-checkbox"></span>
 				<span class="label label-warning">{{ \App\ReceiveItem::PADDING }}</span>
@@ -68,7 +68,7 @@
 				<input type="checkbox" 
 					name="item_status[]" 
 					value="{{ \App\ReceiveItem::SUCCESS }}"
-					{{ in_array(\App\ReceiveItem::SUCCESS, array_get($filter, 'item_status')) ? 'checked':'' }}
+					{{ in_array(\App\ReceiveItem::SUCCESS, $item_status) ? 'checked':'' }}
 					>
 				<span class="custom-checkbox"></span>
 				<span class="label label-success">{{ \App\ReceiveItem::SUCCESS }}</span>
@@ -77,7 +77,7 @@
 				<input type="checkbox" 
 					name="item_status[]" 
 					value="{{ \App\ReceiveItem::CANCEL }}"
-					{{ in_array(\App\ReceiveItem::CANCEL, array_get($filter, 'item_status')) ? 'checked':'' }}
+					{{ in_array(\App\ReceiveItem::CANCEL, $item_status) ? 'checked':'' }}
 					>
 				<span class="custom-checkbox"></span>
 				<span class="label label-danger">{{ \App\ReceiveItem::CANCEL }}</span>

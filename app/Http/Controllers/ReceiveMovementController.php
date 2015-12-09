@@ -15,6 +15,7 @@ class ReceiveMovementController extends Controller
     {   
         $filter = $request->all();
         $limit = $request->get('limit', 20);
+        $item_status = array_get($filter, 'item_status', array());
 
         $receiveItems = ReceiveItem::whereByFilter($filter, $limit);
 
@@ -22,6 +23,7 @@ class ReceiveMovementController extends Controller
             'receiveItems' => $receiveItems,
             'filter' => $filter,
             'urlExport' => url("/receives/movement/download-excel?{$request->getQueryString()}"),
+            'item_status' => $item_status,
         ]);
     }
 

@@ -53,6 +53,59 @@ class Receive extends Model
         return $this->belongsTo(User::class);
     }
 
+    public static function whereByFilterAll(array $filter)
+    {
+        return static::with([
+            'project',
+            'user',
+        ])
+        ->where(function($query) use ($filter) {
+            $po_no = array_get($filter, 'po_no');
+            if( ! is_null($po_no)){
+                $query->where('po_no', 'like', "%{$po_no}%");
+            }
+
+            $document_no = array_get($filter, 'document_no');
+            if( ! is_null($document_no)){
+                $query->where('document_no', 'like', "%{$document_no}%");
+            }
+
+            $ref_no = array_get($filter, 'ref_no');
+            if( ! is_null($ref_no)){
+                $query->where('ref_no', 'like', "%{$ref_no}%");
+            }
+
+            $project = array_get($filter, 'project');
+            if( ! is_null($project)){
+                $query->whereHas('project', function($query) use ($project) {
+                    $query->where('code', 'like', "%{$project}%");
+                });
+            }
+
+            $create_by = array_get($filter, 'create_by');
+            if( ! is_null($create_by)){
+                $query->whereHas('user', function($query) use ($create_by) {
+                    $query->orWhere('name', 'like', "%{$create_by}%");
+                    $query->orWhere('email', 'like', "%{$create_by}%");
+                });
+            }
+
+            $created_at_start = array_get($filter, 'created_at_start');
+            $created_at_end = array_get($filter, 'created_at_end');
+
+            if($created_at_start != null && $created_at_end != null){
+                $created_at_start = changeFormatDateToDb($created_at_start);
+                $created_at_end = changeFormatDateToDb($created_at_end);
+
+                $query->whereBetween('created_at', [
+                    "{$created_at_start} 00:00:00",
+                    "{$created_at_end} 23:59:59",
+                ]);
+            }
+        })
+        ->get();
+    }
+
     public static function whereByFilter(array $filter, $limit = 20)
     {
         return static::with([

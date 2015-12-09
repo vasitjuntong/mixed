@@ -37,10 +37,7 @@
 
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
-
   		@include('receives.partial.table')
-
-		<span class="text-center block">{!! $receives->render() !!}</span>
   	</div>
 </div>
 

@@ -24,13 +24,11 @@ class ReceiveController extends Controller
     public function index(Request $request)
     {
         $filter = $request->all();
-        $limit = $request->get('limit', 20);
 
-        $receives = Receive::whereByFilter($filter, $limit);
+        $receives = Receive::whereByFilterAll($filter);
 
         return view('receives.index', [
             'receives' => $receives,
-            'filter' => $filter,
         ]);
 }
 

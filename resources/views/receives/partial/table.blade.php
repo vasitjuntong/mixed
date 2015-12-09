@@ -1,10 +1,10 @@
 <table class="table table-striped" id="dataTables">
 	<thead>
 		<tr>
-			<th width="10%">{{ trans('receive.attributes.created_at') }}</th>
-			<th width="10%">{{ trans('receive.attributes.document_no' )}}</th>
+			<th width="15%">{{ trans('receive.attributes.created_at') }}</th>
+			<th width="15%">{{ trans('receive.attributes.document_no' )}}</th>
 			<th width="10%">{{ trans('receive.attributes.po_no') }}</th>
-			<th width="10%">{{ trans('receive.attributes.ref_no') }}</th>
+			<th width="15%">{{ trans('receive.attributes.ref_no') }}</th>
 			<th width="10%">{{ trans('receive.attributes.project_id') }}</th>
 			<th width="10%">{{ trans('receive.attributes.create_by') }}</th>
 			<th>{{ trans('receive.attributes.remark') }}</th>

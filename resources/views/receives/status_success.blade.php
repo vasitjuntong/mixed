@@ -53,7 +53,7 @@
 	   		data-message-cancel="{{ trans('receive.message_alert.success_confirm_cancel') }}"
 	   		data-confirm-ok="{{ trans('main.confirm_button.ok') }}"
 	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
-	   		{{ trans('receive.buttons.succss_status') }}
+	   		{{ trans('receive.buttons.success_status') }}
    		</a>
 	   	<a 	href="/receives/status-cancel/{{ $receive->id }}"
 	   		class="btn btn-danger" 

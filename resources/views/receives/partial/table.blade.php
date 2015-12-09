@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped" id="dataTables">
 	<thead>
 		<tr>
 			<th width="10%">{{ trans('receive.attributes.created_at') }}</th>

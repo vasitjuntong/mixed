@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Log;
+use Illuminate\Database\Eloquent\Model;
 
 class Receive extends Model
 {
@@ -262,21 +262,23 @@ class Receive extends Model
         $items = $this->receiveItems;
 
         foreach($items as $item){
-            $stock = $item->product->stock()->first();
-            $stockNow = $stock->qty;
+            if($item->status == ReceiveItem::SUCCESS){
+                $stock = $item->product->stock()->first();
+                $stockNow = $stock->qty;
 
-            $stockAdd = $item->qty;
+                $stockAdd = $item->qty;
 
-            $stock->qty = $stockNow + $stockAdd;
+                $stock->qty = $stockNow + $stockAdd;
 
-            Log::info('add-stock: receive item', [
-                'product' => $item->product->toArray(),
-                'stockNow' => $stockNow,
-                'stockAdd' => $stockAdd,
-                'StockNew' => $stock->qty,
-            ]);
+                Log::info('add-stock: receive item', [
+                    'product' => $item->product->toArray(),
+                    'stockNow' => $stockNow,
+                    'stockAdd' => $stockAdd,
+                    'StockNew' => $stock->qty,
+                ]);
 
-            $stock->save();
+                $stock->save();
+            }
         }
     }
 }

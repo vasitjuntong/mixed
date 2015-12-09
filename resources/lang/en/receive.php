@@ -63,7 +63,8 @@ return [
 		'review_cancel'		=> 'คุณไม่ต้องรับสินค้า',
 
 		'warning_receive_is_not_padding' => 'Receive status padding only.',
-		'warning_receive_is_not_create' => 'Receive status padding create.',
+		'warning_receive_is_not_create' => 'Receive status create only.',
+		'warning_product_is_exists' => 'Product already exists.',
 
 		'success_confirm' 	=> 'คุณต้องการรับสินค้าเข้าระบบหรือไม่?',
 		'success_confirm_cancel' => 'คุณไม่ต้องการรับสินค้าเข้าระบบ',

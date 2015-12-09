@@ -124,16 +124,10 @@ class ReceiveController extends Controller
             ->count();
 
         if($count) {
-            $receiveItem = $receive->receiveItems()
-                ->where('product_id', array_get($request->all(), 'product_id'))
-                ->where('location_id', array_get($request->all(), 'location_id'))
-                ->first();
-
-            $receiveItem->setRawAttributes(
-                array_except($request->all(), ['_token'])
+            flash()->error(
+                trans('receive.label.name'),
+                trans('receive.message_alert.warning_product_is_exists')
             );
-
-            $receiveItem->save();
         } else {
             $receive->receiveItems()
                 ->create($request->all());

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Receive;
 use App\UploadReceiveItem;
-use Illuminate\Http\Request;
-use Log;
+use App\Http\Requests\ReceiveItemUploadRequest;
 
 class ReceiveItemUploadController extends Controller
 {
@@ -22,7 +22,7 @@ class ReceiveItemUploadController extends Controller
         ]);
     }
 
-    public function store(Request $request, UploadReceiveItem $upload, $id)
+    public function store(ReceiveItemUploadRequest $request, UploadReceiveItem $upload, $id)
     {
         $receive = Receive::find($id);
 
@@ -46,6 +46,6 @@ class ReceiveItemUploadController extends Controller
 
 
         return redirect("/receive-upload/{$id}")
-            ->with('errors', $upload->getErrors());
+            ->with('flash_errors', $upload->getErrors());
     }
 }

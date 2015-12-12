@@ -6,13 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class DebugbarServiceProvider extends ServiceProvider
 {
-     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * Bootstrap the application services.
      *
@@ -20,7 +13,6 @@ class DebugbarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**

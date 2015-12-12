@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         $this->call(UnitSeeder::class);
-        $this->call(ProductTypeSeeder::class);
-        $this->call(ProductSeeder::class);
-        $this->call(ProjectSeeder::class);
         $this->call(LocationSeeder::class);
+        $this->call(ProductTypeSeeder::class);
+        $this->call(ProjectSeeder::class);
+        $this->call(ProductSeeder::class);
         $this->call(RolesSeeder::class);
 
         Model::reguard();

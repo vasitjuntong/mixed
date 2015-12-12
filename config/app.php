@@ -145,6 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\DebugbarServiceProvider::class,
+        App\Providers\CustomServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,

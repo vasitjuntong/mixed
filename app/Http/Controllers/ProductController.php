@@ -22,7 +22,7 @@ class ProductController extends Controller
 
         return view('products.index', [
             'products' => $products,
-            'filter' => $filter,
+            'filter'   => $filter,
         ]);
     }
 
@@ -33,7 +33,7 @@ class ProductController extends Controller
         $units = Unit::orderBy('id', 'desc')
             ->lists('name', 'id');
 
-        return view('products.create',compact(
+        return view('products.create', compact(
             'productTypes',
             'units'
         ));
@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        if($request->file('file') != null){
+        if ($request->file('file') != null) {
             $data = $this->makePic(
                 $request->file('file'),
                 $data
@@ -70,8 +70,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $productTypes = ProductType::orderBy('id', 'desc')
-            ->lists('name', 'id');
+        $productTypes = ProductType::listSelect();
         $units = Unit::orderBy('id', 'desc')
             ->lists('name', 'id');
 
@@ -91,7 +90,7 @@ class ProductController extends Controller
             '_token',
         ));
 
-        if($request->file('file') != null){
+        if ($request->file('file') != null) {
             $product->removePic();
 
             $data = $this->makePic(
@@ -110,17 +109,17 @@ class ProductController extends Controller
     {
         $response = Product::deleteByCondition($id);
 
-
-        if($request->ajax())
+        if ($request->ajax()) {
             return $response;
+        }
 
-        if($response['status']){
+        if ($response['status']) {
             flash()
                 ->success(
                     trans('product.label.name'),
                     $response['message']
                 );
-        }else{
+        } else {
             flash()
                 ->success(
                     trans('product.label.name'),

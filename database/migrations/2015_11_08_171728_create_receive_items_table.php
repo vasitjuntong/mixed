@@ -30,7 +30,7 @@ class CreateReceiveItemsTable extends Migration
             $table->string('location_name');
 
             $table->integer('qty');
-            $table->longText('remark');
+            $table->longText('remark')->nullable();
             $table->string('status', 100);
 
             $table->timestamps();

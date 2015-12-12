@@ -27,7 +27,7 @@ class CreateReceivesTable extends Migration
             $table->string('project_code');
 
             $table->string('status', 100);
-            $table->longText('remark');
+            $table->longText('remark')->nullable();
 
             $table->timestamps();
 

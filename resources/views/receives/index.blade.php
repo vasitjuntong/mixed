@@ -4,7 +4,7 @@
 	<div id="breadcrumb">
 		<ul class="breadcrumb">
 		 	<li><i class="fa fa-home"></i>
-			 	<a href="index.html"> {{ trans('main.breadcrump.home')}}</a>
+			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('receive.label.name') }}</li>	 
 		</ul>

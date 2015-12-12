@@ -50,6 +50,9 @@
 			      			<button type="submit" class="btn btn-success btn-sm">
 			      				{{ trans('receive.buttons.add_product') }}
 			      			</button>
+                            <a class="btn btn-success btn-sm" href="/receive-upload/{{ $receive->id }}">
+                                {{ trans('receive.buttons.upload_excel') }}
+                            </a>
 			            </div>
 		           </div>
 				{!! Form::close() !!}

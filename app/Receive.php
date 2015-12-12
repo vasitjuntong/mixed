@@ -7,40 +7,40 @@ use Illuminate\Database\Eloquent\Model;
 
 class Receive extends Model
 {
-    const CREATE 	= 'create';
-    const PADDING 	= 'padding';
-    const SUCCESS 	= 'success';
-    const CANCEL 	= 'cancel';
+    const CREATE = 'create';
+    const PADDING = 'padding';
+    const SUCCESS = 'success';
+    const CANCEL = 'cancel';
 
     protected $fillable = [
         'user_id',
-		'document_no',
-		'po_no',
-		'ref_no',
-		'project_id',
-		'project_code',
-		'status',
-		'remark',
-		'created_at',
-		'updated_at',
+        'document_no',
+        'po_no',
+        'ref_no',
+        'project_id',
+        'project_code',
+        'status',
+        'remark',
+        'created_at',
+        'updated_at',
     ];
 
     public static function boot()
-	{
-	    parent::boot();
+    {
+        parent::boot();
 
-	    static::creating(function ($model)
-	    {
-	    	if($model->status == null)
-	    		$model->status = static::CREATE;
+        static::creating(function ($model) {
+            if ($model->status == null) {
+                $model->status = static::CREATE;
+            }
 
             $model->document_no = $model->genDoNo();
-	    });
+        });
     }
 
     public function receiveItems()
     {
-    	return $this->hasMany(ReceiveItem::class);
+        return $this->hasMany(ReceiveItem::class);
     }
 
     public function project()
@@ -59,51 +59,51 @@ class Receive extends Model
             'project',
             'user',
         ])
-        ->where(function($query) use ($filter) {
-            $po_no = array_get($filter, 'po_no');
-            if( ! is_null($po_no)){
-                $query->where('po_no', 'like', "%{$po_no}%");
-            }
+            ->where(function ($query) use ($filter) {
+                $po_no = array_get($filter, 'po_no');
+                if (!is_null($po_no)) {
+                    $query->where('po_no', 'like', "%{$po_no}%");
+                }
 
-            $document_no = array_get($filter, 'document_no');
-            if( ! is_null($document_no)){
-                $query->where('document_no', 'like', "%{$document_no}%");
-            }
+                $document_no = array_get($filter, 'document_no');
+                if (!is_null($document_no)) {
+                    $query->where('document_no', 'like', "%{$document_no}%");
+                }
 
-            $ref_no = array_get($filter, 'ref_no');
-            if( ! is_null($ref_no)){
-                $query->where('ref_no', 'like', "%{$ref_no}%");
-            }
+                $ref_no = array_get($filter, 'ref_no');
+                if (!is_null($ref_no)) {
+                    $query->where('ref_no', 'like', "%{$ref_no}%");
+                }
 
-            $project = array_get($filter, 'project');
-            if( ! is_null($project)){
-                $query->whereHas('project', function($query) use ($project) {
-                    $query->where('code', 'like', "%{$project}%");
-                });
-            }
+                $project = array_get($filter, 'project');
+                if (!is_null($project)) {
+                    $query->whereHas('project', function ($query) use ($project) {
+                        $query->where('code', 'like', "%{$project}%");
+                    });
+                }
 
-            $create_by = array_get($filter, 'create_by');
-            if( ! is_null($create_by)){
-                $query->whereHas('user', function($query) use ($create_by) {
-                    $query->orWhere('name', 'like', "%{$create_by}%");
-                    $query->orWhere('email', 'like', "%{$create_by}%");
-                });
-            }
+                $create_by = array_get($filter, 'create_by');
+                if (!is_null($create_by)) {
+                    $query->whereHas('user', function ($query) use ($create_by) {
+                        $query->orWhere('name', 'like', "%{$create_by}%");
+                        $query->orWhere('email', 'like', "%{$create_by}%");
+                    });
+                }
 
-            $created_at_start = array_get($filter, 'created_at_start');
-            $created_at_end = array_get($filter, 'created_at_end');
+                $created_at_start = array_get($filter, 'created_at_start');
+                $created_at_end = array_get($filter, 'created_at_end');
 
-            if($created_at_start != null && $created_at_end != null){
-                $created_at_start = changeFormatDateToDb($created_at_start);
-                $created_at_end = changeFormatDateToDb($created_at_end);
+                if ($created_at_start != null && $created_at_end != null) {
+                    $created_at_start = changeFormatDateToDb($created_at_start);
+                    $created_at_end = changeFormatDateToDb($created_at_end);
 
-                $query->whereBetween('created_at', [
-                    "{$created_at_start} 00:00:00",
-                    "{$created_at_end} 23:59:59",
-                ]);
-            }
-        })
-        ->get();
+                    $query->whereBetween('created_at', [
+                        "{$created_at_start} 00:00:00",
+                        "{$created_at_end} 23:59:59",
+                    ]);
+                }
+            })
+            ->get();
     }
 
     public static function whereByFilter(array $filter, $limit = 20)
@@ -112,109 +112,109 @@ class Receive extends Model
             'project',
             'user',
         ])
-        ->where(function($query) use ($filter) {
-            $po_no = array_get($filter, 'po_no');
-            if( ! is_null($po_no)){
-                $query->where('po_no', 'like', "%{$po_no}%");
-            }
+            ->where(function ($query) use ($filter) {
+                $po_no = array_get($filter, 'po_no');
+                if (!is_null($po_no)) {
+                    $query->where('po_no', 'like', "%{$po_no}%");
+                }
 
-            $document_no = array_get($filter, 'document_no');
-            if( ! is_null($document_no)){
-                $query->where('document_no', 'like', "%{$document_no}%");
-            }
+                $document_no = array_get($filter, 'document_no');
+                if (!is_null($document_no)) {
+                    $query->where('document_no', 'like', "%{$document_no}%");
+                }
 
-            $ref_no = array_get($filter, 'ref_no');
-            if( ! is_null($ref_no)){
-                $query->where('ref_no', 'like', "%{$ref_no}%");
-            }
+                $ref_no = array_get($filter, 'ref_no');
+                if (!is_null($ref_no)) {
+                    $query->where('ref_no', 'like', "%{$ref_no}%");
+                }
 
-            $project = array_get($filter, 'project');
-            if( ! is_null($project)){
-                $query->whereHas('project', function($query) use ($project) {
-                    $query->where('code', 'like', "%{$project}%");
-                });
-            }
+                $project = array_get($filter, 'project');
+                if (!is_null($project)) {
+                    $query->whereHas('project', function ($query) use ($project) {
+                        $query->where('code', 'like', "%{$project}%");
+                    });
+                }
 
-            $create_by = array_get($filter, 'create_by');
-            if( ! is_null($create_by)){
-                $query->whereHas('user', function($query) use ($create_by) {
-                    $query->orWhere('name', 'like', "%{$create_by}%");
-                    $query->orWhere('email', 'like', "%{$create_by}%");
-                });
-            }
+                $create_by = array_get($filter, 'create_by');
+                if (!is_null($create_by)) {
+                    $query->whereHas('user', function ($query) use ($create_by) {
+                        $query->orWhere('name', 'like', "%{$create_by}%");
+                        $query->orWhere('email', 'like', "%{$create_by}%");
+                    });
+                }
 
-            $created_at_start = array_get($filter, 'created_at_start');
-            $created_at_end = array_get($filter, 'created_at_end');
+                $created_at_start = array_get($filter, 'created_at_start');
+                $created_at_end = array_get($filter, 'created_at_end');
 
-            if($created_at_start != null && $created_at_end != null){
-                $created_at_start = changeFormatDateToDb($created_at_start);
-                $created_at_end = changeFormatDateToDb($created_at_end);
+                if ($created_at_start != null && $created_at_end != null) {
+                    $created_at_start = changeFormatDateToDb($created_at_start);
+                    $created_at_end = changeFormatDateToDb($created_at_end);
 
-                $query->whereBetween('created_at', [
-                    "{$created_at_start} 00:00:00",
-                    "{$created_at_end} 23:59:59",
-                ]);
-            }
-        })
-        ->paginate($limit);
+                    $query->whereBetween('created_at', [
+                        "{$created_at_start} 00:00:00",
+                        "{$created_at_end} 23:59:59",
+                    ]);
+                }
+            })
+            ->paginate($limit);
     }
 
     public function setStatusPadding()
     {
-    	$this->status = static::PADDING;
+        $this->status = static::PADDING;
 
-    	foreach($this->receiveItems as $item){
-    		$item->status = ReceiveItem::PADDING;
+        foreach ($this->receiveItems as $item) {
+            $item->status = ReceiveItem::PADDING;
 
-    		Log::debug('set-status-receive-padding: line item', [
-    			'receive' => $this->toArray(),
-			]);
+            Log::debug('set-status-receive-padding: line item', [
+                'receive' => $this->toArray(),
+            ]);
 
-    		$item->save();
-    	}
+            $item->save();
+        }
 
-    	$this->save();
+        $this->save();
     }
 
     public function setStatusSuccess($successItems)
     {
-    	$statusReceive = false;
+        $statusReceive = false;
 
-    	foreach($this->receiveItems as $item){
-    		if(in_array($item->id, $successItems)){
-    			$item->status = ReceiveItem::SUCCESS;
+        foreach ($this->receiveItems as $item) {
+            if (in_array($item->id, $successItems)) {
+                $item->status = ReceiveItem::SUCCESS;
 
-		    	Log::debug('set-status-receive-item-success: line item', [
-		    		'receive&items' => $this->toArray(),
-				]);
+                Log::debug('set-status-receive-item-success: line item', [
+                    'receive&items' => $this->toArray(),
+                ]);
 
-    			$item->save();
-    		}
-    	}
+                $item->save();
+            }
+        }
 
-    	$padding = $this->receiveItems()
-    		->whereStatus(ReceiveItem::PADDING)
-    		->count(['id']);
+        $padding = $this->receiveItems()
+            ->whereStatus(ReceiveItem::PADDING)
+            ->count(['id']);
 
-    	if($padding == 0){
-    		$this->status = static::SUCCESS;
+        if ($padding == 0) {
+            $this->status = static::SUCCESS;
 
-    		$this->save();
+            $this->save();
 
             // Add stock by receive item from receive.
             $this->addStock();
-    	}
+        }
 
-    	Log::debug('set-status-receive-item-success', [
-		]);
+        Log::debug('set-status-receive-item-success', [
+        ]);
     }
 
     public function setStatusCancel($items)
     {
         $statusReceive = false;
 
-        foreach($this->receiveItems as $item){
-            if(in_array($item->id, $items)){
+        foreach ($this->receiveItems as $item) {
+            if (in_array($item->id, $items)) {
                 $item->status = ReceiveItem::CANCEL;
 
                 Log::debug('set-status-receive-item-cancel: line item', [
@@ -229,7 +229,7 @@ class Receive extends Model
             ->whereStatus(ReceiveItem::PADDING)
             ->count(['id']);
 
-        if($padding == 0){
+        if ($padding == 0) {
             $total = $this->receiveItems()
                 ->count(['id']);
 
@@ -237,9 +237,9 @@ class Receive extends Model
                 ->whereStatus(ReceiveItem::CANCEL)
                 ->count(['id']);
 
-            if($total == $cancel){
+            if ($total == $cancel) {
                 $this->status = static::CANCEL;
-            }else{
+            } else {
                 $this->status = static::SUCCESS;
             }
 
@@ -252,10 +252,10 @@ class Receive extends Model
         Log::debug('set-status-receive-item-cancel', []);
     }
 
-   	public function statusHtml()
-   	{
-   		return statusHtmlRender($this->status);
-   	}
+    public function statusHtml()
+    {
+        return statusHtmlRender($this->status);
+    }
 
     public function genDoNo()
     {
@@ -265,12 +265,12 @@ class Receive extends Model
         $receiveNumber = ReceiveNumber::whereName($prefix)
             ->first();
 
-        if(is_null($receiveNumber)){
+        if (is_null($receiveNumber)) {
             ReceiveNumber::create([
-                'name' => $prefix,
+                'name'   => $prefix,
                 'number' => $number,
             ]);
-        }else{
+        } else {
             $number = $receiveNumber->number + 1;
 
             $receiveNumber->number = $number;
@@ -286,11 +286,11 @@ class Receive extends Model
     {
         $count = strlen($number);
 
-        switch($count){
+        switch ($count) {
             case 1:
                 return '00' . $number;
                 break;
-            case 2: 
+            case 2:
                 return '0' . $number;
                 break;
             default:
@@ -303,20 +303,20 @@ class Receive extends Model
     {
         $items = $this->receiveItems;
 
-        foreach($items as $item){
-            if($item->status == ReceiveItem::SUCCESS){
-                $stock = $item->product->stock()->first();
-                $stockNow = $stock->qty;
+        foreach ($items as $item) {
+            if ($item->status == ReceiveItem::SUCCESS) {
+                $stock = Stock::where('product_id', $item->product_id)
+                    ->where('location_id', $item->location_id)
+                    ->first();
 
-                $stockAdd = $item->qty;
-
-                $stock->qty = $stockNow + $stockAdd;
+                $stock->qty = $stock->qty + $item->qty;
 
                 Log::info('add-stock: receive item', [
-                    'product' => $item->product->toArray(),
-                    'stockNow' => $stockNow,
-                    'stockAdd' => $stockAdd,
-                    'StockNew' => $stock->qty,
+                    'stock' => "product_id: {$stock->product_id}, location_id:{$stock->location_id}",
+                    'product_id'  => $item->product_id,
+                    'location_id' => $item->location_id,
+                    'stockNow'    => $stock->qty,
+                    'stockAdd'    => $item->qty,
                 ]);
 
                 $stock->save();

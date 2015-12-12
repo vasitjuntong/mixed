@@ -24,11 +24,11 @@ return [
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'email'                => 'The :attribute must be a valid email address.',
-    'exists'               => ':attribute ไม่มีอยู่ในระบบ กรุณาตรวจสอบ',
+    'exists'               => 'The selected :attribute is invalid.',
     'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
-    'integer'              => ':attribute จำนวนเต็มเท่านั้น',
+    'integer'              => 'The :attribute must be an integer.',
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
@@ -47,7 +47,7 @@ return [
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'regex'                => 'The :attribute format is invalid.',
-    'required'             => ':attribute ไม่เท่ากับค่าว่าง',
+    'required'             => 'The :attribute field is required.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
@@ -62,7 +62,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => ':attribute มีอยู่ในระบบ กรุณาตรวจสอบ',
+    'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
     /*

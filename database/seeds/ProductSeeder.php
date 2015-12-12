@@ -16,32 +16,32 @@ class ProductSeeder extends Seeder
         	'product_type_id' 	=> 1,
         	'unit_id' 			=> 1,
         	'mix_no' 			=> 100001,
-        	'code'				=> 'PD001',
-        	'description'		=> 'ต้นไม้',
+        	'code'				=> '100001',
+        	'description'		=> 'เทป PVC (White)',
         	'use_serial_no'		=> Product::USE_SERIAL_NO,
     	]);
         Product::create([
         	'product_type_id' 	=> 2,
         	'unit_id' 			=> 1,
         	'mix_no' 			=> 100002,
-        	'code'				=> 'PD002',
-        	'description'		=> 'ใบหญ้า',
+        	'code'				=> '100002',
+        	'description'		=> 'เทป PVC (blue)',
         	'use_serial_no'		=> Product::USE_SERIAL_NO,
     	]);
         Product::create([
         	'product_type_id' 	=> 1,
         	'unit_id' 			=> 2,
         	'mix_no' 			=> 100003,
-        	'code'				=> 'PD003',
-        	'description'		=> 'โต๊ะ',
+        	'code'				=> '100003',
+        	'description'		=> 'เทป PVC (Red)',
         	'use_serial_no'		=> Product::USE_SERIAL_NO,
     	]);
         Product::create([
         	'product_type_id' 	=> 1,
         	'unit_id' 			=> 2,
         	'mix_no' 			=> 100004,
-        	'code'				=> 'PD004',
-        	'description'		=> 'ผ้าม่าน',
+        	'code'				=> '100004',
+        	'description'		=> 'เทป PVC (Yellow)',
         	'use_serial_no'		=> Product::USE_SERIAL_NO,
     	]);
     }

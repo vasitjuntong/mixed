@@ -13,11 +13,19 @@ class UnitSeeder extends Seeder
     public function run()
     {
         Unit::create([
-        	'name' => 'ea',
+        	'name' => 'PCS',
     	]);
 
         Unit::create([
-        	'name' => 'cc',
+        	'name' => 'EA',
     	]);
+
+        Unit::create([
+            'name' => 'SET',
+        ]);
+
+        Unit::create([
+            'name' => 'MT',
+        ]);
     }
 }

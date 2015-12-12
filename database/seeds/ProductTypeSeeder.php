@@ -13,15 +13,15 @@ class ProductTypeSeeder extends Seeder
     public function run()
     {
         ProductType::create([
-        	'name' => 'OTA'
+        	'name' => 'ปลอกหางปลา'
     	]);
 
         ProductType::create([
-        	'name' => 'OOC'
+        	'name' => 'หางปลา'
     	]);
 
         ProductType::create([
-        	'name' => 'A'
+        	'name' => 'เทป'
     	]);
     }
 }

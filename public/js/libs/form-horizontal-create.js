@@ -13,17 +13,35 @@ $(function(){
                 'Loading...'
             );
 
+        $('form div.form-group').each(function(key, value){
+            $(this).removeClass('has-error');
+            $(this).find('span#error').remove('span#error');
+        });
+
 		$.ajax({
 			type: that.attr('method'),
 			url: that.attr('action'),
 			data: formData,
             async: false,
 			success: function(result){
-                console.log(result);
 				if(result.status == 'success'){
 					window.location = result.urlRedirect;
 				}else{
-					$('#response-errors').show(500);
+                    var li = '';
+                    var resError = $('#response-errors');
+
+                    $.each(result.errors, function(key, value){
+                        li += '<li>'+value+'</li>';
+                    });
+
+                    resError.html(li);
+
+                    resError.show(500);
+
+                    that.find('button:submit')
+                        .removeClass('disabled')
+                        .html(textButtonSubmit);
+
 				}
 			},
 			error: function(result){
@@ -33,11 +51,6 @@ $(function(){
 
 				if(result.status == 422){
 
-					$('form div.form-group').each(function(key, value){
-						$(this).removeClass('has-error');
-						$(this).find('span#error').remove('span#error');
-					});
-
 					$.each(result.responseJSON, function(key, value){
 						$.each(value, function(responseKey, responseError){
 							spanContent += responseError + ' ';
@@ -45,6 +58,7 @@ $(function(){
 
 						$('form div#' + key)
 							.addClass('has-error')
+                            .find('div')
 							.append(spanOpen + spanContent + spanClose);
 
 						spanContent = '';

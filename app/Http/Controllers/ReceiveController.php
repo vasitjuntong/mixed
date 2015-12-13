@@ -67,6 +67,7 @@ class ReceiveController extends Controller
             ));
 
             return [
+                'status' => 'success',
                 'urlRedirect' => url("/receives/add-products/{$receive->id}"),
             ];
         }

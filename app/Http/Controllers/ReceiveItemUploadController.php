@@ -41,11 +41,15 @@ class ReceiveItemUploadController extends Controller
                 trans('receive_item_upload.message_alert.success')
             );
 
-            return redirect("/receives/add-products/{$id}");
+            return [
+                'status' => 'success',
+                'urlRedirect' => url("/receives/add-products/{$id}"),
+            ];
         }
 
-
-        return redirect("/receive-upload/{$id}")
-            ->with('flash_errors', $upload->getErrors());
+        return [
+            'status' => 'error',
+            'errors' => $upload->getErrors(),
+        ];
     }
 }

@@ -72,6 +72,7 @@ class UserController extends Controller
 
         if($request->ajax()){
             return [
+                'status' => 'success',
                 'urlRedirect' => url('/users'),
             ];
         }

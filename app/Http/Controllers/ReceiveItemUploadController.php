@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use Log;
 use App\Receive;
 use App\UploadReceiveItem;
+use Illuminate\Http\Request;
 use App\Http\Requests\ReceiveItemUploadRequest;
 
 class ReceiveItemUploadController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        if (!$request->ajax()) {
+            abort(404);
+        }
+    }
+
     public function index($id)
     {
         $receive = Receive::with([
@@ -42,7 +50,7 @@ class ReceiveItemUploadController extends Controller
             );
 
             return [
-                'status' => 'success',
+                'status'      => 'success',
                 'urlRedirect' => url("/receives/add-products/{$id}"),
             ];
         }

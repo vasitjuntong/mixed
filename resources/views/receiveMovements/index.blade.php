@@ -32,7 +32,6 @@
 
   		@include('receiveMovements.partial.table')
 
-		<span class="text-center block">{!! $receiveItems->appends($filter)->render() !!}</span>
   	</div>
 </div>
 

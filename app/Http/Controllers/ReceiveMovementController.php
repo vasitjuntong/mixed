@@ -13,11 +13,13 @@ class ReceiveMovementController extends Controller
 {
     public function index(Request $request)
     {   
-        $filter = $request->all();
-        $limit = $request->get('limit', 20);
-        $item_status = array_get($filter, 'item_status', array());
+        $filter = $request->except(['orderBy']);
 
-        $receiveItems = ReceiveItem::whereByFilter($filter, $limit);
+        $limit = $request->get('limit', 20);
+        $item_status = array_get($request->all(), 'item_status', array());
+        $orderBy = array_get($request->all(), 'sort_by', array());
+
+        $receiveItems = ReceiveItem::whereByFilter($filter, $limit, $orderBy);
 
         return view('receiveMovements.index', [
             'receiveItems' => $receiveItems,
@@ -29,11 +31,12 @@ class ReceiveMovementController extends Controller
 
     public function downloadExcel(Request $request)
     {
-        $filter = $request->all();
+        $filter = $request->except(['item_status', 'orderBy']);
+        $orderBy = array_get($request->all(), 'sort_by', array());
 
-        $receiveItems = ReceiveItem::whereByFilterAll($filter);
+        $receiveItems = ReceiveItem::whereByFilterAll($filter, $orderBy);
 
-        $datetime = date('d-m-Y_H-i');
+        $datetime = date('d-m-Y_H-i-s');
 
         Excel::create("movement_receive_{$datetime}", function($excel) use ($receiveItems) {
             $excel->sheet('Receive', function($sheet) use ($receiveItems) {

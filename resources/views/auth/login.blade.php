@@ -68,6 +68,7 @@
                 <hr/>
 
                 <button 
+                    name="sign_in"
                     class="btn btn-success btn-sm bounceIn animation-delay7 login-link pull-right"
                     type="submit">
                     <i class="fa fa-sign-in"></i> Sign In

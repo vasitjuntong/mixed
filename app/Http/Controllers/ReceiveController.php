@@ -166,7 +166,9 @@ class ReceiveController extends Controller
     public function review($id)
     {
         $receive = Receive::with([
-                'receiveItems'    
+                'receiveItems',  
+                'receiveItems.product',  
+                'receiveItems.product.unit',  
             ])
             ->where('id', $id)
             ->first();

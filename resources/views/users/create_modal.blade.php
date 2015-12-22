@@ -15,7 +15,9 @@
 				 @include('users.partial.form')
 
 				 <div class="form-group">
-				 	<button class="btn btn-success btn-sm">
+				 	<button 
+						id="user-create"
+				 		class="btn btn-success btn-sm">
 				 		<i class="fa fa-plus"></i>
 				 		{{ trans('user.buttons.create') }}
 				 	</button>

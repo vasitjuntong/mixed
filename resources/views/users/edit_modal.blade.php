@@ -17,7 +17,9 @@
 				 @include('users.partial.form')
 
 				 <div class="form-group">
-				 	<button class="btn btn-success btn-sm">
+				 	<button
+				 		id="user-update"
+				 		class="btn btn-success btn-sm">
 				 		<i class="fa fa-edit"></i>
 				 		{{ trans('user.buttons.update') }}
 				 	</button>

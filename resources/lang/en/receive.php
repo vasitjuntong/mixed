@@ -31,6 +31,7 @@ return [
     ],
     'attributes'  => [
         'document_no'  => 'DN.',
+        'ref_no'       => 'Referrence NO.',
         'po_no'        => 'PO. NO.',
         'mix_no'       => 'Mix NO.',
         'project_id'   => 'Project',

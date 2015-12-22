@@ -146,7 +146,7 @@
                 }
             });
             $(".chosen-select").chosen({
-                search_contians: true
+                search_contains: true
             });
         })
     </script>

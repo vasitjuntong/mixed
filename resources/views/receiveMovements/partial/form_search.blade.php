@@ -45,6 +45,22 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
+			<label class="control-label" for="mix_no">{{ trans('receive.form_search.mix_no') }}</label>
+			{!! Form::text('mix_no', array_get($filter, 'mix_no') ?: null, [
+				'class' => 'form-control',
+			]) !!}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<label class="control-label" for="product_code">{{ trans('receive.form_search.product_code') }}</label>
+			{!! Form::text('product_code', array_get($filter, 'product_code') ?: null, [
+				'class' => 'form-control',
+			]) !!}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
 			<label class="control-label" for="item_status">{{ trans('receive.form_search.item_status') }}</label>
 			<label class="label-checkbox" style="margin-top: 5px;">
 				<input type="checkbox" 

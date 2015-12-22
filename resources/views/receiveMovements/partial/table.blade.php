@@ -45,7 +45,7 @@
 				<td>{{ $item->receive->created_at->format('d/m/Y H:i') }}</td>
 				<td>
 					<a href="/receives/review/{{ $item->receive->id }}">
-						{{ $item->document_no }}
+						{{ $item->receive->document_no }}
 					</a>
 				</td>
 				<td>{{ $item->receive->po_no }}</td>

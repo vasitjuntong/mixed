@@ -32,20 +32,21 @@ return [
     'attributes'  => [
         'document_no'  => 'DN.',
         'po_no'        => 'PO. NO.',
-        'ref_no'       => 'Referrence NO.',
+        'mix_no'       => 'Mix NO.',
         'project_id'   => 'Project',
         'project_code' => 'Project',
         'status'       => 'Status',
         'remark'       => 'Remark',
         'created_at'   => 'Date',
         'updated_at'   => 'Update',
-
         'stock'          => 'Stock',
         'create_by'      => 'Create By',
         'success_status' => 'Action',
     ],
     'form_search' => [
         'document_no'      => 'DN',
+        'mix_no'           => 'Mix NO.',
+        'product_code'     => 'Product Code',
         'po_no'            => 'PO NO',
         'ref_no'           => 'Referrence NO',
         'project'          => 'Project',

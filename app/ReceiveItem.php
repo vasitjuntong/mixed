@@ -75,6 +75,16 @@ class ReceiveItem extends Model
             ->join('units', 'products.unit_id', '=', 'units.id')
             ->join('projects', 'receives.project_id', '=', 'projects.id')
             ->where(function ($query) use ($filter) {
+                $mix_no = array_get($filter, 'mix_no');
+                if (!is_null($mix_no)) {
+                    $query->where('receive_items.mix_no', 'like', "%{$mix_no}%");
+                }
+
+                $product_code = array_get($filter, 'product_code');
+                if (!is_null($product_code)) {
+                    $query->where('receive_items.product_code', 'like', "%{$product_code}%");
+                }
+
                 $po_no = array_get($filter, 'po_no');
                 if (!is_null($po_no)) {
                     $query->whereHas('receive', function ($query) use ($po_no) {
@@ -160,6 +170,16 @@ class ReceiveItem extends Model
             ->join('units', 'products.unit_id', '=', 'units.id')
             ->join('projects', 'receives.project_id', '=', 'projects.id')
             ->where(function ($query) use ($filter) {
+                $mix_no = array_get($filter, 'mix_no');
+                if (!is_null($mix_no)) {
+                    $query->where('receive_items.mix_no', 'like', "%{$mix_no}%");
+                }
+
+                $product_code = array_get($filter, 'product_code');
+                if (!is_null($product_code)) {
+                    $query->where('receive_items.product_code', 'like', "%{$product_code}%");
+                }
+                
                 $po_no = array_get($filter, 'po_no');
                 if (!is_null($po_no)) {
                     $query->whereHas('receive', function ($query) use ($po_no) {

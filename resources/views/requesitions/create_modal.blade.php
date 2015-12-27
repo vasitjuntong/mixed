@@ -34,7 +34,7 @@
 <script>
 	$(function(){
 		$('#datetimepicker').datetimepicker({
-            format: 'DD/MM/YYYY'
+            format: 'YYYY-MM-DD'
         });
 
 		$('.chosen-select').chosen({

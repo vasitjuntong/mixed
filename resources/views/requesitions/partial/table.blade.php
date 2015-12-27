@@ -17,14 +17,18 @@
 		
 			<tr>
 				<td>{{ $requesition->created_at->format('d/m/Y H:i') }}</td>
-				<td>{{ $requesition->document_no }}</td>
+				<td>
+					<a href="/requesitions/add-products/{{ $requesition->id }}">
+						{{ $requesition->document_no }}
+					</a>
+				</td>
 				<td>{{ $requesition->site_id }}</td>
 				<td>{{ $requesition->site_name }}</td>
 				<td>{{ $requesition->receive_date->format('d/m/Y H:i') }}</td>
 				<td>{{ $requesition->receive_company_name }}</td>
 				<td>{{ $requesition->receive_contact_name }}</td>
 				<td>{{ $requesition->receive_phone }}</td>
-				<td>{{ $requesition->status }}</td>
+				<td>{!! $requesition->statusHtml() !!}</td>
 			</tr>
 
 		@empty

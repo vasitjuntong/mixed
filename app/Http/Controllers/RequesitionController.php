@@ -2,13 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Project;
+use App\Location;
 use App\Requesition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequesitionCreateRequest;
 
 class RequesitionController extends Controller
 {
+    protected $requesition;
+
+    public function __construct(Requesition $requesition)
+    {
+        $this->requesition = $requesition;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +26,8 @@ class RequesitionController extends Controller
      */
     public function index(Request $request)
     {
-        $requesitions = Requesition::orderBy('created_at', 'desc')
+        $requesitions = $this->requesition
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('requesitions.index', [
@@ -44,9 +55,58 @@ class RequesitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequesitionCreateRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $project_id = $request->get('project_id');
+
+        $data['project_code'] = Project::find($project_id)->code;
+        $data['user_id']      = $request->user()->id;
+
+        $requesition = '';
+
+        DB::transaction(function() use (&$requesition, $data) {
+            $requesition = Requesition::create($data);
+
+        });
+
+        if($requesition){
+
+            return [
+                'status' => 'success',
+                'urlRedirect' => url("/requesitions"),
+            ];
+        }
+    }
+
+    public function addProducts($id)
+    {
+        $requesition = $this->requesition
+            ->with([
+                'items',
+            ])
+            ->where('id', $id)
+            ->first();
+
+        $locations = Location::orderBy('name', 'desc')
+            ->lists('name', 'id');
+
+        $locationLists = [null => trans('main.label.select')];
+        if($locations != null){
+            $locationLists = $locationLists + $locations->toArray();
+        }
+        
+        return view('requesitions.add_product', [
+            'requesition' => $requesition,
+            'items' => $requesition->items,
+            'locationLists' => $locationLists,
+        ]);
+    }
+
+    public function storeProduct()
+    {
+        
     }
 
     /**

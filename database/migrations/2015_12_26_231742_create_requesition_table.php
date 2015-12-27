@@ -22,7 +22,7 @@ class CreateRequesitionTable extends Migration
             $table->string('site_name');
             $table->string('receive_company_name');
             $table->string('receive_contact_name');
-            $table->string('receive_phone_name');
+            $table->string('receive_phone');
             $table->string('status');
             $table->timestamp('receive_date');
             $table->timestamps();

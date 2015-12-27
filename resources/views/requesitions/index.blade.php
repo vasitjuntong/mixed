@@ -60,14 +60,17 @@
 		$(function(){
 			$('a#create').click(function(e){
 				e.preventDefault();
-				
-				var that = $(this);
+
+				var link = $(this);
 				var modal_content = $('div#modal_content');
+
+				link.attr('disabled', 'disabled');
 
 				$.ajax({
 					type: 'get',
-					url: that.attr('href'),
+					url: link.attr('href'),
 					success: function(result){
+						link.removeAttr('disabled');
 						modal_content.html(result);
 						$('#modal-create').modal('show');
 					}

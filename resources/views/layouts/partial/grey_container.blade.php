@@ -13,14 +13,14 @@
 		</span>
 		<span class="text">{{ trans('main.side_menu.receive') }}</span>
 	</a>
-	<a href="/requisitions" class="shortcut-link {{ activeMenu(['requisitions', 'requisitions/*']) }}">
+	<a href="/requesitions" class="shortcut-link {{ activeMenu(['requesitions', 'requesitions/*'])?'shortcut-link-active':''   }}">
 		<span class="shortcut-icon">
 			<i class="fa fa-upload"></i>
             {{-- <span class="shortcut-alert">
 				4
 			</span>	 --}}
 		</span>
-		<span class="text">{{ trans('main.side_menu.requisition') }}</span>
+		<span class="text">{{ trans('main.side_menu.requesition') }}</span>
 	</a>
 	<a href="/product-lists" class="shortcut-link {{ activeMenu(['product-lists', 'product-lists/*'])?'shortcut-link-active':'' }}">
 		<span class="shortcut-icon">

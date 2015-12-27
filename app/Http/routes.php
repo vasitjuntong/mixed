@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/receives/status-cancel/{id}', 'ReceiveController@storeStatusCancel');
     Route::post('/receives/update-qty', 'ReceiveController@updateQty');
 
+    Route::resource('/requesitions', 'RequesitionController');
+
     Route::get('/product-lists', 'ProductListController@index');
 
     // Setting.

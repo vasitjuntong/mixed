@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use App\Requesition;
-use App\Http\Requests;
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RequesitionController extends Controller
@@ -16,12 +16,12 @@ class RequesitionController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = $request->all();
-        $limit = $request->get('limit', 20);
+        $requesitions = Requesition::orderBy('created_at', 'desc')
+            ->get();
 
-        $requesitions = Requesition::whereByFilter($filter, $limit);
-
-        return view('requesitions.index');
+        return view('requesitions.index', [
+            'requesitions' => $requesitions,
+        ]);
     }
 
     /**
@@ -31,7 +31,11 @@ class RequesitionController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::lists('code', 'id');
+        
+        return view('requesitions.create_modal', [
+            'projects' => $projects,
+        ]);
     }
 
     /**

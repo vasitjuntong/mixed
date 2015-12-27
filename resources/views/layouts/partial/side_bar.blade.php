@@ -58,10 +58,10 @@
 							</li>
 						@endif
 						@if(Auth::user()->hasRole('manager_requesition'))
-							<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
-								<a href="/requisitions">
+							<li class="{{ activeMenu(['requesitions', 'requesitions/*']) ? 'active':'' }}">
+								<a href="/requesitions">
 									<span class="submenu-label">
-										{{ trans('main.side_menu.requisition') }}
+										{{ trans('main.side_menu.requesition') }}
 									</span>
 								</a>
 							</li>

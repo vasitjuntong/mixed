@@ -22,7 +22,7 @@ return [
 		'component' 	=> 'Component',
 		'report'		=> 'Report',
 		'receive' 		=> 'Receive',
-		'requisition' 	=> 'Rquesition',
+		'requesition' 	=> 'Rquesition',
 		'product_list' 	=> 'All Product',
 		'setting'		=> 'Setting',
 		'unit' 			=> 'Unit',

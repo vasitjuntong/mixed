@@ -1,15 +1,15 @@
-<table class="table table-striped">
+<table id="dataTables" class="table table-striped">
 	<thead>
 		<tr>
 			<th width="10%">{{ trans('requesition.attributes.created_at') }}</th>
 			<th width="10%">{{ trans('requesition.attributes.document_no' )}}</th>
-			<th width="10%">{{ trans('requesition.attributes.po_no') }}</th>
-			<th width="10%">{{ trans('requesition.attributes.ref_no') }}</th>
-			<th width="10%">{{ trans('requesition.attributes.project_id') }}</th>
-			<th width="10%">{{ trans('requesition.attributes.create_by') }}</th>
-			<th>{{ trans('requesition.attributes.remark') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.site_id') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.site_name') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.receive_date') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.receive_company_name') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.receive_contact_name') }}</th>
+			<th width="10%">{{ trans('requesition.attributes.receive_phone') }}</th>
 			<th width="5%">{{ trans('requesition.attributes.status') }}</th>
-			{{-- <th width="10%" class="text-center">{{ trans('requesition.attributes.success_status') }}</th> --}}
 		</tr>
 	</thead>
 	<tbody>
@@ -17,23 +17,20 @@
 		
 			<tr>
 				<td>{{ $requesition->created_at->format('d/m/Y H:i') }}</td>
-				<td>
-					<a href="/requesitions/review/{{ $requesition->id }}">
-						{{ $requesition->document_no }}
-					</a>
-				</td>
-				<td>{{ $requesition->po_no }}</td>
-				<td>{{ $requesition->ref_no }}</td>
-				<td>{{ $requesition->project->code }}</td>
-				<td>{{ $requesition->user->name }}</td>
-				<td>{{ $requesition->remark }}</td>
-				<td>{!! $requesition->statusHtml() !!}</td>
+				<td>{{ $requesition->document_no }}</td>
+				<td>{{ $requesition->site_id }}</td>
+				<td>{{ $requesition->site_name }}</td>
+				<td>{{ $requesition->receive_date->format('d/m/Y H:i') }}</td>
+				<td>{{ $requesition->receive_company_name }}</td>
+				<td>{{ $requesition->receive_contact_name }}</td>
+				<td>{{ $requesition->receive_phone }}</td>
+				<td>{{ $requesition->status }}</td>
 			</tr>
 
 		@empty
 
 			<tr>
-				<td class="text-center text-danger" colspan="8">
+				<td class="text-center text-danger" colspan="9">
 					{{ trans('requesition.label.empty_data') }}
 				</td>
 			</tr>

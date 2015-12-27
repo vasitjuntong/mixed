@@ -19,12 +19,6 @@
 @section('content')
 
 <div class="panel panel-default">
-	<div class="panel-body">
-	   @include('requesitions.partial.form_search')
-	</div>
-</div>
-
-<div class="panel panel-default">
 	<div class="panel-body text-right">
 	   <a 
 	   		id="create"
@@ -43,10 +37,7 @@
 
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
-
   		@include('requesitions.partial.table')
-
-		<span class="text-center block">{!! $requesitions->render() !!}</span>
   	</div>
 </div>
 
@@ -56,8 +47,8 @@
 
 @section('style')
 	@parent
-
-	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
+	
+	<link rel="stylesheet" href="/css/jquery.dataTables_themeroller.css">
 @endsection
 
 @section('script')
@@ -85,12 +76,10 @@
 				return false;
 			});
 
-			$('#datetimepicker-start').datetimepicker({
-                format: 'DD/MM/YYYY'
-            });
-			$('#datetimepicker-end').datetimepicker({
-                format: 'DD/MM/YYYY'
-            });
+			$('#dataTables').dataTable( {
+				"bJQueryUI": true,
+				"sPaginationType": "full_numbers"
+			});
 		});
 	</script>
 

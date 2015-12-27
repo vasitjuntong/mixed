@@ -39,6 +39,7 @@
 
 @section('style')
 	@parent
+	
 	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
 @endsection
 

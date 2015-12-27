@@ -51,7 +51,6 @@
 
 @section('style')
 	@parent
-	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
 	<link rel="stylesheet" href="/css/jquery.dataTables_themeroller.css">
 @endsection
 

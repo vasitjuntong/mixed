@@ -10,7 +10,7 @@
 				'class' => 'form-control input-sm',
 				'placeholder' => trans('receive.attributes.po_no'),
 			]) !!}
-{{--  --}}
+			
 			@if($errors->has('po_no'))
 				<span id="helpBlock2" class="help-block text-error">
 					{{ $errors->first('po_no') }}

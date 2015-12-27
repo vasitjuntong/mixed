@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Requesition extends Model
 {
+	protected $fillable = [
+
+	];
 
 	public function product()
 	{
@@ -22,8 +25,12 @@ class Requesition extends Model
 		return $this->belongsTo(User::class);
 	}
     
-    public function whereByFilter(array $filter, $limit)
+    public static function whereByFilter(array $filter, $limit = 20)
     {
-    	return static::with()
+    	return static::with([
+    		'user',
+    		'project',
+		])
+			->paginate($limit);
     }
 }

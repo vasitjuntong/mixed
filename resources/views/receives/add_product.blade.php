@@ -100,8 +100,8 @@
 
 @section('script')
     @parent
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-resource.js"></script>
     <script src="/js/bootstrap-editable.min.js"></script>
     <script src="/js/typeahead.min.js"></script>
     <script src="/js/libs/vue_addproduct.js"></script>

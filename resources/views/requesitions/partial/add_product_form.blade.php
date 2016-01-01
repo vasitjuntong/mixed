@@ -5,12 +5,12 @@
 	<div class="form-group {{ $errors->has('product_code') ? 'has-error':'' }} ">
 
 		<label for="product_code" class="control-label">
-			{{ trans('receive_item.attributes.product_code') }}
+			{{ trans('requesition_item.attributes.product_code') }}
 		</label>
 
 		{!! Form::text('product_code', null, [
 			'class' => 'form-control input-sm typeahead',
-			'placeholder' => trans('receive_item.attributes.product_code'),
+			'placeholder' => trans('requesition_item.attributes.product_code'),
 			'v-model' => 'product_code',
 			'autocomplete' => 'off',
 		]) !!}
@@ -71,18 +71,26 @@
 	</div>
 </div>
 
+<div class="clearfix"></div>
+
 <div class="col-md-2">
-	<div class="form-group">
+	<div class="form-group {{ $errors->has('qty') ? 'has-error':'' }}">
 
 		<label for="qty" class="control-label">
-			{{ trans('receive_item.attributes.qty') }}
+			{{ trans('requesition_item.attributes.qty') }}
 		</label>
 
 		{!! Form::input('number', 'qty', null, [
 			'class' => 'form-control input-sm',
-			'placeholder' => trans('receive_item.attributes.qty'),
+			'placeholder' => trans('requesition_item.attributes.qty'),
 			'min' => 0
 		]) !!}
+
+		@if($errors->has('qty'))
+			<span id="helpBlock2" class="help-block text-error">
+				{{ $errors->first('qty') }}
+			</span>
+		@endif
 	</div>
 </div>
 
@@ -90,7 +98,7 @@
 	<div class="form-group {{ $errors->has('location_id') ? 'has-error':'' }} ">
 
 		<label for="location_id" class="control-label">
-			{{ trans('receive_item.attributes.location_name') }}
+			{{ trans('requesition_item.attributes.location_name') }}
 		</label>
 
 		{!! Form::select('location_id', $locationLists, null, [
@@ -109,12 +117,12 @@
 	<div class="form-group">
 
 		<label for="remark" class="control-label">
-			{{ trans('receive_item.attributes.remark') }}
+			{{ trans('requesition_item.attributes.remark') }}
 		</label>
 
 		{!! Form::textarea('remark', null, [
 			'class' => 'form-control input-sm',
-			'placeholder' => trans('receive_item.attributes.remark'),
+			'placeholder' => trans('requesition_item.attributes.remark'),
 			'rows' => 2
 		]) !!}
 	</div>

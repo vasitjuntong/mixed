@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            {{-- @include('requesitions.partial.product_table') --}}
+            @include('requesitions.partial.product_table')
 
             @if($items->count())
                 <div class="panel panel-default">

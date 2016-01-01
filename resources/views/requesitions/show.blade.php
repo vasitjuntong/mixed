@@ -8,15 +8,15 @@
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
 		 	<li><i class="fa fa-download"></i>
-			 	<a href="/receives"> {{ trans('receive.label.name')}}</a>
+			 	<a href="/requesitions"> {{ trans('requesition.label.name')}}</a>
 		 	</li>
-		 	<li class="active">{{ trans('receive.label.review') }}</li>	 
+		 	<li class="active">{{ trans('requesition.label.review') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">
 		<div class="page-title">
 			<h3 class="no-margin">
-				{{ trans('receive.label.name') }} {{ $receive->document_no }}
+				{{ trans('requesition.label.name') }} {{ $requesition->document_no }}
 			</h3>
 		</div>	
 	</div>
@@ -24,16 +24,16 @@
 @endsection
 
 @section('content')
-
-	@include('receives.partial.review_paper')
-	@include('receives.partial.review_table')
-	@include('receives.partial.review_panel')
+	
+	@include('requesitions.partial.show_paper')
+	@include('requesitions.partial.show_table')
+	@include('requesitions.partial.show_panel')
 
 @endsection
 
 @section('script')
 	@parent
-
+	
 	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
 	<script>
 		$(function(){

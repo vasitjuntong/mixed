@@ -6,24 +6,23 @@ use DB;
 use App\Project;
 use App\Location;
 use App\Requesition;
+use App\RequesitionItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequesitionCreateRequest;
+use App\Http\Requests\RequesitionItemAddProductRequest;
 
 class RequesitionController extends Controller
 {
+    protected $item;
     protected $requesition;
 
-    public function __construct(Requesition $requesition)
+    public function __construct(Requesition $requesition, RequesitionItem $item)
     {
+        $this->item        = $item;
         $this->requesition = $requesition;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $requesitions = $this->requesition
@@ -35,26 +34,15 @@ class RequesitionController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $projects = Project::lists('code', 'id');
-        
+
         return view('requesitions.create_modal', [
             'projects' => $projects,
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(RequesitionCreateRequest $request)
     {
         $data = $request->all();
@@ -62,22 +50,39 @@ class RequesitionController extends Controller
         $project_id = $request->get('project_id');
 
         $data['project_code'] = Project::find($project_id)->code;
-        $data['user_id']      = $request->user()->id;
+        $data['user_id'] = $request->user()->id;
 
         $requesition = '';
 
-        DB::transaction(function() use (&$requesition, $data) {
+        DB::transaction(function () use (&$requesition, $data) {
             $requesition = Requesition::create($data);
 
         });
 
-        if($requesition){
+        if ($requesition) {
 
             return [
                 'status' => 'success',
                 'urlRedirect' => url("/requesitions"),
             ];
         }
+    }
+
+    public function show($id)
+    {
+        $requesition = $this->requesition
+            ->with([
+                'items',
+                'project',
+                'items.unit',
+            ])
+            ->where('id', $id)
+            ->first();
+
+        return view('requesitions.show', [
+            'requesition' => $requesition,
+            'items' => $requesition->items,
+        ]);
     }
 
     public function addProducts($id)
@@ -93,62 +98,32 @@ class RequesitionController extends Controller
             ->lists('name', 'id');
 
         $locationLists = [null => trans('main.label.select')];
-        if($locations != null){
+        if ($locations != null) {
             $locationLists = $locationLists + $locations->toArray();
         }
-        
+
         return view('requesitions.add_product', [
-            'requesition' => $requesition,
-            'items' => $requesition->items,
+            'requesition'   => $requesition,
+            'items'         => $requesition->items,
             'locationLists' => $locationLists,
         ]);
     }
 
-    public function storeProduct()
+    public function storeProduct(RequesitionItemAddProductRequest $request)
     {
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

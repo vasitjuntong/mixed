@@ -9,18 +9,17 @@ new Vue({
 		location_id: ''
 	},
 	ready:function(){
+		var that = this;
 		 // GET request
-	      this.$http.get('/api/product-typeahead', function (data, status, request) {
-			var that = this;			
+	      that.$http.get('/api/product-typeahead').then(function (response) {			
 			var $input = $('.typeahead');
 			$input.typeahead({
-				source: data, 
+				source: response.data, 
 	            autoSelect: true}
             ); 
 			$input.change(function() {
 			    var current = $input.typeahead("getActive");
 			    if (current) {
-			    	console.log(current);
 			    	that.$set('mix_no', current.mix_no);
 			    	that.$set('product_description', current.description);
 			    	that.$set('product_id', current.id);
@@ -30,7 +29,7 @@ new Vue({
 			    }
 			});
 
-	      }).error(function (data, status, request) {
+	      }).catch(function (data, status, request) {
           	// handle error
       	});
 

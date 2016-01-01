@@ -17,4 +17,4 @@
 <link href="/css/endless.min.css" rel="stylesheet">
 <link href="/css/endless-skin.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+<link href="/css/sweetalert.css" rel="stylesheet">

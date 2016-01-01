@@ -16,7 +16,7 @@
 				@if(Auth::check())
 					<strong>{{ Auth::user()->name }}</strong>
 				@endif
-				<span class="badge badge-danger m-left-xs bounceIn animation-delay4">7</span>
+				{{-- <span class="badge badge-danger m-left-xs bounceIn animation-delay4">7</span> --}}
 				<ul class="list-inline">
 					<li><a href="/profile">Profile</a></li>
 				</ul>

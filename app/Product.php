@@ -69,7 +69,12 @@ class Product extends Model
 
     public function getOnOrderAttribute()
     {
-        return 0;
+        return $this->requesitionItems()
+            ->where(function($query){
+                $query->orWhere('status', RequesitionItem::CREATE);
+                $query->orWhere('status', RequesitionItem::PADDING);
+            })
+            ->sum('qty');
     }
 
     public function unit()
@@ -90,6 +95,11 @@ class Product extends Model
     public function receiveItems()
     {
         return $this->hasMany(ReceiveItem::class, 'product_id', 'id');
+    }
+
+    public function requesitionItems()
+    {
+        return $this->hasMany(RequesitionItem::class, 'product_id', 'id');
     }
 
     public static function whereByFilter(array $filter, $limit = 20)
@@ -134,6 +144,7 @@ class Product extends Model
             'unit',
             'productType',
             'receiveItems',
+            'requesitionItems',
             'stock',
         ])
             ->where(function ($query) use ($filter) {

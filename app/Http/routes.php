@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/requesition-movement', 'RequesitionMovementController@index');
     Route::get('/requesition-movement/download-excel', 'RequesitionMovementController@downloadExcel');
 
+    Route::get('/requesition-upload/{id}', 'RequesitionItemUploadController@index');
+    Route::post('/requesition-upload/{id}', 'RequesitionItemUploadController@store');
+
     Route::get('/product-lists', 'ProductListController@index');
 
     // Setting.

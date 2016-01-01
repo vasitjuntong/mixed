@@ -251,6 +251,10 @@ class RequesitionItem extends Model
         $product_code = array_get($data, 'product_code');
         $qty_request = array_get($data, 'qty');
 
+        Log::debug('Requesition-item: data', [
+            $data,
+        ]);
+
         $product = Product::with([
             'stock' => function ($query) {
                 $query->where('qty', '>', 0);

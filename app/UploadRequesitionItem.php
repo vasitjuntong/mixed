@@ -137,6 +137,7 @@ class UploadRequesitionItem
 
         return [
             'group'               => $v->group,
+            'number'              => $v->number,
             'product_id'          => $product->id,
             'product_code'        => $product->code,
             'mix_no'              => $product->mix_no,

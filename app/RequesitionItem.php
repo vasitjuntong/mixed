@@ -15,6 +15,8 @@ class RequesitionItem extends Model
     protected $fillable = [
         'requesition_id',
         'product_id',
+        'group',
+        'number',
         'mix_no',
         'product_code',
         'product_description',

@@ -104,7 +104,10 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group {{ $errors->has('created_at_start')?'has-error':'' }}">
-			<label class="control-label" for="created_at_start">{{ trans('requesition.form_search.created_at_start') }}</label>
+			<label class="control-label" for="created_at_start">
+                {{ trans('requesition.form_search.created_at_start') }}
+                <span class="text-danger"> *</span>
+            </label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_start', array_get($filter, 'created_at_start') ?: null, [
 					'class' => 'form-control',
@@ -123,7 +126,10 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group {{ $errors->has('created_at_start')?'has-error':'' }}">
-			<label class="control-label" for="created_at_end">{{ trans('requesition.form_search.created_at_end') }}</label>
+			<label class="control-label" for="created_at_end">
+                {{ trans('requesition.form_search.created_at_end') }}
+                <span class="text-danger"> *</span>
+            </label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_end', array_get($filter, 'created_at_end') ?: null, [
 					'class' => 'form-control',

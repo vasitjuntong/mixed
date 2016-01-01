@@ -26,10 +26,10 @@
 			  	<dd>{{ $requesition->created_at->format('d/m/Y H:i') }}</dd>
 			  	<dt>{{ trans('requesition.attributes.document_no') }}</dt>
 			  	<dd>{{ $requesition->document_no ?: '-' }}</dd>
-			  	<dt>{{ trans('requesition.attributes.po_no') }}</dt>
-			  	<dd>{{ $requesition->po_no ?: '-' }}</dd>
-			  	<dt>{{ trans('requesition.attributes.ref_no') }}</dt>
-			  	<dd>{{ $requesition->ref_no ?: '-' }}</dd>
+			  	<dt>{{ trans('requesition.attributes.site_id') }}</dt>
+			  	<dd>{{ $requesition->site_id ?: '-' }}</dd>
+			  	<dt>{{ trans('requesition.attributes.site_name') }}</dt>
+			  	<dd>{{ $requesition->site_name ?: '-' }}</dd>
 			</dl>
 	  		<dl class="col-sm-3 col-md-3">
 			  	<dt>{{ trans('requesition.attributes.status') }}</dt>

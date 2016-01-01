@@ -15,6 +15,8 @@ class UrlActive{
 			'product-lists/*',
 			'requesitions',
 			'requesitions/*',
+			'requesition-movement',
+			'requesition-movement/*',
 			'receives',
 			'receives/*',
 		];

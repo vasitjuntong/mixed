@@ -58,7 +58,12 @@
 							</li>
 						@endif
 						@if(Auth::user()->hasRole('manager_requesition'))
-							<li class="{{ activeMenu(['requesitions', 'requesitions/*']) ? 'active':'' }}">
+							<li class="{{ activeMenu([
+								'requesitions', 
+								'requesitions/*', 
+								'requesition-movement',
+								'requesition-movement/*',
+							]) ? 'active':'' }}">
 								<a href="/requesitions">
 									<span class="submenu-label">
 										{{ trans('main.side_menu.requesition') }}

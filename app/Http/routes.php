@@ -47,6 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/requesitions', 'RequesitionController');
     Route::get('/requesitions/add-products/{id}', 'RequesitionController@addProducts');
     Route::post('/requesitions/add-products/{id}', 'RequesitionController@storeProduct');
+    Route::post('/requesitions/status-padding/{id}', 'RequesitionController@statusPadding');
+    Route::get('/requesitions/processes/{id}', 'RequesitionController@process');
+    Route::post('/requesitions/process-success/{id}', 'RequesitionController@processSuccess');
+    Route::post('/requesitions/process-cancel/{id}', 'RequesitionController@processCancel');
 
     Route::get('/product-lists', 'ProductListController@index');
 

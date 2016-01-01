@@ -22,7 +22,7 @@
 			  		@if($requesition->status == \App\Receive::PADDING)
 			  			<li class="divider"></li>
 				    	<li>
-				    		<a href="/requesitions/status-success/{{ $requesition->id }}">
+				    		<a href="/requesitions/processes/{{ $requesition->id }}">
 				    			<i class="fa fa-flag fa-lg"></i>
 				    			{{ trans('requesition.buttons.process_success') }}
 			    			</a>

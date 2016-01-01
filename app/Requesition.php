@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Log;
 use Illuminate\Database\Eloquent\Model;
 
 class Requesition extends Model
@@ -11,18 +12,18 @@ class Requesition extends Model
     const SUCCESS = 'success';
     const CANCEL = 'cancel';
 
-	protected $fillable = [
+    protected $fillable = [
         'user_id',
         'project_id',
         'project_code',
-        'site_id', 
+        'site_id',
         'site_name',
         'receive_company_name',
         'receive_contact_name',
         'receive_phone',
         'receive_date',
         'status',
-	];
+    ];
 
     protected $dates = ['receive_date'];
 
@@ -39,38 +40,115 @@ class Requesition extends Model
         });
     }
 
-	public function product()
-	{
-		return $this->belongsTo(Product::class);
-	}
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
-	public function project()
-	{
-		return $this->belongsTo(Project::class);
-	}
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function items()
     {
-        return $this->hasMany(RequesitionItem::class);        
+        return $this->hasMany(RequesitionItem::class);
     }
-    
+
     public static function whereByFilter(array $filter, $limit = 20)
     {
-    	return static::with([
-    		'user',
-    		'project',
-		])
-			->paginate($limit);
+        return static::with([
+            'user',
+            'project',
+        ])
+            ->paginate($limit);
     }
 
     public function statusHtml()
     {
         return statusHtmlRender($this->status);
+    }
+
+    public function setStatusSuccess($items)
+    {
+        foreach ($this->items as $item) {
+            if (in_array($item->id, $items)) {
+                $item->status = RequesitionItem::SUCCESS;
+
+                Log::debug('set-status-requesition-item-success: line item', [
+                    'requesition&items' => $this->toArray(),
+                ]);
+
+                $item->save();
+            }
+        }
+
+        $padding = $this->items()
+            ->whereStatus(RequesitionItem::PADDING)
+            ->count(['id']);
+
+        if ($padding == 0) {
+            $this->status = static::SUCCESS;
+
+            $this->save();
+        }
+
+        Log::debug('set-status-receive-item-success', [
+        ]);
+    }
+
+    public function setStatusCancel($items)
+    {
+        foreach ($this->items as $item) {
+            if (in_array($item->id, $items)) {
+                $item->status = RequesitionItem::CANCEL;
+
+                Log::debug('set-status-requesition-item-cancel: line item', [
+                    'requesition&items' => $this->toArray(),
+                ]);
+
+                if($item->save()){
+                    Log::debug('set-status-requesition-item-cancel: reset stock', [
+                        
+                    ]);
+                    $item->resetStock();
+                }
+            }
+        }
+
+        $padding = $this->items()
+            ->whereStatus(RequesitionItem::PADDING)
+            ->count(['id']);
+
+        if ($padding == 0) {
+            $total = $this->items()
+                ->count(['id']);
+
+            $cancel = $this->items()
+                ->whereStatus(Requesition::CANCEL)
+                ->count(['id']);
+
+            if ($total == $cancel) {
+                $this->status = static::CANCEL;
+            } else {
+                $this->status = static::SUCCESS;
+            }
+
+            $this->save();
+        }
+
+        Log::debug('set-status-receive-item-success', [
+        ]);
+    }
+
+    public function resetStockByItemId($item_id)
+    {
+
     }
 
     public function genDoNo()
@@ -83,7 +161,7 @@ class Requesition extends Model
 
         if (is_null($requesitionNumber)) {
             RequesitionNumber::create([
-                'name'   => $prefix,
+                'name' => $prefix,
                 'number' => $number,
             ]);
         } else {

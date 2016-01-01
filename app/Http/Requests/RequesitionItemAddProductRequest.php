@@ -18,10 +18,11 @@ class RequesitionItemAddProductRequest extends Request
 
     public function rules()
     {
+        $product_code = request()->get('product_code');
+
         return [
             'product_code'  => 'required|exists:products,code',
-            'location_id'   => 'required',
-            'qty'           => 'required|integer',
+            'qty'           => "required|integer|qtyOver:product_code,{$product_code}",
         ];
     }
 
@@ -29,7 +30,6 @@ class RequesitionItemAddProductRequest extends Request
     {
         return [
             'product_code'      => trans('product.attributes.code'),
-            'location_id'       => trans('location.attributes.name'),
             'qty'               => trans('requesition_item.attributes.qty'),
         ];
     }

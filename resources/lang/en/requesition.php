@@ -53,11 +53,11 @@ return [
         'delete_confirm'   => 'คุณต้องการลบข้อมูลใบรับสินค้าหรือไม่?',
         'cancel_message'   => 'ยกเลิกการลบข้อมูลใบรับสินค้า',
 
-        'review_confirm' => 'คุณต้องการยืนยันการรับสินค้าหรือไม่?',
-        'review_cancel'  => 'คุณไม่ต้องรับสินค้า',
+        'review_confirm' => 'คุณต้องการยืนยันการเบิกสินค้าหรือไม่?',
+        'review_cancel'  => 'คุณไม่ต้องการเบิกสินค้า',
 
-        'warning_requesition_is_not_padding' => 'Requesition status padding only.',
-        'warning_requesition_is_not_create'  => 'Requesition status create only.',
+        'warning_is_not_padding' => 'Requesition status padding only.',
+        'warning_is_not_create'  => 'Requesition status create only.',
         'warning_product_is_exists'      => 'Product already exists.',
 
         'success_confirm'                  => 'Are you sure success items?',

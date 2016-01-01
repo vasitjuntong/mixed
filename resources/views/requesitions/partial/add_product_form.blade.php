@@ -87,31 +87,14 @@
 		]) !!}
 
 		@if($errors->has('qty'))
-			<span id="helpBlock2" class="help-block text-error">
+			<span id="help-block-qty" class="help-block text-error">
 				{{ $errors->first('qty') }}
 			</span>
 		@endif
 	</div>
 </div>
 
-<div class="col-md-2">
-	<div class="form-group {{ $errors->has('location_id') ? 'has-error':'' }} ">
-
-		<label for="location_id" class="control-label">
-			{{ trans('requesition_item.attributes.location_name') }}
-		</label>
-
-		{!! Form::select('location_id', $locationLists, null, [
-			'class' => 'form-control chosen-select',
-		]) !!}
-
-		@if($errors->has('location_id'))
-			<span id="helpBlock2" class="help-block text-error">
-				{{ $errors->first('location_id') }}
-			</span>
-		@endif
-	</div>
-</div>
+<div class="clearfix"></div>
 
 <div class="col-md-12">
 	<div class="form-group">

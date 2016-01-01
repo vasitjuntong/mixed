@@ -1,11 +1,11 @@
 {!! Form::open([
 	'method' => 'get',
-	'url' => '/receives/movement',
+	'url' => '/requesition-movement',
 ]) !!}
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="document_no">{{ trans('receive.form_search.document_no') }}</label>
+			<label class="control-label" for="document_no">{{ trans('requesition.form_search.document_no') }}</label>
 			{!! Form::text('document_no', array_get($filter, 'document_no') ?: null, [
 				'class' => 'form-control',
 			]) !!}
@@ -13,23 +13,23 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="po_no">{{ trans('receive.form_search.po_no') }}</label>
-			{!! Form::text('po_no', array_get($filter, 'po_no') ?: null, [
+			<label class="control-label" for="site_id">{{ trans('requesition.form_search.site_id') }}</label>
+			{!! Form::text('site_id', array_get($filter, 'site_id') ?: null, [
 				'class' => 'form-control',
 			]) !!}
 		</div>
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="ref_no">{{ trans('receive.form_search.ref_no') }}</label>
-			{!! Form::text('ref_no', array_get($filter, 'ref_no') ?: null, [
+			<label class="control-label" for="site_name">{{ trans('requesition.form_search.site_name') }}</label>
+			{!! Form::text('site_name', array_get($filter, 'site_name') ?: null, [
 				'class' => 'form-control',
 			]) !!}
 		</div>
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="project">{{ trans('receive.form_search.project') }}</label>
+			<label class="control-label" for="project">{{ trans('requesition.form_search.project') }}</label>
 			{!! Form::text('project', array_get($filter, 'project') ?: null, [
 				'class' => 'form-control',
 			]) !!}
@@ -37,7 +37,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="create_by">{{ trans('receive.form_search.create_by') }}</label>
+			<label class="control-label" for="create_by">{{ trans('requesition.form_search.create_by') }}</label>
 			{!! Form::text('create_by', array_get($filter, 'create_by') ?: null, [
 				'class' => 'form-control',
 			]) !!}
@@ -45,7 +45,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="mix_no">{{ trans('receive.form_search.mix_no') }}</label>
+			<label class="control-label" for="mix_no">{{ trans('requesition.form_search.mix_no') }}</label>
 			{!! Form::text('mix_no', array_get($filter, 'mix_no') ?: null, [
 				'class' => 'form-control',
 			]) !!}
@@ -53,7 +53,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="product_code">{{ trans('receive.form_search.product_code') }}</label>
+			<label class="control-label" for="product_code">{{ trans('requesition.form_search.product_code') }}</label>
 			{!! Form::text('product_code', array_get($filter, 'product_code') ?: null, [
 				'class' => 'form-control',
 			]) !!}
@@ -61,7 +61,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label class="control-label" for="item_status">{{ trans('receive.form_search.item_status') }}</label>
+			<label class="control-label" for="item_status">{{ trans('requesition.form_search.item_status') }}</label>
 			<label class="label-checkbox" style="margin-top: 5px;">
 				<input type="checkbox" 
 					name="item_status[]" 
@@ -103,8 +103,8 @@
 </div>
 <div class="row">
 	<div class="col-md-3">
-		<div class="form-group {{ $errors->has('created_at_end')?'has-error':'' }}">
-			<label class="control-label" for="created_at_start">{{ trans('receive.form_search.created_at_start') }}</label>
+		<div class="form-group {{ $errors->has('created_at_start')?'has-error':'' }}">
+			<label class="control-label" for="created_at_start">{{ trans('requesition.form_search.created_at_start') }}</label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_start', array_get($filter, 'created_at_start') ?: null, [
 					'class' => 'form-control',
@@ -114,7 +114,6 @@
 	                <span class="glyphicon glyphicon-calendar"></span>
 	            </span>
 	        </div>
-
 			@if($errors->has('created_at_start'))
 				<span id="helpBlock2" class="help-block text-error">
 					{{ $errors->first('created_at_start') }}
@@ -123,8 +122,8 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="form-group {{ $errors->has('created_at_end')?'has-error':'' }}">
-			<label class="control-label" for="created_at_end">{{ trans('receive.form_search.created_at_end') }}</label>
+		<div class="form-group {{ $errors->has('created_at_start')?'has-error':'' }}">
+			<label class="control-label" for="created_at_end">{{ trans('requesition.form_search.created_at_end') }}</label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_end', array_get($filter, 'created_at_end') ?: null, [
 					'class' => 'form-control',
@@ -134,7 +133,6 @@
 	                <span class="glyphicon glyphicon-calendar"></span>
 	            </span>
             </div>
-
 			@if($errors->has('created_at_end'))
 				<span id="helpBlock2" class="help-block text-error">
 					{{ $errors->first('created_at_end') }}
@@ -147,15 +145,15 @@
 		<div class="form-group">
 			<button type="submit" class="btn btn-info btn-sm">
 				<i class="fa fa-search"></i>
-				{{ trans('receive.buttons.search') }}
+				{{ trans('requesition.buttons.search') }}
 			</button>
-			<a href="/receives/movement" class="btn btn-default btn-sm">
+			<a href="/requesition-movement" class="btn btn-default btn-sm">
 				<i class="fa fa-refresh"></i>
-				{{ trans('receive.buttons.refresh') }}
+				{{ trans('requesition.buttons.refresh') }}
 			</a>
 			<a href="{{ $urlExport }}" class="btn btn-default btn-sm">
 				<i class="fa fa-download"></i>
-				{{ trans('receive.buttons.excel') }}
+				{{ trans('requesition.buttons.excel') }}
 			</a>
 		</div>
 	</div>

@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/requesitions/process-success/{id}', 'RequesitionController@processSuccess');
     Route::post('/requesitions/process-cancel/{id}', 'RequesitionController@processCancel');
 
+    Route::get('/requesition-movement', 'RequesitionMovementController@index');
+    Route::get('/requesition-movement/download-excel', 'RequesitionMovementController@downloadExcel');
+
     Route::get('/product-lists', 'ProductListController@index');
 
     // Setting.

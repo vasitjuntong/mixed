@@ -245,6 +245,14 @@ class ReceiveItem extends Model
             $model->orderBy('receives.created_at', 'desc');
         }
 
+        $created_at_start = array_get($filter, 'created_at_start');
+        $created_at_end = array_get($filter, 'created_at_end');
+
+        if ($created_at_start == null && $created_at_end == null) {
+
+            return new \Illuminate\Pagination\Paginator([], 20);
+        }
+
         return $model->paginate($limit);
     }
 

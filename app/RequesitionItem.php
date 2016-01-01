@@ -40,6 +40,212 @@ class RequesitionItem extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public static function whereByFilterAll(array $filter, array $orderBy = array())
+    {
+        $model = static::select('requesition_items.*')
+            ->with([
+                'requesition',
+                'requesition.user',
+                'product',
+                'product.unit',
+                'location',
+            ])
+            ->leftJoin('requesitions', 'requesition_items.requesition_id', '=', 'requesitions.id')
+            ->join('products', 'requesition_items.product_id', '=', 'products.id')
+            ->join('locations', 'requesition_items.location_id', '=', 'locations.id')
+            ->join('users', 'requesitions.user_id', '=', 'users.id')
+            ->join('units', 'products.unit_id', '=', 'units.id')
+            ->join('projects', 'requesitions.project_id', '=', 'projects.id')
+            ->where(function ($query) use ($filter) {
+                $mix_no = array_get($filter, 'mix_no');
+                if (!is_null($mix_no)) {
+                    $query->where('requesition_items.mix_no', 'like', "%{$mix_no}%");
+                }
+
+                $product_code = array_get($filter, 'product_code');
+                if (!is_null($product_code)) {
+                    $query->where('requesition_items.product_code', 'like', "%{$product_code}%");
+                }
+
+                $site_id = array_get($filter, 'site_id');
+                if (!is_null($site_id)) {
+                    $query->whereHas('requesition', function ($query) use ($site_id) {
+                        $query->where('site_id', 'like', "%{$site_id}%");
+                    });
+                }
+
+                $document_no = array_get($filter, 'document_no');
+                if (!is_null($document_no)) {
+                    $query->whereHas('requesition', function ($query) use ($document_no) {
+                        $query->where('document_no', 'like', "%{$document_no}%");
+                    });
+                }
+
+                $site_name = array_get($filter, 'site_name');
+                if (!is_null($site_name)) {
+                    $query->whereHas('requesition', function ($query) use ($site_name) {
+                        $query->where('site_name', 'like', "%{$site_name}%");
+                    });
+                }
+
+                $project = array_get($filter, 'project');
+                if (!is_null($project)) {
+                    $query->where('projects.code', 'like', "%{$project}%");
+                }
+
+                $create_by = array_get($filter, 'create_by');
+                if (!is_null($create_by)) {
+                    $query->where(function ($query) use ($create_by) {
+                        $query->orWhere('users.name', 'like', "%{$create_by}%");
+                        $query->orWhere('users.email', 'like', "%{$create_by}%");
+                    });
+                }
+
+                $item_status = array_get($filter, 'item_status');
+                if (!is_null($item_status)) {
+                    $query->whereIn('requesition_items.status', $item_status);
+                }
+
+                $created_at_start = array_get($filter, 'created_at_start');
+                $created_at_end = array_get($filter, 'created_at_end');
+
+                if ($created_at_start != null && $created_at_end != null) {
+                    $created_at_start = changeFormatDateToDb($created_at_start);
+                    $created_at_end = changeFormatDateToDb($created_at_end);
+
+                    $query->whereHas('requesition', function ($query) use ($created_at_start, $created_at_end) {
+                        $query->whereBetween('requesitions.created_at', [
+                            "{$created_at_start} 00:00:00",
+                            "{$created_at_end} 23:59:59",
+                        ]);
+                    });
+                }
+            });
+
+        if (!empty($orderBy)) {
+            $keys = array_keys($orderBy);
+            foreach ($keys as $key) {
+                $keyReplace = str_replace('__', '.', $key);
+                $model->orderBy($keyReplace, $orderBy[$key]);
+            }
+        } else {
+            $model->orderBy('requesitions.created_at', 'desc');
+        }
+
+        $created_at_start = array_get($filter, 'created_at_start');
+        $created_at_end = array_get($filter, 'created_at_end');
+
+        if ($created_at_start == null && $created_at_end == null) {
+
+            return new static;
+        }
+
+        return $model->get();
+    }
+
+    public static function whereByFilter(array $filter, $limit = 20, array $orderBy = array())
+    {
+        $model = static::select('requesition_items.*')
+            ->with([
+                'requesition',
+                'requesition.user',
+                'product',
+                'product.unit',
+                'location',
+            ])
+            ->leftJoin('requesitions', 'requesition_items.requesition_id', '=', 'requesitions.id')
+            ->join('products', 'requesition_items.product_id', '=', 'products.id')
+            ->join('locations', 'requesition_items.location_id', '=', 'locations.id')
+            ->join('users', 'requesitions.user_id', '=', 'users.id')
+            ->join('units', 'products.unit_id', '=', 'units.id')
+            ->join('projects', 'requesitions.project_id', '=', 'projects.id')
+            ->where(function ($query) use ($filter) {
+                $mix_no = array_get($filter, 'mix_no');
+                if (!is_null($mix_no)) {
+                    $query->where('requesition_items.mix_no', 'like', "%{$mix_no}%");
+                }
+
+                $product_code = array_get($filter, 'product_code');
+                if (!is_null($product_code)) {
+                    $query->where('requesition_items.product_code', 'like', "%{$product_code}%");
+                }
+                
+                $site_id = array_get($filter, 'site_id');
+                if (!is_null($site_id)) {
+                    $query->whereHas('requesition', function ($query) use ($site_id) {
+                        $query->where('site_id', 'like', "%{$site_id}%");
+                    });
+                }
+
+                $document_no = array_get($filter, 'document_no');
+                if (!is_null($document_no)) {
+                    $query->whereHas('requesition', function ($query) use ($document_no) {
+                        $query->where('document_no', 'like', "%{$document_no}%");
+                    });
+                }
+
+                $site_name = array_get($filter, 'site_name');
+                if (!is_null($site_name)) {
+                    $query->whereHas('requesition', function ($query) use ($site_name) {
+                        $query->where('site_name', 'like', "%{$site_name}%");
+                    });
+                }
+
+                $project = array_get($filter, 'project');
+                if (!is_null($project)) {
+                    $query->where('projects.code', 'like', "%{$project}%");
+                }
+
+                $create_by = array_get($filter, 'create_by');
+                if (!is_null($create_by)) {
+                    $query->where(function ($query) use ($create_by) {
+                        $query->orWhere('users.name', 'like', "%{$create_by}%");
+                        $query->orWhere('users.email', 'like', "%{$create_by}%");
+                    });
+                }
+
+                $item_status = array_get($filter, 'item_status');
+                if (!is_null($item_status)) {
+                    $query->whereIn('requesition_items.status', $item_status);
+                }
+
+                $created_at_start = array_get($filter, 'created_at_start');
+                $created_at_end = array_get($filter, 'created_at_end');
+
+                if ($created_at_start != null && $created_at_end != null) {
+                    $created_at_start = changeFormatDateToDb($created_at_start);
+                    $created_at_end = changeFormatDateToDb($created_at_end);
+
+                    $query->whereHas('requesition', function ($query) use ($created_at_start, $created_at_end) {
+                        $query->whereBetween('requesitions.created_at', [
+                            "{$created_at_start} 00:00:00",
+                            "{$created_at_end} 23:59:59",
+                        ]);
+                    });
+                }
+            });
+
+        if (!empty($orderBy)) {
+            $keys = array_keys($orderBy);
+            foreach ($keys as $key) {
+                $keyReplace = str_replace('__', '.', $key);
+                $model->orderBy($keyReplace, $orderBy[$key]);
+            }
+        } else {
+            $model->orderBy('requesitions.created_at', 'desc');
+        }
+
+        $created_at_start = array_get($filter, 'created_at_start');
+        $created_at_end = array_get($filter, 'created_at_end');
+
+        if ($created_at_start == null && $created_at_end == null) {
+
+            return new \Illuminate\Pagination\Paginator([], 20);
+        }
+
+        return $model->paginate($limit);
+    }
+
     public function add($id, $data)
     {
         $product_code = array_get($data, 'product_code');

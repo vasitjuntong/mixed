@@ -28,7 +28,7 @@
 	   		<span class="fa fa-plus"></span>
 	   		{{ trans('requesition.label.new_requesition') }}
 	   </a>
-	   <a href="/requesitions/movement" class="btn btn-success btn-sm">
+	   <a href="/requesition-movement" class="btn btn-success btn-sm">
 	   		<span class="fa fa-clock-o"></span>
 	   		{{ trans('requesition.label.movement') }}
 	   </a>

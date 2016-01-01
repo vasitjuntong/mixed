@@ -45,6 +45,18 @@ return [
         'created_at'   => 'Date',
         'updated_at'   => 'Update',
     ],
+    'form_search' => [
+        'document_no'      => 'DN',
+        'mix_no'           => 'Mix NO.',
+        'product_code'     => 'Product Code',
+        'site_id'          => 'Site ID',
+        'site_name'        => 'Site Name',
+        'project'          => 'Project',
+        'create_by'        => 'Create By',
+        'item_status'      => 'Item Status',
+        'created_at_start' => 'Create Start',
+        'created_at_end'   => 'Create End',
+    ],
     'message_alert' => [
         'create_success'   => 'Create requesition is successfully.',
         'update_success'   => 'Update requesition is successfully.',

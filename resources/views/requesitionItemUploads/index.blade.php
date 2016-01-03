@@ -15,6 +15,7 @@
                 <div id="file" class="form-group {{ $errors->has('file')?'has-error':'' }}">
                     <label class="col-sm-2 control-group">
                         {{ trans('requesition_item_upload.attributes.file') }}
+                        <i class="text-danger"> *</i>
                     </label>
                     <div class="col-sm-10">
                         {!! Form::file('file', null, [

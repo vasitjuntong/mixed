@@ -151,6 +151,7 @@ return [
         Illuminate\Html\HtmlServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
     ],
 
     /*
@@ -199,11 +200,13 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        
-        'Image'     => Intervention\Image\Facades\Image::class,
-        'Form'      => Illuminate\Html\FormFacade::class,
-        'Html'      => Illuminate\Html\HtmlFacade::class,
-        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+
+        'Image'       => Intervention\Image\Facades\Image::class,
+        'Form'        => Illuminate\Html\FormFacade::class,
+        'Html'        => Illuminate\Html\HtmlFacade::class,
+        'Excel'       => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF'         => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'ImageSnappy' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

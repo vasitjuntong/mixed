@@ -5,6 +5,7 @@
 				<div id="project_id" class="form-group {{ $errors->has('project_id') ? 'has-error':'' }} ">
 					<label for="project_id" class="control-label">
 						{{ trans('requesition.attributes.project_id') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::select('project_id', $projects, null, [
@@ -24,6 +25,7 @@
 				<div id="site_id" class="form-group {{ $errors->has('site_id') ? 'has-error':'' }} ">
 					<label for="site_id" class="control-label">
 						{{ trans('requesition.attributes.site_id') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::text('site_id', null, [
@@ -43,6 +45,7 @@
 				<div id="site_name" class="form-group {{ $errors->has('site_name') ? 'has-error':'' }} ">
 					<label for="site_name" class="control-label">
 						{{ trans('requesition.attributes.site_name') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::text('site_name', null, [
@@ -66,6 +69,7 @@
 					 class="form-group {{ $errors->has('receive_company_name') ? 'has-error':'' }} ">
 					<label for="receive_company_name" class="control-label">
 						{{ trans('requesition.attributes.receive_company_name') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::text('receive_company_name', null, [
@@ -87,6 +91,7 @@
 
 					<label for="receive_contact_name" class="control-label">
 						{{ trans('requesition.attributes.receive_contact_name') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::text('receive_contact_name', null, [
@@ -108,6 +113,7 @@
 						
 					<label for="receive_phone" class="control-label">
 						{{ trans('requesition.attributes.receive_phone') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					{!! Form::text('receive_phone', null, [
@@ -129,6 +135,7 @@
 						
 					<label for="receive_date" class="control-label">
 						{{ trans('requesition.attributes.receive_date') }}
+                        <i class="text-danger"> *</i>
 					</label>
 
 					<div class='input-group date'>

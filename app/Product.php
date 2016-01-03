@@ -64,7 +64,14 @@ class Product extends Model
 
     public function getOnStockAttribute()
     {
-        return $this->stock()->sum('qty');
+        $requesition = $this->requesitionItems()
+            ->where(function($query){
+                $query->orWhere('status', RequesitionItem::CREATE);
+                $query->orWhere('status', RequesitionItem::PADDING);
+            })
+            ->sum('qty');
+
+        return $this->stock()->sum('qty') + $requesition;
     }
 
     public function getOnOrderAttribute()

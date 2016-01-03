@@ -103,6 +103,7 @@ class Receive extends Model
                     ]);
                 }
             })
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -156,6 +157,7 @@ class Receive extends Model
                     ]);
                 }
             })
+            ->orderBy('created_at', 'desc')
             ->paginate($limit);
     }
 

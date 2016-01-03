@@ -6,6 +6,7 @@
 
 		<label for="product_code" class="control-label">
 			{{ trans('receive_item.attributes.product_code') }}
+            <i class="text-danger"> *</i>
 		</label>
 
 		{!! Form::text('product_code', null, [
@@ -76,6 +77,7 @@
 
 		<label for="qty" class="control-label">
 			{{ trans('receive_item.attributes.qty') }}
+            <i class="text-danger"> *</i>
 		</label>
 
 		{!! Form::input('number', 'qty', null, [
@@ -91,6 +93,7 @@
 
 		<label for="location_id" class="control-label">
 			{{ trans('receive_item.attributes.location_name') }}
+            <i class="text-danger"> *</i>
 		</label>
 
 		{!! Form::select('location_id', $locationLists, null, [

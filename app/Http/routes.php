@@ -1,5 +1,14 @@
 <?php
 
+get('testpdf', function(){
+    $pdf = App::make('snappy.pdf.wrapper');
+    $pdf->setOptions([
+        'encoding' => 'UTF8',
+    ]);
+    $pdf->loadView('welcome');
+    return $pdf->stream('test.pdf');
+});
+
 Route::group(['middleware' => 'guest'], function () {
     Route::get('auth/login', 'Auth\AuthController@getLogin');
     Route::post('auth/login', 'Auth\AuthController@postLogin');

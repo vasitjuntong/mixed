@@ -4,6 +4,7 @@
 		<div id="po_no" class="form-group {{ $errors->has('po_no') ? 'has-error':'' }} ">
 			<label for="po_no" class="control-label">
 				{{ trans('receive.attributes.po_no') }}
+                <i class="text-danger"> *</i>
 			</label>
 
 			{!! Form::text('po_no', null, [
@@ -23,6 +24,7 @@
 		<div id="ref_no" class="form-group {{ $errors->has('ref_no') ? 'has-error':'' }} ">
 			<label for="ref_no" class="control-label">
 				{{ trans('receive.attributes.ref_no') }}
+                <i class="text-danger"> *</i>
 			</label>
 
 			{!! Form::text('ref_no', null, [
@@ -42,6 +44,7 @@
 		<div id="project_id" class="form-group {{ $errors->has('project_id') ? 'has-error':'' }} ">
 			<label for="project_id" class="control-label">
 				{{ trans('receive.attributes.project_id') }}
+                <i class="text-danger"> *</i>
 			</label>
 
 			{!! Form::select('project_id', $projects, null, [

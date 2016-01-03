@@ -10,9 +10,6 @@
             <li><i class="fa fa-download"></i>
                 <a href="/receives"> {{ trans('receive.label.name')}}</a>
             </li>
-            <li><i class="fa fa-edit"></i>
-                <a href="/receives/{{ $receive->id }}/edit"> {{ trans('receive.label.update')}}</a>
-            </li>
             <li class="active">{{ trans('receive_item.label.name') }}</li>
         </ul>
     </div><!-- /breadcrumb-->

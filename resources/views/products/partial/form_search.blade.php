@@ -7,7 +7,7 @@
 		<div class="form-group">
 			<label class="control-label" for="mix_no">{{ trans('product.attributes.mix_no') }}</label>
 			{!! Form::text('mix_no', array_get($filter, 'mix_no') ?: null, [
-				'class' => 'form-control',
+				'class' => 'form-control input-sm',
 			]) !!}
 		</div>
 	</div>
@@ -15,7 +15,7 @@
 		<div class="form-group">
 			<label class="control-label" for="code">{{ trans('product.attributes.code') }}</label>
 			{!! Form::text('code', array_get($filter, 'code') ?: null, [
-				'class' => 'form-control',
+				'class' => 'form-control input-sm',
 			]) !!}
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 		<div class="form-group">
 			<label class="control-label" for="description">{{ trans('product.attributes.description') }}</label>
 			{!! Form::text('description', array_get($filter, 'description') ?: null, [
-				'class' => 'form-control',
+				'class' => 'form-control input-sm',
 			]) !!}
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 		<div class="form-group">
 			<label class="control-label" for="unit">{{ trans('product.attributes.unit') }}</label>
 			{!! Form::text('unit', array_get($filter, 'unit') ?: null, [
-				'class' => 'form-control',
+				'class' => 'form-control input-sm',
 			]) !!}
 		</div>
 	</div>

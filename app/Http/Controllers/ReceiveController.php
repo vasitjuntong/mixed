@@ -180,7 +180,22 @@ class ReceiveController extends Controller
 
     public function statusPadding($id)
     {   
-        $receive = Receive::find($id);
+        $receive = Receive::with([
+            'receiveItems',
+        ])
+            ->whereStatus(Receive::CREATE)
+            ->whereId($id)
+            ->first();
+
+        if($receive == null){
+            return [
+                'status' => false,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.item_is_empty'),
+                'url' => url('/receives/review/'. $id),
+            ];
+        }
+
         try{
             DB::transaction(function() use ($receive) {
                 $receive->setStatusPadding();

@@ -2,7 +2,7 @@
 
 return [
 	'label' => [
-		'name' 			=> 'สินค้าใบเบิก',
+		'name' 			=> 'Product request',
 		'create' 		=> 'รับสินค้าเข้าระบบ',
 		'update' 		=> 'แก้ไขใบเบิก',
 		'delete' 		=> 'ลบ',

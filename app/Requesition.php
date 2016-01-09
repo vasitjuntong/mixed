@@ -108,15 +108,12 @@ class Requesition extends Model
             if (in_array($item->id, $items)) {
                 $item->status = RequesitionItem::CANCEL;
 
-                Log::debug('set-status-requesition-item-cancel: line item', [
-                    'requesition&items' => $this->toArray(),
-                ]);
-
                 if($item->save()){
-                    Log::debug('set-status-requesition-item-cancel: reset stock', [
-                        
+                    Log::info('Requesition-item: set canel item', [
+                        'requesition_id' => $item->requesition_id,
+                        'product_id' => $item->product_id,
+                        'location_id' => $item->location_id,
                     ]);
-                    $item->resetStock();
                 }
             }
         }
@@ -141,9 +138,6 @@ class Requesition extends Model
 
             $this->save();
         }
-
-        Log::debug('set-status-receive-item-success', [
-        ]);
     }
 
     public function resetStockByItemId($item_id)

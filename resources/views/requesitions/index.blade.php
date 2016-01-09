@@ -22,13 +22,13 @@
         <div class="panel-body text-right">
             <a
                     id="create"
-                    href="/requesitions/create"
+                    href="/requisitions/create"
                     class="btn btn-warning btn-sm">
 
                 <span class="fa fa-plus"></span>
                 {{ trans('requesition.label.new_requesition') }}
             </a>
-            <a href="/requesition-movement" class="btn btn-success btn-sm">
+            <a href="/requisition-movement" class="btn btn-success btn-sm">
                 <span class="fa fa-clock-o"></span>
                 {{ trans('requesition.label.movement') }}
             </a>

@@ -1,12 +1,15 @@
 <?php
 
-get('testpdf', function(){
-    $pdf = App::make('snappy.pdf.wrapper');
-    $pdf->setOptions([
-        'encoding' => 'UTF8',
-    ]);
-    $pdf->loadView('welcome');
-    return $pdf->stream('test.pdf');
+get('set-padding/{id}', function($id){
+    $model = App\Requesition::find($id);
+    foreach($model->items as $item){
+        $item->status = 'padding';
+        $item->save();
+    }
+
+    $model->status = 'padding';
+
+    $model->save();
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -53,19 +56,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/receives/status-cancel/{id}', 'ReceiveController@storeStatusCancel');
     Route::post('/receives/update-qty', 'ReceiveController@updateQty');
 
-    Route::resource('/requesitions', 'RequesitionController');
-    Route::get('/requesitions/add-products/{id}', 'RequesitionController@addProducts');
-    Route::post('/requesitions/add-products/{id}', 'RequesitionController@storeProduct');
-    Route::post('/requesitions/status-padding/{id}', 'RequesitionController@statusPadding');
-    Route::get('/requesitions/processes/{id}', 'RequesitionController@process');
-    Route::post('/requesitions/process-success/{id}', 'RequesitionController@processSuccess');
-    Route::post('/requesitions/process-cancel/{id}', 'RequesitionController@processCancel');
+    Route::resource('/requisitions', 'RequesitionController');
+    Route::get('/requisitions/add-products/{id}', 'RequesitionController@addProducts');
+    Route::post('/requisitions/add-products/{id}', 'RequesitionController@storeProduct');
+    Route::post('/requisitions/status-padding/{id}', 'RequesitionController@statusPadding');
+    Route::get('/requisitions/processes/{id}', 'RequesitionController@process');
+    Route::post('/requisitions/process-success/{id}', 'RequesitionController@processSuccess');
+    Route::post('/requisitions/process-cancel/{id}', 'RequesitionController@processCancel');
 
-    Route::get('/requesition-movement', 'RequesitionMovementController@index');
-    Route::get('/requesition-movement/download-excel', 'RequesitionMovementController@downloadExcel');
+    Route::get('/requisition-movement', 'RequesitionMovementController@index');
+    Route::get('/requisition-movement/download-excel', 'RequesitionMovementController@downloadExcel');
 
-    Route::get('/requesition-upload/{id}', 'RequesitionItemUploadController@index');
-    Route::post('/requesition-upload/{id}', 'RequesitionItemUploadController@store');
+    Route::get('/requisition-upload/{id}', 'RequesitionItemUploadController@index');
+    Route::post('/requisition-upload/{id}', 'RequesitionItemUploadController@store');
 
     Route::get('/product-lists', 'ProductListController@index');
 
@@ -98,25 +101,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'api'], function () {
-    Route::get('product-typeahead', function () {
-        $data = [];
-
-        $products = App\Product::with([
-            'unit',
-        ])
-            ->orderBy('code', 'desc')
-            ->get(['id', 'unit_id', 'code', 'mix_no', 'description']);
-
-        foreach ($products as $product) {
-            $data[] = [
-                'id' => $product->id,
-                'name' => $product->code,
-                'mix_no' => $product->mix_no,
-                'description' => $product->description,
-                'unit' => $product->unit->name,
-            ];
-        }
-
-        return $data;
-    });
+    Route::get('product/{product_code}', 'ApiProductController@show');
+    Route::get('product-typeahead', 'ApiProductController@typeahead');
 });

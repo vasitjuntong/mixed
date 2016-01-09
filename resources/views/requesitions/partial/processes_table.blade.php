@@ -20,8 +20,13 @@
 			</thead>
 			<tbody>
 				@forelse($items as $item)
-				
-				<tr>
+				<?php
+					$classItem = ($item->qty <= $item->product
+						->stock()
+						->where('location_id', $item->location_id)
+						->sum('qty'))? "success" : "danger";
+				?>
+				<tr class="{{ $classItem }}">
 					<td class="text-center">
 						@if($item->status == \App\Requesition::PADDING)
 							<label class="label-checkbox">
@@ -34,9 +39,7 @@
 						@endif
 					</td>
 					<td>{{ $item->mix_no }}</td>
-					<td>
-						{{ $item->product_code }}
-					</td>
+					<td>{{ $item->product_code }}</td>
 					<td>{{ $item->location_name }}</td>
 					<td>{!! $item->product_description !!}</td>
 					<td>{{ $item->qty }}</td>

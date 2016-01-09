@@ -28,37 +28,33 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12" id="app">
+    <div ng-app="add_product" class="row">
+        <div ng-controller="AddProductCtrl" class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     {{ trans('requesition.label.add_product') }}
                 </div>
                 <div class="panel-body">
 
-                    {!! Form::open([
-                        'method' => 'POST',
-                        'url' => "/requesitions/add-products/{$requesition->id}",
-                    ]) !!}
-
-                    <div class="row">
-                        @include('requesitions.partial.add_product_form')
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success btn-sm">
-                                <span class="fa fa-plus"></span>
-                                {{ trans('requesition.buttons.add_product') }}
-                            </button>
-                            <a id="upload-file-excel" class="btn btn-success btn-sm"
-                               href="/requesition-upload/{{ $requesition->id }}">
-                                <span class="fa fa-file-excel-o"></span>
-                                {{ trans('requesition.buttons.upload_excel') }}
-                            </a>
+                    <form ng-submit="addProductInRequest(formData)">
+                        <div class="row">
+                            @include('requesitions.partial.add_product_form')
                         </div>
-                    </div>
-                    {!! Form::close() !!}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <span class="fa fa-plus"></span>
+                                    {{ trans('requesition.buttons.add_product') }}
+                                </button>
+                                <a id="upload-file-excel" class="btn btn-success btn-sm"
+                                   href="/requesition-upload/{{ $requesition->id }}">
+                                    <span class="fa fa-file-excel-o"></span>
+                                    {{ trans('requesition.buttons.upload_excel') }}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -100,11 +96,10 @@
 
 @section('script')
     @parent
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular/controllers.js"></script>
     <script src="/js/bootstrap-editable.min.js"></script>
     <script src="/js/typeahead.min.js"></script>
-    <script src="/js/libs/vue_addproduct.js"></script>
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/libs/form_confirm.js"></script>
     <script>

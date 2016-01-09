@@ -72,6 +72,8 @@
 	</div>
 </div>
 
+<div class="clearfix"></div>
+
 <div class="col-md-2">
 	<div class="form-group">
 

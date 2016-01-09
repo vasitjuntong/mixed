@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Response;
+use App\Project;
+use App\Location;
+use App\Requesition;
+use App\RequesitionItem;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequesitionCreateRequest;
 use App\Http\Requests\RequesitionItemAddProductRequest;
-use App\Location;
-use App\Project;
-use App\Requesition;
-use App\RequesitionItem;
-use DB;
-use Illuminate\Http\Request;
 
 class RequesitionController extends Controller
 {
@@ -95,8 +96,7 @@ class RequesitionController extends Controller
             ->where('id', $id)
             ->first();
 
-        $locations = Location::orderBy('name', 'desc')
-            ->lists('name', 'id');
+        $locations = Location::lists('name', 'id');
 
         $locationLists = [null => trans('main.label.select')];
         if ($locations != null) {
@@ -116,7 +116,7 @@ class RequesitionController extends Controller
             $this->item->add($id, $request->all());
         });
 
-        return redirect("/requesitions/add-products/{$id}");
+        return Response::json(['status' => 'success'], 200);
     }
 
     public function statusPadding($id)
@@ -190,6 +190,8 @@ class RequesitionController extends Controller
             if($requesition->status != Requesition::SUCCESS){
                 $url = url("/requesitions/processes/{$requesition->id}");
             }
+
+            app('App\Stock')->cutStock($requesition);
 
             return [
                 'status' => true,

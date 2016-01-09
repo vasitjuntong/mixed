@@ -1,8 +1,8 @@
 {!! Form::hidden('product_id', null, [
-	'v-model' => 'product_id',
+	'ng-model' => 'formData.product_id',
 ]) !!}
 <div class="col-md-3">
-	<div class="form-group {{ $errors->has('product_code') ? 'has-error':'' }} ">
+	<div ng-class="{'has-error': formErrors.product_code}" class="form-group">
 
 		<label for="product_code" class="control-label">
 			{{ trans('requesition_item.attributes.product_code') }}
@@ -11,15 +11,17 @@
 		{!! Form::text('product_code', null, [
 			'class' => 'form-control input-sm typeahead',
 			'placeholder' => trans('requesition_item.attributes.product_code'),
-			'v-model' => 'product_code',
+			'ng-model' => 'formData.product_code',
+			'ng-change' => 'checkProduct(formData.product_code)',
 			'autocomplete' => 'off',
 		]) !!}
 
-		@if($errors->has('product_code'))
-			<span id="helpBlock2" class="help-block text-error">
-				{{ $errors->first('product_code') }}
-			</span>
-		@endif
+		<span ng-show="formErrors.product_code"
+			ng-repeat="errorMessage in formErrors.product_code" 
+			id="helpBlock2" 
+			class="help-block text-error">
+			@{{ errorMessage }}
+		</span>
 	</div>
 </div>
 
@@ -33,7 +35,7 @@
 		{!! Form::text('mix_no', null, [
 			'class' => 'form-control input-sm',
 			'placeholder' => trans('product.attributes.mix_no'),
-			'v-model' => 'mix_no',
+			'ng-model' => 'formData.mix_no',
 			'readonly' => 'readonly',
 		]) !!}
 	</div>
@@ -49,7 +51,7 @@
 		{!! Form::text('product_description', null, [
 			'class' => 'form-control input-sm',
 			'placeholder' => trans('product.attributes.description'),
-			'v-model' => 'product_description',
+			'ng-model' => 'formData.product_description',
 			'readonly' => 'readonly',
 		]) !!}
 	</div>
@@ -65,7 +67,7 @@
 		{!! Form::text('unit', null, [
 			'class' => 'form-control input-sm',
 			'placeholder' => trans('product.attributes.unit'),
-			'v-model' => 'unit',
+			'ng-model' => 'formData.unit',
 			'readonly' => 'readonly',
 		]) !!}
 	</div>
@@ -73,24 +75,29 @@
 
 <div class="clearfix"></div>
 
-<div class="col-md-2">
-	<div class="form-group {{ $errors->has('qty') ? 'has-error':'' }}">
+<div class="col-md-3">
+	<div ng-class="{'has-error': formErrors.qty}" class="form-group">
 
 		<label for="qty" class="control-label">
 			{{ trans('requesition_item.attributes.qty') }}
 		</label>
-
-		{!! Form::input('number', 'qty', null, [
-			'class' => 'form-control input-sm',
-			'placeholder' => trans('requesition_item.attributes.qty'),
-			'min' => 0
-		]) !!}
-
-		@if($errors->has('qty'))
-			<span id="help-block-qty" class="help-block text-error">
-				{{ $errors->first('qty') }}
-			</span>
-		@endif
+		<div class="input-group">
+			{!! Form::input('number', 'qty', null, [
+				'ng-model' => 'formData.qty',
+				'class' => 'form-control input-sm',
+				'placeholder' => trans('requesition_item.attributes.qty'),
+				'min' => 0
+			]) !!}
+			<div class="input-group-addon">
+				Stock: @{{ formData.stock }}
+			</div>
+		</div>
+		<span ng-show="formErrors.qty"
+			ng-repeat="errorMessage in formErrors.qty" 
+			id="helpBlock2" 
+			class="help-block text-error">
+			@{{ errorMessage }}
+		</span>
 	</div>
 </div>
 

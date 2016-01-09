@@ -315,7 +315,8 @@ class RequesitionItem extends Model
 
     public function checkItemInRequest($requessition_id, $product_code, $location_id)
     {
-        return self::where('product_code', $product_code)
+        return self::where('requesition_id', $requessition_id)
+                    ->where('product_code', $product_code)
                     ->where('location_id', $location_id)
                     ->count();
     }

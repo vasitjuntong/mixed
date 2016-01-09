@@ -13,11 +13,11 @@
 		</span>
 		<span class="text">{{ trans('main.side_menu.receive') }}</span>
 	</a>
-	<a href="/requesitions" class="shortcut-link {{ activeMenu([
-		'requesitions', 
-		'requesitions/*',
-		'requesition-movement',
-		'requesition-movement/*',
+	<a href="/requisitions" class="shortcut-link {{ activeMenu([
+		'requisitions', 
+		'requisitions/*',
+		'requisition-movement',
+		'requisition-movement/*',
 	])?'shortcut-link-active':''   }}">
 		<span class="shortcut-icon">
 			<i class="fa fa-upload"></i>

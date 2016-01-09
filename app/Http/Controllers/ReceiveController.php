@@ -96,8 +96,7 @@ class ReceiveController extends Controller
                 ->back();
         }
 
-        $locations = Location::orderBy('name', 'desc')
-            ->lists('name', 'id');
+        $locations = Location::lists('name', 'id');
 
         $locationLists = [null => trans('main.label.select')];
         if($locations != null)

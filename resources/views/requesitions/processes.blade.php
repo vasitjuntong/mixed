@@ -6,7 +6,7 @@
 		 	<li><i class="fa fa-home"></i>
 			 	<a href="index.html"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
-		 	<li class="active">{{ trans('requesition.label.status_success') }}</li>	 
+		 	<li class="active">{{ trans('requesition.label.proccess') }}</li>	 
 		</ul>
 	</div><!-- /breadcrumb-->
 	<div class="main-header clearfix">

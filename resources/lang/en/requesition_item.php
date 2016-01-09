@@ -37,5 +37,6 @@ return [
 		'delete_unsuccess' 	=> 'ไม่สามารลบข้อมูลสินค้าใบเบิกได้ มีการใช้งานสินค้าใบเบิกในระบบ',
 		'delete_confirm' 	=> 'คุณต้องการลบข้อมูลสินค้าใบเบิกหรือไม่?',
 		'cancel_message' 	=> 'ยกเลิกการลบข้อมูลสินค้าใบเบิก',
+		'item_duplicate_on_request' 	=> 'Product is duplicated.',
 	],
 ];

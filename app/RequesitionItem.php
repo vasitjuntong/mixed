@@ -250,12 +250,10 @@ class RequesitionItem extends Model
 
     public function add($id, $data)
     {
+        $errorItemInRequestDup = array();
+
         $product_code = array_get($data, 'product_code');
         $qty_request = array_get($data, 'qty');
-
-        Log::debug('Requesition-item: data', [
-            $data,
-        ]);
 
         $product = Product::with([
             'stock' => function ($query) {
@@ -296,11 +294,30 @@ class RequesitionItem extends Model
             $data['location_name'] = $stock->location->name;
             $data['status'] = self::CREATE;
 
-            if(self::create($data)){
-                $stock->qty = $stock->qty - $qty_hold;
-                $stock->save();
+            if(! $this->checkItemInRequest($id, $product_code, $stock->location_id)){
+                if(self::create($data)){
+                    $stock->qty = $stock->qty - $qty_hold;
+                    // $stock->save();
+                }
+            }else{
+                $errorItemInRequestDup[] = $product_code;
+            }
+
+            if(! empty($errorItemInRequestDup)){
+                flash()
+                    ->error(
+                        trans('requesition_item.label.name'),
+                        trans('requesition_item.message_alert.item_duplicate_on_request')
+                    );
             }
         }
+    }
+
+    public function checkItemInRequest($requessition_id, $product_code, $location_id)
+    {
+        return self::where('product_code', $product_code)
+                    ->where('location_id', $location_id)
+                    ->count();
     }
 
     public function resetStock()

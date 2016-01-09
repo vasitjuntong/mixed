@@ -63,7 +63,7 @@ class RequesitionController extends Controller
 
             return [
                 'status' => 'success',
-                'urlRedirect' => url("/requesitions"),
+                'urlRedirect' => url("/requesitions/add-products/{$requesition->id}"),
             ];
         }
     }

@@ -11,16 +11,11 @@ class ProductListController extends Controller
 {
     public function index(Request $request)
     {
-        $filter = $request->all();
-        $limit = $request->get('limit', 20);
-
-        Cache::put('limit_per_page', $limit, 10);
-
-        $products = Product::whereByFilterWithStock($filter, $limit);
+        $products = Product::orderBy('created_at', 'desc')
+            ->get();
 
         return view('productLists.index', [
             'products' => $products,
-            'filter' => $filter,
         ]);
     }
 }

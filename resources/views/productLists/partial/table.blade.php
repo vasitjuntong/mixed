@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table id="dataTables" class="table table-striped">
 	<thead>
 		<tr>
 			<th width="10%" class="text-center">{{ trans('product_list.attributes.mix_no') }}</th>
@@ -36,4 +36,3 @@
 		@endforelse
 	</tbody>
 </table>
-<span class="text-center block">{!! $products->appends($filter)->render() !!}</span>

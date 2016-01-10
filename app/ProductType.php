@@ -53,7 +53,7 @@ class ProductType extends Model
         ];
     }
 
-    public function listSelect()
+    public static function listSelect()
     {
 
     }

@@ -6,6 +6,7 @@ use DB;
 use Excel;
 use Log;
 use Auth;
+use Response;
 use Exception;
 use Validator;
 use App\Product;
@@ -174,7 +175,9 @@ class ReceiveController extends Controller
 
         $receiveItems = $receive->receiveItems;
 
-        return view('receives.review', compact('receive', 'receiveItems'));
+        $projectLists = Project::lists('code', 'id');
+
+        return view('receives.review', compact('receive', 'receiveItems', 'projectLists'));
     }
 
     public function statusPadding($id)
@@ -407,6 +410,47 @@ class ReceiveController extends Controller
             });
 
         })->export('xls');
+    }
+
+    public function editReceive($id)
+    {
+        $rules = [
+            'po_no' => [
+                'po_no' => 'required',
+            ],
+            'ref_no' => [
+                'ref_no' => 'required',
+            ],
+            'project_id' => [
+                'project_id' => 'required',
+            ],
+        ];
+
+        $pk = request()->get('pk');
+        $value = request()->get('value');
+        $attribute = request()->get('name');
+
+        $data = [
+            $attribute => $value,
+        ];
+        
+        $validator = Validator::make($data, $rules[$attribute]);
+
+        if($validator->passes()){
+            $receive = Receive::find($pk);
+            if($attribute == 'project_id'){
+                $receive->$attribute = $value;
+                $receive->project_code = Project::find($value)->code;
+            }else{
+
+            }
+
+            $receive->save();
+
+            return Response::json('success', 200);
+        }   
+
+        return Response::json($validator->errors()->first($attribute), 422);            
     }
 
     public function destroy($id)

@@ -31,12 +31,20 @@
 
 @endsection
 
+@section('style')
+	@parent
+
+    <link href="/css/bootstrap-editable.css" rel="stylesheet">
+@endsection
+
 @section('script')
 	@parent
 
 	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
+    <script src="/js/bootstrap-editable.min.js"></script>
 	<script>
 		$(function(){
+
 			$('#invoicePrint').click(function()	{
 				window.print();
 			});
@@ -48,6 +56,31 @@
 
 				return false;
 			});
+
+            $.fn.editableform.buttons = '<button class="btn btn-success btn-sm editable-submit" type="submit"><i class="fa fa-check"></i></button>'
+                    + ' <button class="btn btn-danger btn-sm editable-cancel" type="button"><i class="fa fa-times"></i></button>';
+
+            $('a#editable-receive').editable({
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
+            $('a#editable-receive-select').editable({
+            	type: 'select',
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
 		});
 	</script>
 @endsection

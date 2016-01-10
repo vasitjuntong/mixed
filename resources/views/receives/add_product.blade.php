@@ -106,11 +106,6 @@
     <script src="/js/libs/form_confirm.js"></script>
     <script>
         $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
             $('a#upload-file-excel').click(function (e) {
                 e.preventDefault();

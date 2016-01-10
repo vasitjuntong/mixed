@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/receives/status-success/{id}', 'ReceiveController@storeStatusSuccess');
     Route::post('/receives/status-cancel/{id}', 'ReceiveController@storeStatusCancel');
     Route::post('/receives/update-qty', 'ReceiveController@updateQty');
+    Route::post('/receives/edit-receive/{id}', 'ReceiveController@editReceive');
 
     Route::resource('/requisitions', 'RequesitionController');
     Route::get('/requisitions/add-products/{id}', 'RequesitionController@addProducts');

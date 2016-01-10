@@ -12,11 +12,11 @@ return [
 		'updated_at' => 'อัพเดตเมื่อ',
 	],
 	'message_alert' => [
-		'create_success' 	=> 'เพิ่มหน่วยสินค้าเรียบร้อย',
-		'update_success' 	=> 'แก้ไขหน่วยสินค้าเรียบร้อย',
-		'delete_success' 	=> 'ลบข้อมูลหน่วยสินค้าเรียบร้อย',
-		'delete_unsuccess' 	=> 'ไม่สามารลบข้อมูลหน่วยสินค้าได้ มีการใช้งานหน่วยสินค้าในระบบ',
-		'delete_confirm' 	=> 'คุณต้องการลบข้อมูลหน่วยสินค้าหรือไม่?',
-		'cancel_message' 	=> 'ยกเลิกการลบข้อมูลหน่วยสินค้า',
+		'create_success' 	=> 'Create product is successfully.',
+		'update_success' 	=> 'Update product is successfully.',
+		'delete_success' 	=> 'Delete product is successfully.',
+		'delete_unsuccess' 	=> 'Can\'t delete product, Product is proccesses.',
+		'delete_confirm' 	=> 'Are you sure for delete product?',
+		'cancel_message' 	=> 'Cancel for delete product.',
 	],
 ];

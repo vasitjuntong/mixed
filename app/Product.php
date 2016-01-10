@@ -59,7 +59,7 @@ class Product extends Model
 
     public function getOnHandAttribute()
     {
-        return $this->stock()->sum('qty');
+        return $this->on_stock - $this->on_order;
     }
 
     public function getOnStockAttribute()

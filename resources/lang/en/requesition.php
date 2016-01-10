@@ -58,12 +58,12 @@ return [
         'created_at_end'   => 'Create End',
     ],
     'message_alert' => [
-        'create_success'   => 'Create requisition is successfully.',
-        'update_success'   => 'Update requisition is successfully.',
-        'delete_success'   => 'Delete requisition is successfully.',
-        'delete_unsuccess' => 'ไม่สามารลบข้อมูลใบรับสินค้าได้ มีการใช้งานใบรับสินค้าในระบบ',
-        'delete_confirm'   => 'คุณต้องการลบข้อมูลใบรับสินค้าหรือไม่?',
-        'cancel_message'   => 'ยกเลิกการลบข้อมูลใบรับสินค้า',
+        'create_success'    => 'Create product is successfully.',
+        'update_success'    => 'Update product is successfully.',
+        'delete_success'    => 'Delete product is successfully.',
+        'delete_unsuccess'  => 'Can\'t delete product, Product is proccesses.',
+        'delete_confirm'    => 'Are you sure for delete product?',
+        'cancel_message'    => 'Cancel for delete product.',
 
         'review_confirm' => 'คุณต้องการยืนยันการเบิกสินค้าหรือไม่?',
         'review_cancel'  => 'คุณไม่ต้องการเบิกสินค้า',

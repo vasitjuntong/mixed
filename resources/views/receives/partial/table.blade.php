@@ -9,7 +9,6 @@
 			<th width="10%">{{ trans('receive.attributes.create_by') }}</th>
 			<th>{{ trans('receive.attributes.remark') }}</th>
 			<th width="5%">{{ trans('receive.attributes.status') }}</th>
-			{{-- <th width="10%" class="text-center">{{ trans('receive.attributes.success_status') }}</th> --}}
 		</tr>
 	</thead>
 	<tbody>

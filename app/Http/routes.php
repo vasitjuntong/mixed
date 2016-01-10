@@ -1,6 +1,16 @@
 <?php
 
-use App\UploadReceiveItem;
+get('set-padding/{id}', function($id){
+    $model = App\Requesition::find($id);
+    foreach($model->items as $item){
+        $item->status = 'padding';
+        $item->save();
+    }
+
+    $model->status = 'padding';
+
+    $model->save();
+});
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -23,156 +33,76 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
     Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-    get('/dashboard', 'HomeController@index');
-    get('/', 'HomeController@index');
-    get('/home', 'HomeController@index');
+    Route::get('/dashboard', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-    get('/receives/movement', 'ReceiveMovementController@index');
-    get('/receives/movement/download-excel', 'ReceiveMovementController@downloadExcel');
+    Route::get('/receives/movement', 'ReceiveMovementController@index');
+    Route::get('/receives/movement/download-excel', 'ReceiveMovementController@downloadExcel');
 
-    get('/receive-upload/{id}', 'ReceiveItemUploadController@index');
-    post('/receive-upload/{id}', 'ReceiveItemUploadController@store');
+    Route::get('/receive-upload/{id}', 'ReceiveItemUploadController@index');
+    Route::post('/receive-upload/{id}', 'ReceiveItemUploadController@store');
 
     // Component.
-    get('/receives/download-excel', 'ReceiveController@downloadExcel');
-    resource('/receives', 'ReceiveController');
-    get('/receives/add-products/{id}', 'ReceiveController@addProducts');
-    post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');
-    get('/receives/review/{id}', 'ReceiveController@review');
-    post('/receives/status-padding/{id}', 'ReceiveController@statusPadding');
-    get('/receives/status-success/{id}', 'ReceiveController@statusSuccess');
-    post('/receives/status-success/{id}', 'ReceiveController@storeStatusSuccess');
-    post('/receives/status-cancel/{id}', 'ReceiveController@storeStatusCancel');
-    post('/receives/update-qty', 'ReceiveController@updateQty');
+    Route::get('/receives/download-excel', 'ReceiveController@downloadExcel');
+    Route::resource('/receives', 'ReceiveController');
+    Route::get('/receives/add-products/{id}', 'ReceiveController@addProducts');
+    Route::post('/receives/add-products/{receive_id}', 'ReceiveController@storeProducts');
+    Route::get('/receives/review/{id}', 'ReceiveController@review');
+    Route::post('/receives/status-padding/{id}', 'ReceiveController@statusPadding');
+    Route::get('/receives/status-success/{id}', 'ReceiveController@statusSuccess');
+    Route::post('/receives/status-success/{id}', 'ReceiveController@storeStatusSuccess');
+    Route::post('/receives/status-cancel/{id}', 'ReceiveController@storeStatusCancel');
+    Route::post('/receives/update-qty', 'ReceiveController@updateQty');
+    Route::post('/receives/edit-receive/{id}', 'ReceiveController@editReceive');
 
+    Route::resource('/requisitions', 'RequesitionController');
+    Route::get('/requisitions/add-products/{id}', 'RequesitionController@addProducts');
+    Route::post('/requisitions/add-products/{id}', 'RequesitionController@storeProduct');
+    Route::post('/requisitions/status-padding/{id}', 'RequesitionController@statusPadding');
+    Route::get('/requisitions/processes/{id}', 'RequesitionController@process');
+    Route::post('/requisitions/process-success/{id}', 'RequesitionController@processSuccess');
+    Route::post('/requisitions/process-cancel/{id}', 'RequesitionController@processCancel');
 
-    get('/product-lists', 'ProductListController@index');
+    Route::get('/requisition-movement', 'RequesitionMovementController@index');
+    Route::get('/requisition-movement/download-excel', 'RequesitionMovementController@downloadExcel');
+
+    Route::get('/requisition-upload/{id}', 'RequesitionItemUploadController@index');
+    Route::post('/requisition-upload/{id}', 'RequesitionItemUploadController@store');
+    Route::post('/requisitions/edit-multi/{id}', 'RequesitionController@editMulti');
+
+    Route::get('/product-lists', 'ProductListController@index');
 
     // Setting.
     Route::group(['middleware' => ['auth', 'product']], function () {
-        resource('/products', 'ProductController');
+        Route::resource('/products', 'ProductController');
     });
 
     Route::group(['middleware' => ['auth', 'product_type']], function () {
-        resource('/product-types', 'ProductTypeController');
+        Route::resource('/product-types', 'ProductTypeController');
     });
 
     Route::group(['middleware' => ['auth', 'unit']], function () {
-        resource('/units', 'UnitController');
+        Route::resource('/units', 'UnitController');
     });
 
     Route::group(['middleware' => ['auth', 'location']], function () {
-        resource('/locations', 'LocationController');
+        Route::resource('/locations', 'LocationController');
     });
 
     Route::group(['middleware' => ['auth', 'project']], function () {
-        resource('/projects', 'ProjectController');
+        Route::resource('/projects', 'ProjectController');
     });
 
     Route::group(['middleware' => ['auth', 'user']], function () {
-        resource('/users', 'UserController');
-        get('/users/assign-role/{id}', 'UserController@assignRole');
-        post('/users/assign-role/{id}', 'UserController@storeAssignRole');
+        Route::resource('/users', 'UserController');
+        Route::get('/users/assign-role/{id}', 'UserController@assignRole');
+        Route::post('/users/assign-role/{id}', 'UserController@storeAssignRole');
     });
 });
 
 Route::group(['prefix' => 'api'], function () {
-    get('product-typeahead', function () {
-        $data = [];
-
-        $products = App\Product::with([
-            'unit',
-        ])
-            ->orderBy('code', 'desc')
-            ->get(['id', 'unit_id', 'code', 'mix_no', 'description']);
-
-        foreach ($products as $product) {
-            $data[] = [
-                'id'          => $product->id,
-                'name'        => $product->code,
-                'mix_no'      => $product->mix_no,
-                'description' => $product->description,
-                'unit'        => $product->unit->name,
-            ];
-        }
-
-        return $data;
-    });
+    Route::get('product/{product_code}', 'ApiProductController@show');
+    Route::get('product-typeahead', 'ApiProductController@typeahead');
 });
-
-get('/excel', function () {
-
-    $receive = App\ReceiveItem::with([
-        'receive',
-        'receive.user',
-        'product',
-        'product.unit',
-    ])
-        ->get();
-
-    dd($receive->toArray());
-
-    Excel::create('Filename', function ($excel) use ($receive) {
-
-        // Our first sheet
-        $excel->sheet('First sheet', function ($sheet) use ($receive) {
-            $sheet->setAutoSize(true);
-            $sheet->row(1, array(
-                trans('receive.attributes.created_at'),
-                trans('receive.attributes.document_no'),
-                trans('receive.attributes.po_no'),
-                trans('receive.attributes.ref_no'),
-                trans('receive.attributes.project_code'),
-                trans('receive.attributes.create_by'),
-                trans('receive.attributes.remark'),
-                trans('receive_item.attributes.mix_no'),
-                trans('receive_item.attributes.product_code'),
-                trans('receive_item.attributes.location_id'),
-                trans('receive_item.attributes.product_description'),
-                trans('receive_item.attributes.unit'),
-                trans('receive_item.attributes.qty'),
-                trans('receive_item.attributes.remark'),
-                trans('receive_item.attributes.status'),
-            ));
-
-            $sheet->row(1, function ($row) {
-
-                $row->setBorder('solid', 'solid', 'solid', 'solid');
-
-                $row->setFont(array(
-                    'size' => '16',
-                    'bold' => true,
-                ));
-            });
-
-            $i = 2;
-
-            foreach ($receive as $item) {
-                $sheet->row($i, array(
-                    // Receive data
-                    $item->receive->created_at->format('d/m/Y H:i'),
-                    $item->receive->document_no,
-                    $item->receive->po_no,
-                    $item->receive->ref_no,
-                    $item->receive->project_code,
-                    $item->receive->user->name,
-                    $item->receive->remark,
-                    // Item
-                    $item->mix_no,
-                    $item->product_code,
-                    $item->location_name,
-                    $item->product_description,
-                    $item->product->unit->name,
-                    $item->qty,
-                    $item->remark,
-                    $item->status,
-                ));
-                $i++;
-            }
-        });
-
-    })->export('xls');
-});
-
-	

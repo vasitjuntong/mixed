@@ -1,6 +1,6 @@
 {!! Form::open([
 	'method' => 'get',
-	'url' => '/requesitions',
+	'url' => '/requisitions',
 ]) !!}
 <div class="row">
 	<div class="col-md-3">
@@ -80,7 +80,7 @@
 				<i class="fa fa-search"></i>
 				{{ trans('requesition.buttons.search') }}
 			</button>
-			<a href="/requesitions" class="btn btn-default btn-sm">
+			<a href="/requisitions" class="btn btn-default btn-sm">
 				<i class="fa fa-refresh"></i>
 				{{ trans('requesition.buttons.refresh') }}
 			</a>

@@ -6,6 +6,7 @@ use DB;
 use Excel;
 use Log;
 use Auth;
+use Response;
 use Exception;
 use Validator;
 use App\Product;
@@ -96,8 +97,7 @@ class ReceiveController extends Controller
                 ->back();
         }
 
-        $locations = Location::orderBy('name', 'desc')
-            ->lists('name', 'id');
+        $locations = Location::lists('name', 'id');
 
         $locationLists = [null => trans('main.label.select')];
         if($locations != null)
@@ -166,19 +166,38 @@ class ReceiveController extends Controller
     public function review($id)
     {
         $receive = Receive::with([
-                'receiveItems'    
+                'receiveItems',  
+                'receiveItems.product',  
+                'receiveItems.product.unit',  
             ])
             ->where('id', $id)
             ->first();
 
         $receiveItems = $receive->receiveItems;
 
-        return view('receives.review', compact('receive', 'receiveItems'));
+        $projectLists = Project::lists('code', 'id');
+
+        return view('receives.review', compact('receive', 'receiveItems', 'projectLists'));
     }
 
     public function statusPadding($id)
     {   
-        $receive = Receive::find($id);
+        $receive = Receive::with([
+            'receiveItems',
+        ])
+            ->whereStatus(Receive::CREATE)
+            ->whereId($id)
+            ->first();
+
+        if($receive == null){
+            return [
+                'status' => false,
+                'title' => trans('receive.label.name'),
+                'message' => trans('receive.message_alert.item_is_empty'),
+                'url' => url('/receives/review/'. $id),
+            ];
+        }
+
         try{
             DB::transaction(function() use ($receive) {
                 $receive->setStatusPadding();
@@ -391,6 +410,47 @@ class ReceiveController extends Controller
             });
 
         })->export('xls');
+    }
+
+    public function editReceive($id)
+    {
+        $rules = [
+            'po_no' => [
+                'po_no' => 'required',
+            ],
+            'ref_no' => [
+                'ref_no' => 'required',
+            ],
+            'project_id' => [
+                'project_id' => 'required',
+            ],
+        ];
+
+        $pk = request()->get('pk');
+        $value = request()->get('value');
+        $attribute = request()->get('name');
+
+        $data = [
+            $attribute => $value,
+        ];
+        
+        $validator = Validator::make($data, $rules[$attribute]);
+
+        if($validator->passes()){
+            $receive = Receive::find($pk);
+            if($attribute == 'project_id'){
+                $receive->$attribute = $value;
+                $receive->project_code = Project::find($value)->code;
+            }else{
+                $receive->$attribute = $value;
+            }
+
+            $receive->save();
+
+            return Response::json('success', 200);
+        }   
+
+        return Response::json($validator->errors()->first($attribute), 422);            
     }
 
     public function destroy($id)

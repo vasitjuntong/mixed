@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use URL;
+use Excel;
 use App\ReceiveItem;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use URL;
-use Excel;
+use App\Http\Requests\ReceiveSearchMovementRequest;
 
 class ReceiveMovementController extends Controller
 {
@@ -29,7 +30,7 @@ class ReceiveMovementController extends Controller
         ]);
     }
 
-    public function downloadExcel(Request $request)
+    public function downloadExcel(ReceiveSearchMovementRequest $request)
     {
         $filter = $request->except(['item_status', 'orderBy']);
         $orderBy = array_get($request->all(), 'sort_by', array());

@@ -13,6 +13,10 @@ class UrlActive{
 		$url = [
 			'product-lists',
 			'product-lists/*',
+			'requisitions',
+			'requisitions/*',
+			'requisition-movement',
+			'requisition-movement/*',
 			'receives',
 			'receives/*',
 		];

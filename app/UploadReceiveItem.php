@@ -1,9 +1,9 @@
 <?php namespace App;
 
-use Maatwebsite\Excel\Collections\CellCollection;
-use Validator;
-use Excel;
 use Log;
+use Excel;
+use Validator;
+use Maatwebsite\Excel\Collections\CellCollection;
 
 class UploadReceiveItem
 {
@@ -90,6 +90,7 @@ class UploadReceiveItem
                 ]);
             }
 
+            $i ++;
         }
 
         return $result;

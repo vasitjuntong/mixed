@@ -64,6 +64,8 @@ return [
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
+    'qty_over'             => 'QTY not enough.',
+    'unit_on_product'      => 'Unit not found on product of your choose.',
 
     /*
     |--------------------------------------------------------------------------

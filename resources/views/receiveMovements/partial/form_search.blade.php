@@ -45,6 +45,22 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
+			<label class="control-label" for="mix_no">{{ trans('receive.form_search.mix_no') }}</label>
+			{!! Form::text('mix_no', array_get($filter, 'mix_no') ?: null, [
+				'class' => 'form-control',
+			]) !!}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<label class="control-label" for="product_code">{{ trans('receive.form_search.product_code') }}</label>
+			{!! Form::text('product_code', array_get($filter, 'product_code') ?: null, [
+				'class' => 'form-control',
+			]) !!}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
 			<label class="control-label" for="item_status">{{ trans('receive.form_search.item_status') }}</label>
 			<label class="label-checkbox" style="margin-top: 5px;">
 				<input type="checkbox" 
@@ -87,7 +103,7 @@
 </div>
 <div class="row">
 	<div class="col-md-3">
-		<div class="form-group">
+		<div class="form-group {{ $errors->has('created_at_end')?'has-error':'' }}">
 			<label class="control-label" for="created_at_start">{{ trans('receive.form_search.created_at_start') }}</label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_start', array_get($filter, 'created_at_start') ?: null, [
@@ -98,10 +114,16 @@
 	                <span class="glyphicon glyphicon-calendar"></span>
 	            </span>
 	        </div>
+
+			@if($errors->has('created_at_start'))
+				<span id="helpBlock2" class="help-block text-error">
+					{{ $errors->first('created_at_start') }}
+				</span>
+			@endif
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="form-group">
+		<div class="form-group {{ $errors->has('created_at_end')?'has-error':'' }}">
 			<label class="control-label" for="created_at_end">{{ trans('receive.form_search.created_at_end') }}</label>
 			<div class='input-group date'>
 				{!! Form::text('created_at_end', array_get($filter, 'created_at_end') ?: null, [
@@ -112,6 +134,12 @@
 	                <span class="glyphicon glyphicon-calendar"></span>
 	            </span>
             </div>
+
+			@if($errors->has('created_at_end'))
+				<span id="helpBlock2" class="help-block text-error">
+					{{ $errors->first('created_at_end') }}
+				</span>
+			@endif
 		</div>
 	</div>
 

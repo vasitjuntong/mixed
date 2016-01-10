@@ -29,9 +29,7 @@
 
 <div class="panel panel-default table-responsive">
   	<div class="panel-body">
-
   		@include('receiveMovements.partial.table')
-
   	</div>
 </div>
 
@@ -41,6 +39,7 @@
 
 @section('style')
 	@parent
+	
 	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
 @endsection
 
@@ -51,24 +50,6 @@
 	
 	<script>
 		$(function(){
-			$('a#create').click(function(e){
-				e.preventDefault();
-				
-				var that = $(this);
-				var modal_content = $('div#modal_content');
-
-				$.ajax({
-					type: 'get',
-					url: that.attr('href'),
-					success: function(result){
-						modal_content.html(result);
-						$('#modal-create').modal('show');
-					}
-				});
-
-				return false;
-			});
-
 			$('#datetimepicker-start').datetimepicker({
                 format: 'DD/MM/YYYY'
             });

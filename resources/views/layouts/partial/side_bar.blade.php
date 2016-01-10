@@ -16,7 +16,7 @@
 				@if(Auth::check())
 					<strong>{{ Auth::user()->name }}</strong>
 				@endif
-				<span class="badge badge-danger m-left-xs bounceIn animation-delay4">7</span>
+				{{-- <span class="badge badge-danger m-left-xs bounceIn animation-delay4">7</span> --}}
 				<ul class="list-inline">
 					<li><a href="/profile">Profile</a></li>
 				</ul>
@@ -58,10 +58,15 @@
 							</li>
 						@endif
 						@if(Auth::user()->hasRole('manager_requesition'))
-							<li class="{{ activeMenu(['requisitions', 'requisitions/*']) ? 'active':'' }}">
+							<li class="{{ activeMenu([
+								'requisitions', 
+								'requisitions/*', 
+								'requisition-movement',
+								'requisition-movement/*',
+							]) ? 'active':'' }}">
 								<a href="/requisitions">
 									<span class="submenu-label">
-										{{ trans('main.side_menu.requisition') }}
+										{{ trans('main.side_menu.requesition') }}
 									</span>
 								</a>
 							</li>

@@ -6,31 +6,49 @@ new Vue({
 		product_description: '',
 		mix_no: '',
 		unit: '',
-		location_id: ''
+		location_id: '',
+		stockCount: 0,
 	},
+
+	methods: {
+		checkStock: function() {
+			this.$http.get('/api/product/' + this.product_id).then(function (response) {
+    			this.$set('stockCount', response.data.qty);
+    		});
+		}
+  	},
+
 	ready:function(){
-		 // GET request
-	      this.$http.get('/api/product-typeahead', function (data, status, request) {
-			var that = this;			
+		var that = this;
+
+		this.checkStock();
+    	// if(this.product_id){
+    	// 	that.$http.get('/api/product/' + this.product_id).then(function (response) {
+    	// 		this.$set('stock', response.data.qty);
+    	// 	});
+    	// }
+
+      	that.$http.get('/api/product-typeahead').then(function (response) {
 			var $input = $('.typeahead');
 			$input.typeahead({
-				source: data, 
+				source: response.data, 
 	            autoSelect: true}
             ); 
 			$input.change(function() {
 			    var current = $input.typeahead("getActive");
 			    if (current) {
-			    	console.log(current);
 			    	that.$set('mix_no', current.mix_no);
 			    	that.$set('product_description', current.description);
 			    	that.$set('product_id', current.id);
 			    	that.$set('unit', current.unit);
+
+			    	that.checkStock();
 			    } else {
 			        // Nothing is active so it is a new value (or maybe empty value)
 			    }
 			});
 
-	      }).error(function (data, status, request) {
+	      }).catch(function (data, status, request) {
           	// handle error
       	});
 

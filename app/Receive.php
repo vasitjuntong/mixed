@@ -5,6 +5,24 @@ namespace App;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Receive
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ReceiveItem[] $receiveItems
+ * @property-read \App\Project $project
+ * @property-read \App\User $user
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $document_no
+ * @property string $po_no
+ * @property string $ref_no
+ * @property integer $project_id
+ * @property string $project_code
+ * @property string $status
+ * @property string $remark
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class Receive extends Model
 {
     const CREATE = 'create';
@@ -103,6 +121,7 @@ class Receive extends Model
                     ]);
                 }
             })
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -156,6 +175,7 @@ class Receive extends Model
                     ]);
                 }
             })
+            ->orderBy('created_at', 'desc')
             ->paginate($limit);
     }
 

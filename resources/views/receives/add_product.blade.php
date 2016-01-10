@@ -10,9 +10,6 @@
             <li><i class="fa fa-download"></i>
                 <a href="/receives"> {{ trans('receive.label.name')}}</a>
             </li>
-            <li><i class="fa fa-edit"></i>
-                <a href="/receives/{{ $receive->id }}/edit"> {{ trans('receive.label.update')}}</a>
-            </li>
             <li class="active">{{ trans('receive_item.label.name') }}</li>
         </ul>
     </div><!-- /breadcrumb-->
@@ -100,8 +97,8 @@
 
 @section('script')
     @parent
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-resource.js"></script>
     <script src="/js/bootstrap-editable.min.js"></script>
     <script src="/js/typeahead.min.js"></script>
     <script src="/js/libs/vue_addproduct.js"></script>
@@ -109,11 +106,6 @@
     <script src="/js/libs/form_confirm.js"></script>
     <script>
         $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
             $('a#upload-file-excel').click(function (e) {
                 e.preventDefault();
@@ -146,7 +138,7 @@
                 }
             });
             $(".chosen-select").chosen({
-                search_contians: true
+                search_contains: true
             });
         })
     </script>

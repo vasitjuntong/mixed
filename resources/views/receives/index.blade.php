@@ -51,7 +51,6 @@
 
 @section('style')
 	@parent
-	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
 	<link rel="stylesheet" href="/css/jquery.dataTables_themeroller.css">
 @endsection
 
@@ -64,16 +63,29 @@
 			$('a#create').click(function(e){
 				e.preventDefault();
 				
-				var that = $(this);
+				var button = $(this);
+				var buttonOldLabel = button.html();
 				var modal_content = $('div#modal_content');
+
+                button.attr('disabled', 'disabled');
+                button.html('<i class="fa fa-spinner fa-spin"></i> Loading...');
 
 				$.ajax({
 					type: 'get',
-					url: that.attr('href'),
+					url: button.attr('href'),
 					success: function(result){
 						modal_content.html(result);
 						$('#modal-create').modal('show');
-					}
+
+                        button.removeAttr('disabled');
+                        button.html(buttonOldLabel);
+					},
+                    error: function(response){
+                        console.log(response);
+                        
+                        button.removeAttr('disabled');
+                        button.html(buttonOldLabel);
+                    }
 				});
 
 				return false;
@@ -81,9 +93,19 @@
 
 			$('#dataTables').dataTable( {
 				"bJQueryUI": true,
-				"sPaginationType": "full_numbers"
+				"sPaginationType": "full_numbers",
+                "order": [[ 0, "desc" ]],
+                "aoColumns": [
+                    { "sType": "date" },
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ]
 			});
 		});
 	</script>
-
 @endsection

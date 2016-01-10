@@ -31,11 +31,11 @@ return [
 		'updated_at' 	=> 'Update',
 	],
 	'message_alert' => [
-		'create_success' 	=> 'เพิ่มสินค้าใบเบิกเรียบร้อย',
-		'update_success' 	=> 'แก้ไขสินค้าใบเบิกเรียบร้อย',
-		'delete_success' 	=> 'ลบข้อมูลสินค้าใบเบิกเรียบร้อย',
-		'delete_unsuccess' 	=> 'ไม่สามารลบข้อมูลสินค้าใบเบิกได้ มีการใช้งานสินค้าใบเบิกในระบบ',
-		'delete_confirm' 	=> 'คุณต้องการลบข้อมูลสินค้าใบเบิกหรือไม่?',
-		'cancel_message' 	=> 'ยกเลิกการลบข้อมูลสินค้าใบเบิก',
+		'create_success' 	=> 'Create product is successfully.',
+		'update_success' 	=> 'Update product is successfully.',
+		'delete_success' 	=> 'Delete product is successfully.',
+		'delete_unsuccess' 	=> 'Can\'t delete product, Product is proccesses.',
+		'delete_confirm' 	=> 'Are you sure for delete product?',
+		'cancel_message' 	=> 'Cancel for delete product.',
 	],
 ];

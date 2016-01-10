@@ -1,5 +1,5 @@
 $(function(){
-	$('form').submit(function(e){
+	$('form#upload-file-excel').submit(function(e){
 		e.preventDefault();
 
 		var that = $(this);

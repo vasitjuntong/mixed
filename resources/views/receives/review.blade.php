@@ -27,98 +27,24 @@
 
 	@include('receives.partial.review_paper')
 	@include('receives.partial.review_table')
-	<div class="panel panel-default">
-		<div class="panel-body hidden-print">
-		  	<div class="btn-group" role="group" aria-label="...">
-				<a class="btn btn-warning btn-sm" href="/receives">
-					<i class="fa fa-chevron-left"></i>
-					{{ trans('receive.buttons.back_to_receive') }}
-				</a>
-			</div>
-			<div class="btn-group pull-right" role="group" aria-label="...">
-				<a class="btn btn-success btn-sm" id="invoicePrint">
-	    			<i class="fa fa-print"></i> Print
-				</a>
-				<div class="btn-group">
-				  	<button type="button" 
-				  		class="btn btn-default btn-sm dropdown-toggle" 
-			  			data-toggle="dropdown" 
-			  			aria-expanded="false">
-			  			<i class="fa fa-cog"></i>
-					    Action <span class="caret"></span>
-				  	</button>
-				  	<ul class="dropdown-menu dropdown-menu-right">
-				    	<li>
-				    		<a href="/receives/{{ $receive->id }}/edit">
-				    			<i class="fa fa-edit"></i>
-				    			{{ trans('receive.buttons.update') }}
-			    			</a>
-			    		</li>
-				  		@if($receive->status == \App\Receive::PADDING)
-				  			<li class="divider"></li>
-					    	<li>
-					    		<a href="/receives/status-success/{{ $receive->id }}">
-					    			<i class="fa fa-flag fa-lg"></i>
-					    			{{ trans('receive.buttons.process_success') }}
-				    			</a>
-				    		</li>
-				    	@endif
-
-				    	@if($receive->status == \App\Receive::CREATE)
-				  			<li class="divider"></li>
-					    	<li>
-							   	{!! Form::open([
-							   		'id' => 'process_padding',
-							   		'method' => 'post',
-							   		'url' => "/receives/status-padding/{$receive->id}",
-							   		'class' => 'form-confirm',
-							   		'data-title-confirm' => trans('receive.message_alert.review_confirm'),
-							   		'data-message-cancel' => trans('receive.message_alert.review_cancel'),
-							   		'data-confirm-ok' => trans('main.confirm_button.ok'),
-							   		'data-confirm-cancel' => trans('main.confirm_button.cancel')
-							   	]) !!}
-
-						   		<a href id="process_padding">
-						   			<i class="fa fa-flag fa-lg"></i> 
-						   			{{ trans('receive.buttons.process_padding') }}</a>
-
-							   	{!! Form::close() !!}
-				    		</li>
-				    	@endif
-				  	</ul>
-				</div>
-
-				@if($receive->status == \App\Receive::CREATE)
-		    		<a class="btn btn-info btn-sm" href="/receives/add-products/{{ $receive->id }}">
-		    			<i class="fa fa-plus"></i> {{ trans('receive.buttons.add_product') }}
-					</a>
-				@endif
-			</div>
-		</div>
-	</div>
-</div>
+	@include('receives.partial.review_panel')
 
 @endsection
 
 @section('style')
 	@parent
 
-	<link href="/css/chosen/chosen.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-editable.css" rel="stylesheet">
 @endsection
 
 @section('script')
 	@parent
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.min.js"></script>
-	<script type="text/javascript" src="/js/typeahead.min.js"></script>
-	<script type="text/javascript" src="/js/libs/vue_addproduct.js"></script>
-	<script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
+
 	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
+    <script src="/js/bootstrap-editable.min.js"></script>
 	<script>
 		$(function(){
-			$(".chosen-select").chosen({
-				search_contians: true
-			});
+
 			$('#invoicePrint').click(function()	{
 				window.print();
 			});
@@ -130,6 +56,31 @@
 
 				return false;
 			});
+
+            $.fn.editableform.buttons = '<button class="btn btn-success btn-sm editable-submit" type="submit"><i class="fa fa-check"></i></button>'
+                    + ' <button class="btn btn-danger btn-sm editable-cancel" type="button"><i class="fa fa-times"></i></button>';
+
+            $('a#editable-receive').editable({
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
+            $('a#editable-receive-select').editable({
+            	type: 'select',
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
 		});
 	</script>
 @endsection

@@ -32,7 +32,16 @@
 <script src="/js/endless/endless.js"></script>
 
 <script src="/js/sweetalert.min.js"></script> 
-
+<script>
+	
+		$(function(){
+	        $.ajaxSetup({
+	            headers: {
+	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	            }
+	        });
+		});
+</script>
 @if(session()->has('flash_message'))
 	<script>
 		swal({

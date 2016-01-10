@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/requisition-upload/{id}', 'RequesitionItemUploadController@index');
     Route::post('/requisition-upload/{id}', 'RequesitionItemUploadController@store');
+    Route::post('/requisitions/edit-multi/{id}', 'RequesitionController@editMulti');
 
     Route::get('/product-lists', 'ProductListController@index');
 

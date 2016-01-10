@@ -8,10 +8,10 @@
                 <a href="/"> {{ trans('main.breadcrump.home')}}</a>
             </li>
             <li><i class="fa fa-download"></i>
-                <a href="/requesitions"> {{ trans('requesition.label.name')}}</a>
+                <a href="/requisitions"> {{ trans('requesition.label.name')}}</a>
             </li>
             <li><i class="fa fa-edit"></i>
-                <a href="/requesitions/{{ $requesition->id }}/edit"> {{ trans('requesition.label.update')}}</a>
+                <a href="/requisitions/{{ $requesition->id }}/edit"> {{ trans('requesition.label.update')}}</a>
             </li>
             <li class="active">{{ trans('requesition_item.label.name') }}</li>
         </ul>
@@ -48,7 +48,7 @@
                                     {{ trans('requesition.buttons.add_product') }}
                                 </button>
                                 <a id="upload-file-excel" class="btn btn-success btn-sm"
-                                   href="/requesition-upload/{{ $requesition->id }}">
+                                   href="/requisition-upload/{{ $requesition->id }}">
                                     <span class="fa fa-file-excel-o"></span>
                                     {{ trans('requesition.buttons.upload_excel') }}
                                 </a>
@@ -65,7 +65,7 @@
                     <div class="panel-body">
                         {!! Form::open([
                                 'method' => 'post',
-                                'url' => "/requesitions/status-padding/{$requesition->id}",
+                                'url' => "/requisitions/status-padding/{$requesition->id}",
                                 'class' => 'form-confirm',
                                 'data-title-confirm' => trans('requesition.message_alert.review_confirm'),
                                 'data-message-cancel' => trans('requesition.message_alert.review_cancel'),

@@ -44,7 +44,7 @@
 			<tr>
 				<td>{{ $item->requesition->created_at->format('d/m/Y H:i') }}</td>
 				<td>
-					<a href="/requesitions/{{ $item->requesition->id }}">
+					<a href="/requisitions/{{ $item->requesition->id }}">
 						{{ $item->requesition->document_no }}
 					</a>
 				</td>

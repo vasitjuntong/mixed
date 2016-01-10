@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Response;
+use Validator;
 use App\Project;
 use App\Location;
 use App\Requesition;
@@ -64,7 +65,7 @@ class RequesitionController extends Controller
 
             return [
                 'status' => 'success',
-                'urlRedirect' => url("/requesitions/add-products/{$requesition->id}"),
+                'urlRedirect' => url("/requisitions/add-products/{$requesition->id}"),
             ];
         }
     }
@@ -81,9 +82,12 @@ class RequesitionController extends Controller
             ->where('id', $id)
             ->first();
 
+        $projectLists = Project::lists('code', 'id');
+
         return view('requesitions.show', [
             'requesition' => $requesition,
             'items' => $requesition->items,
+            'projectLists' => $projectLists,
         ]);
     }
 
@@ -138,7 +142,7 @@ class RequesitionController extends Controller
             'status' => true,
             'title' => trans('requesition.label.name'),
             'message' => trans('requesition.message_alert.status_padding_message'),
-            'url' => url("/requesitions/{$id}"),
+            'url' => url("/requisitions/{$id}"),
         ];
     }
 
@@ -158,7 +162,7 @@ class RequesitionController extends Controller
                 trans('requesition.message_alert.warning_is_not_padding')
             );
 
-            return redirect('/requesitions');
+            return redirect('/requisitions');
         }
 
         return view('requesitions.processes', [ 
@@ -188,7 +192,7 @@ class RequesitionController extends Controller
             $url = url('/requesitions');
 
             if($requesition->status != Requesition::SUCCESS){
-                $url = url("/requesitions/processes/{$requesition->id}");
+                $url = url("/requisitions/processes/{$requesition->id}");
             }
 
             app('App\Stock')->cutStock($requesition);
@@ -207,7 +211,7 @@ class RequesitionController extends Controller
                 'status' => false,
                 'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_success_unsuccess_message'),
-                'url' => url("/requesitions/status-success/{$requesition->id}"),
+                'url' => url("/requisitions/status-success/{$requesition->id}"),
             ];
         }
     }
@@ -233,7 +237,7 @@ class RequesitionController extends Controller
             $url = url('/requesitions');
 
             if($requesition->status != Requesition::SUCCESS){
-                $url = url("/requesitions/processes/{$requesition->id}");
+                $url = url("/requisitions/processes/{$requesition->id}");
             }
 
             return [
@@ -250,19 +254,63 @@ class RequesitionController extends Controller
                 'status' => false,
                 'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_cancel_unsuccess_message'),
-                'url' => url("/requesitions/processes/{$requesition->id}"),
+                'url' => url("/requisitions/processes/{$requesition->id}"),
             ];
         }
     }
 
-    public function edit($id)
+    public function editMulti()
     {
-        //
-    }
+        $rules = [
+            'project_id' => [
+                'project_id' => 'required',
+            ],
+            'site_id' => [
+                'site_id' => 'required|max:255',
+            ],
+            'site_name' => [
+                'site_name' => 'required|max:255',
+            ],
+            'receive_company_name' => [
+                'receive_company_name' => 'required|max:255',
+            ],
+            'receive_contact_name' => [
+                'receive_contact_name' => 'required|max:255',
+            ],
+            'receive_phone' => [
+                'receive_phone' => 'required|max:255',
+            ],
+            'receive_date' => [
+                'receive_date' => 'required|date_format:Y-m-d',
+            ],
+        ];
 
-    public function update(Request $request, $id)
-    {
-        //
+        $pk = request()->get('pk');
+        $value = request()->get('value');
+        $attribute = request()->get('name');
+
+        $data = [
+            $attribute => $value,
+        ];
+        
+        $validator = Validator::make($data, $rules[$attribute]);
+
+        if($validator->passes()){
+            $requisition = Requesition::find($pk);
+
+            if($attribute == 'project_id'){
+                $requisition->$attribute = $value;
+                $requisition->project_code = Project::find($value)->code;
+            }else{
+                $requisition->$attribute = $value;
+            }
+
+            $requisition->save();
+
+            return Response::json('success', 200);
+        }   
+
+        return Response::json($validator->errors()->first($attribute), 422);            
     }
 
     public function destroy($id)

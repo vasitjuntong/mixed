@@ -45,7 +45,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-	   	<a 	href="/requesitions/process-success/{{ $requesition->id }}"
+	   	<a 	href="/requisitions/process-success/{{ $requesition->id }}"
 	   		class="btn btn-success btn-sm"  
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('requesition.label.name') }}"
@@ -55,7 +55,7 @@
 	   		data-confirm-cancel="{{ trans('main.confirm_button.cancel') }}">
 	   		{{ trans('requesition.buttons.success_status') }}
    		</a>
-	   	<a 	href="/requesitions/process-cancel/{{ $requesition->id }}"
+	   	<a 	href="/requisitions/process-cancel/{{ $requesition->id }}"
 	   		class="btn btn-danger btn-sm" 
 	   		id="chk_all"
 	   		data-title-confirm="{{ trans('requesition.label.name') }}"

@@ -10,7 +10,7 @@
 			<a class="btn btn-success btn-sm" id="invoicePrint">
     			<i class="fa fa-print"></i> Print
 			</a>
-			<div class="btn-group">
+			<div class="btn-group dropup">
 			  	<button type="button" 
 			  		class="btn btn-default btn-sm dropdown-toggle" 
 		  			data-toggle="dropdown" 
@@ -19,14 +19,7 @@
 				    Action <span class="caret"></span>
 			  	</button>
 			  	<ul class="dropdown-menu dropdown-menu-right">
-			    	<li>
-			    		<a href="/receives/{{ $receive->id }}/edit">
-			    			<i class="fa fa-edit"></i>
-			    			{{ trans('receive.buttons.update') }}
-		    			</a>
-		    		</li>
 			  		@if($receive->status == \App\Receive::PADDING)
-			  			<li class="divider"></li>
 				    	<li>
 				    		<a href="/receives/status-success/{{ $receive->id }}">
 				    			<i class="fa fa-flag fa-lg"></i>
@@ -36,7 +29,6 @@
 			    	@endif
 
 			    	@if($receive->status == \App\Receive::CREATE)
-			  			<li class="divider"></li>
 				    	<li>
 						   	{!! Form::open([
 						   		'id' => 'process_padding',

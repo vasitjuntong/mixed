@@ -8,7 +8,7 @@
 			 	<a href="/"> {{ trans('main.breadcrump.home')}}</a>
 		 	</li>
 		 	<li><i class="fa fa-download"></i>
-			 	<a href="/requesitions"> {{ trans('requesition.label.name')}}</a>
+			 	<a href="/requisitions"> {{ trans('requesition.label.name')}}</a>
 		 	</li>
 		 	<li class="active">{{ trans('requesition.label.review') }}</li>	 
 		</ul>
@@ -31,10 +31,17 @@
 
 @endsection
 
+@section('style')
+	@parent
+
+    <link href="/css/bootstrap-editable.css" rel="stylesheet">
+@endsection
+
 @section('script')
 	@parent
 	
 	<script type="text/javascript" src="/js/libs/form_confirm.js"></script>
+    <script src="/js/bootstrap-editable.min.js"></script>
 	<script>
 		$(function(){
 			$('#invoicePrint').click(function()	{
@@ -48,6 +55,46 @@
 
 				return false;
 			});
+
+            $.fn.editableform.buttons = '<button class="btn btn-success btn-sm editable-submit" type="submit"><i class="fa fa-check"></i></button>'
+                    + ' <button class="btn btn-danger btn-sm editable-cancel" type="button"><i class="fa fa-times"></i></button>';
+
+            $('a#editable-requisition').editable({
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
+
+            $('a#editable-requisition-select').editable({
+            	type: 'select',
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
+
+            $('a#editable-requisition-date').editable({
+            	type: 'date',
+            	format: 'yyyy-mm-dd',    
+        		viewformat: 'dth M yyyy',
+                success: function (response, newValue) {
+                    if (response.status == 'error') return response.mgs;
+                    console.log(response);
+                },
+                error: function (response) {
+                	console.log(response.responseText);
+                    return response.responseText;
+                }
+            });
 		});
 	</script>
 @endsection

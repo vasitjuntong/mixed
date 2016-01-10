@@ -7,7 +7,7 @@
 			 	<a href="/"> {{ trans('main.breadcrump.home') }}</a>
 		 	</li>
 		 	<li><i class="fa fa-download"></i>
-			 	<a href="/requesitions"> {{ trans('requesition.label.name') }}</a>
+			 	<a href="/requisitions"> {{ trans('requesition.label.name') }}</a>
 		 	</li>
 		 	<li class="active">{{ trans('requesition.label.movement') }}</li>	 
 		</ul>

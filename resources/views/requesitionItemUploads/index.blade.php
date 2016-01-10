@@ -6,7 +6,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open([
-                    'url' => "/requesition-upload/{$requesition->id}",
+                    'url' => "/requisition-upload/{$requesition->id}",
                     'files' => true,
                     'id' => 'upload-file-excel',
                     'class' => 'form-horizontal',
@@ -33,7 +33,7 @@
                             </button>
                         </div>
                         <div class="btn-group">
-                            <a href="/file-examples/requesition_item_ex.xlsx">
+                            <a href="/file-examples/requisition_item_ex.xlsx">
                                 <span class="fa fa-file-excel-o"></span>
                                 File example
                             </a>

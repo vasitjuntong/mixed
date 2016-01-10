@@ -442,7 +442,7 @@ class ReceiveController extends Controller
                 $receive->$attribute = $value;
                 $receive->project_code = Project::find($value)->code;
             }else{
-
+                $receive->$attribute = $value;
             }
 
             $receive->save();

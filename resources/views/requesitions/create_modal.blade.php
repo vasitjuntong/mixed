@@ -5,7 +5,7 @@
 				{{ csrf_field()}}
 				{!! Form::open([
 					'method' 	=> 'post',
-					'url' 		=> '/requesitions',
+					'url' 		=> '/requisitions',
 				]) !!}
 					
 					@include('requesitions.partial.form')

@@ -5,6 +5,31 @@ namespace App;
 use Image;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Product
+ *
+ * @property-read mixed $on_hand
+ * @property-read mixed $on_stock
+ * @property-read mixed $on_order
+ * @property-read \App\Unit $unit
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Stock[] $stock
+ * @property-read \App\ProductType $productType
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ReceiveItem[] $receiveItems
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\RequesitionItem[] $requesitionItems
+ * @property integer $id
+ * @property integer $product_type_id
+ * @property integer $unit_id
+ * @property string $mix_no
+ * @property string $code
+ * @property string $description
+ * @property integer $stock_min
+ * @property string $use_serial_no
+ * @property string $pic_path
+ * @property string $thumbnail_path
+ * @property string $pic_name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class Product extends Model
 {
     const USE_SERIAL_NO = 'use_serian_no';

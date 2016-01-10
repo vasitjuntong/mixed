@@ -5,6 +5,15 @@ namespace App;
 use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Unit
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property integer $id
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class Unit extends Model
 {
     protected $fillable = [

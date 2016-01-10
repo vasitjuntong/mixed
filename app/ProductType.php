@@ -4,6 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\ProductType
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property integer $id
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class ProductType extends Model
 {
     protected $table = 'product_types';

@@ -4,6 +4,18 @@ namespace App;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Stock
+ *
+ * @property-read \App\Product $product
+ * @property-read \App\Location $location
+ * @property integer $id
+ * @property integer $product_id
+ * @property integer $location_id
+ * @property integer $qty
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class Stock extends Model
 {
     protected $fillable = ['product_id', 'location_id', 'qty'];

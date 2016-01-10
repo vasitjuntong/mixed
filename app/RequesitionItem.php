@@ -5,6 +5,28 @@ namespace App;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\RequesitionItem
+ *
+ * @property-read \App\Requesition $requesition
+ * @property-read \App\Product $product
+ * @property-read \App\Location $location
+ * @property integer $id
+ * @property integer $requesition_id
+ * @property integer $product_id
+ * @property string $group
+ * @property string $number
+ * @property string $mix_no
+ * @property string $product_code
+ * @property string $product_description
+ * @property integer $location_id
+ * @property string $location_name
+ * @property integer $qty
+ * @property string $remark
+ * @property string $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class RequesitionItem extends Model
 {
     const CREATE = 'create';

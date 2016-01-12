@@ -98,7 +98,8 @@ class RequesitionController extends Controller
                 'items',
             ])
             ->where('id', $id)
-            ->first();
+            ->whereStatus(RequesitionItem::CREATE)
+            ->firstOrFail();
 
         $locations = Location::lists('name', 'id');
 
@@ -130,10 +131,14 @@ class RequesitionController extends Controller
                 'items',
             ])
             ->where('id', $id)
-            ->first();
+            ->whereStatus(Requesition::CREATE)
+            ->firstOrFail();
 
-        $requesition->items()
-            ->update(['status' => RequesitionItem::PADDING]);
+        foreach($requesition->items as $item){
+            $item->status = RequesitionItem::PADDING;
+
+            $item->save();
+        }
 
         $requesition->status = Requesition::PADDING;
         $requesition->save();
@@ -189,7 +194,7 @@ class RequesitionController extends Controller
                 $requesition->setStatusSuccess($request->get('requesition_item_ids'));
             });
 
-            $url = url('/requesitions');
+            $url = url('/requisitions');
 
             if($requesition->status != Requesition::SUCCESS){
                 $url = url("/requisitions/processes/{$requesition->id}");
@@ -234,7 +239,7 @@ class RequesitionController extends Controller
                 $requesition->setStatusCancel($request->get('requesition_item_ids'));
             });
 
-            $url = url('/requesitions');
+            $url = url('/requisitions');
 
             if($requesition->status != Requesition::SUCCESS){
                 $url = url("/requisitions/processes/{$requesition->id}");

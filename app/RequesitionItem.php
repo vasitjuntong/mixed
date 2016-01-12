@@ -49,6 +49,40 @@ class RequesitionItem extends Model
         'status',
     ];
 
+    public static function boot()
+    {
+        static::created(function($model) {
+            MovementAll::create([
+                'table_id' => $model->id,
+                'type' => MovementAll::TYPE_REQUISITION,
+                'project' => $model->requesition->project->code,
+                'dn' => $model->requesition->document_no,
+                'product_mix_no' => $model->product->mix_no,
+                'product_description' => $model->product->description,
+                'product_qty' => $model->qty,
+                'product_unit' => $model->product->unit->name,
+                'location_or_site_name' => $model->requesition->site_name,
+                'status' => $model->status,
+            ]);
+        });
+
+
+        static::updated(function($model) {
+            MovementAll::create([
+                'table_id' => $model->id,
+                'type' => MovementAll::TYPE_REQUISITION,
+                'project' => $model->requesition->project->code,
+                'dn' => $model->requesition->document_no,
+                'product_mix_no' => $model->product->mix_no,
+                'product_description' => $model->product->description,
+                'product_qty' => $model->qty,
+                'product_unit' => $model->product->unit->name,
+                'location_or_site_name' => $model->requesition->site_name,
+                'status' => $model->status,
+            ]);
+        });
+    }
+
     public function requesition()
     {
         return $this->belongsTo(Requesition::class);

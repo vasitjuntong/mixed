@@ -69,13 +69,39 @@ class ReceiveItem extends Model
         });
 
         static::created(function ($model) {
-
+            MovementAll::create([
+                'table_id' => $model->id,
+                'type' => MovementAll::TYPE_RECEIVE,
+                'project' => $model->receive->project->code,
+                'dn' => $model->receive->document_no,
+                'product_mix_no' => $model->product->mix_no,
+                'product_description' => $model->product->description,
+                'product_qty' => $model->qty,
+                'product_unit' => $model->product->unit->name,
+                'location_or_site_name' => $model->location->name,
+                'status' => $model->status,
+            ]);
         });
 
         static::updating(function ($model) {
             if ($model->qty == null) {
                 $model->qty = 1;
             }
+        });
+
+        static::updated(function ($model) {
+            MovementAll::create([
+                'table_id' => $model->id,
+                'type' => MovementAll::TYPE_RECEIVE,
+                'project' => $model->receive->project->code,
+                'dn' => $model->receive->document_no,
+                'product_mix_no' => $model->product->mix_no,
+                'product_description' => $model->product->description,
+                'product_qty' => $model->qty,
+                'product_unit' => $model->product->unit->name,
+                'location_or_site_name' => $model->location->name,
+                'status' => $model->status,
+            ]);
         });
     }
 

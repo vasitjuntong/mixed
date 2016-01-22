@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/requisitions/edit-multi/{id}', 'RequesitionController@editMulti');
 
     Route::get('/product-lists', 'ProductListController@index');
+    Route::controller('/product-lists/movement', 'MovementAllController');
 
     // Setting.
     Route::group(['middleware' => ['auth', 'product']], function () {

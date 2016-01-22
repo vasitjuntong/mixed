@@ -8,12 +8,7 @@
 		 	</li>
 		 	<li class="active">{{ trans('product.label.name') }}</li>	 
 		</ul>
-	</div><!-- /breadcrumb-->
-	<div class="main-header clearfix">
-		<div class="page-title">
-			<h3 class="no-margin">{{ trans('product.label.name') }}</h3>
-		</div><!-- /page-title -->			
-	</div><!-- /main-header -->
+	</div>
 @endsection
 
 @section('content')

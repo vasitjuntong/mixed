@@ -13,7 +13,11 @@
 
 @section('content')
 
-	@include('movementAll.partial.form_search')
+	<div class="panel panel-default">
+		<div class="panel-body">
+			@include('movementAll.partial.form_search')
+		</div>
+	</div>
 
 @endsection
 

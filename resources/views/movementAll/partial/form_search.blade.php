@@ -81,7 +81,7 @@
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-3">
-        <div class="form-group {{ $errors->has('created_at_end')?'has-error':'' }}">
+        <div class="form-group {{ $errors->has('created_at_start')?'has-error':'' }}">
             <label class="control-label"
                    for="created_at_start">{{ trans('movement_all.form_search.created_at_start') }}</label>
 

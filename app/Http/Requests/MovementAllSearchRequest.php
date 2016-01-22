@@ -6,6 +6,7 @@ use App\Http\Requests\Request;
 
 class MovementAllSearchRequest extends Request
 {
+    protected $redirect = '/product-lists/movement';
     /**
      * Determine if the user is authorized to make this request.
      *

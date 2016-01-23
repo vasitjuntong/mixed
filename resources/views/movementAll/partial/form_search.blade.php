@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="control-label" for="document_no">{{ trans('movement_all.form_search.document_no') }}</label>
             {!! Form::text('dn', array_get($filter, 'dn') ?: null, [
-                'class' => 'form-control',
+                'class' => 'form-control input-sm',
             ]) !!}
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="form-group">
             <label class="control-label" for="po_no">{{ trans('movement_all.form_search.po_no') }}</label>
             {!! Form::text('po_no', array_get($filter, 'po_no') ?: null, [
-                'class' => 'form-control',
+                'class' => 'form-control input-sm',
             ]) !!}
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label class="control-label" for="project">{{ trans('movement_all.form_search.project') }}</label>
             {!! Form::text('project', array_get($filter, 'project') ?: null, [
-                'class' => 'form-control',
+                'class' => 'form-control input-sm',
             ]) !!}
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="form-group">
             <label class="control-label" for="mix_no">{{ trans('movement_all.form_search.mix_no') }}</label>
             {!! Form::text('mix_no', array_get($filter, 'mix_no') ?: null, [
-                'class' => 'form-control',
+                'class' => 'form-control input-sm',
             ]) !!}
         </div>
     </div>
@@ -87,7 +87,7 @@
 
             <div class='input-group date'>
                 {!! Form::text('created_at_start', array_get($filter, 'created_at_start') ?: null, [
-                    'class' => 'form-control',
+                    'class' => 'form-control input-sm',
                     'id' => 'datetimepicker-start',
                 ]) !!}
                 <span class="input-group-addon">
@@ -109,7 +109,7 @@
 
             <div class='input-group date'>
                 {!! Form::text('created_at_end', array_get($filter, 'created_at_end') ?: null, [
-                    'class' => 'form-control',
+                    'class' => 'form-control input-sm',
                     'id' => 'datetimepicker-end',
                 ]) !!}
                 <span class="input-group-addon">

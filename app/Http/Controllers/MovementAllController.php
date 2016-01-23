@@ -34,7 +34,6 @@ class MovementAllController extends Controller
 
         $model = MovementAll::whereFilter($filter, $item_status, $orderBy);
 
-//        dd($model->toArray());
         return view('movementAll.search', [
             'model'       => $model,
             'filter'      => $filter,

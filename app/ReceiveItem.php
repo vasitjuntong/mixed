@@ -74,6 +74,9 @@ class ReceiveItem extends Model
                 'type' => MovementAll::TYPE_RECEIVE,
                 'project' => $model->receive->project->code,
                 'dn' => $model->receive->document_no,
+                'po_no' => $model->receive->po_no,
+                'ref_no' => $model->receive->ref_no,
+                'created_by' => auth()->user()->name,
                 'product_mix_no' => $model->product->mix_no,
                 'product_description' => $model->product->description,
                 'product_qty' => $model->qty,
@@ -95,6 +98,9 @@ class ReceiveItem extends Model
                 'type' => MovementAll::TYPE_RECEIVE,
                 'project' => $model->receive->project->code,
                 'dn' => $model->receive->document_no,
+                'po_no' => $model->receive->po_no,
+                'ref_no' => $model->receive->ref_no,
+                'created_by' => auth()->user()->name,
                 'product_mix_no' => $model->product->mix_no,
                 'product_description' => $model->product->description,
                 'product_qty' => $model->qty,
@@ -103,6 +109,11 @@ class ReceiveItem extends Model
                 'status' => $model->status,
             ]);
         });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function receive()

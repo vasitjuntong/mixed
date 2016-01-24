@@ -77,6 +77,52 @@ class MovementAll extends Model
         return $model->paginate(30);
     }
 
+    public static function whereFilterAll(array $filter, $itemStatus, array $orderBy)
+    {
+        $model = static::where(function ($query) use ($filter, $itemStatus) {
+            $project = array_get($filter, 'project');
+            if ($project != null) {
+                $query->where('project', $project);
+            }
+
+            $dn = array_get($filter, 'dn');
+            if ($dn != null) {
+                $query->where('dn', 'LIKE', "%$dn%");
+            }
+
+            $productPoNo = array_get($filter, 'po_no');
+            if ($productPoNo != null) {
+                $query->where('product_po_no', 'LIKE', "%$productPoNo%");
+            }
+
+            $item_status = array_get($filter, 'item_status');
+            if ($item_status != null) {
+                $query->whereIn('status', $item_status);
+            }
+
+            $created_at_start = array_get($filter, 'created_at_start');
+            $created_at_end = array_get($filter, 'created_at_end');
+
+            if ($created_at_start != null && $created_at_end != null) {
+                $created_at_start = changeFormatDateToDb($created_at_start);
+                $created_at_end = changeFormatDateToDb($created_at_end);
+
+                $query->whereBetween('created_at', [
+                    "{$created_at_start} 00:00:00",
+                    "{$created_at_end} 23:59:59",
+                ]);
+            }
+        });
+
+        $keys = array_keys($orderBy);
+        foreach ($keys as $key) {
+            $keyReplace = str_replace('__', '.', $key);
+            $model->orderBy($keyReplace, $orderBy[$key]);
+        }
+
+        return $model->get();
+    }
+
     public function statusHtml()
     {
         return statusHtmlRender($this->status);

@@ -7,7 +7,10 @@ return [
     'attributes'  => [
         'type'                  => 'Type',
         'project'               => 'Project',
-        'dn'                    => 'Document NO',
+        'dn'                    => 'Document NO.',
+        'ref_no'                => 'Ref NO.',
+        'po_no'                 => 'PO NO.',
+        'create_by'             => 'Create By',
         'product_mix_no'        => 'Mix NO',
         'product_description'   => 'Description',
         'product_qty'           => 'Qty',

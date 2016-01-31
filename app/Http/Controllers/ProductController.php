@@ -59,11 +59,6 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
         $product = Product::find($id);
@@ -83,10 +78,10 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $data = array_except($request->all(), array(
+        $data = array_except($request->all(), [
             '_method',
             '_token',
-        ));
+        ]);
 
         if ($request->file('file') != null) {
             $product->removePic();
@@ -97,8 +92,7 @@ class ProductController extends Controller
             );
         }
 
-        $product
-            ->update($data);
+        $product->update($data);
 
         return redirect('/products');
     }

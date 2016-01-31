@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Excel\ExportExcel;
 use DB;
 use Response;
 use Validator;
@@ -64,7 +65,7 @@ class RequesitionController extends Controller
         if ($requesition) {
 
             return [
-                'status' => 'success',
+                'status'      => 'success',
                 'urlRedirect' => url("/requisitions/add-products/{$requesition->id}"),
             ];
         }
@@ -85,8 +86,8 @@ class RequesitionController extends Controller
         $projectLists = Project::lists('code', 'id');
 
         return view('requesitions.show', [
-            'requesition' => $requesition,
-            'items' => $requesition->items,
+            'requesition'  => $requesition,
+            'items'        => $requesition->items,
             'projectLists' => $projectLists,
         ]);
     }
@@ -109,8 +110,8 @@ class RequesitionController extends Controller
         }
 
         return view('requesitions.add_product', [
-            'requesition' => $requesition,
-            'items' => $requesition->items,
+            'requesition'   => $requesition,
+            'items'         => $requesition->items,
             'locationLists' => $locationLists,
         ]);
     }
@@ -134,7 +135,7 @@ class RequesitionController extends Controller
             ->whereStatus(Requesition::CREATE)
             ->firstOrFail();
 
-        foreach($requesition->items as $item){
+        foreach ($requesition->items as $item) {
             $item->status = RequesitionItem::PADDING;
 
             $item->save();
@@ -144,10 +145,10 @@ class RequesitionController extends Controller
         $requesition->save();
 
         return [
-            'status' => true,
-            'title' => trans('requesition.label.name'),
+            'status'  => true,
+            'title'   => trans('requesition.label.name'),
             'message' => trans('requesition.message_alert.status_padding_message'),
-            'url' => url("/requisitions/{$id}"),
+            'url'     => url("/requisitions/{$id}"),
         ];
     }
 
@@ -160,8 +161,8 @@ class RequesitionController extends Controller
             ->where('status', Requesition::PADDING)
             ->where('id', $id)
             ->first();
-        
-        if($requesition == null){
+
+        if ($requesition == null) {
             flash()->error(
                 trans('requesition.label.name'),
                 trans('requesition.message_alert.warning_is_not_padding')
@@ -170,53 +171,53 @@ class RequesitionController extends Controller
             return redirect('/requisitions');
         }
 
-        return view('requesitions.processes', [ 
-            'requesition'   => $requesition,
-            'items'         => $requesition->items()->paginate(20),
+        return view('requesitions.processes', [
+            'requesition' => $requesition,
+            'items'       => $requesition->items()->paginate(20),
         ]);
     }
 
     public function processSuccess(Request $request, $id)
     {
         $requesition = Requesition::with([
-                'items' => function($query){
-                    $query->where('status', RequesitionItem::PADDING);
-                },
-                'items.product',
-                'items.product.stock',
-            ])
+            'items' => function ($query) {
+                $query->where('status', RequesitionItem::PADDING);
+            },
+            'items.product',
+            'items.product.stock',
+        ])
             ->whereId($id)
             ->first();
 
-        try{
-            DB::transaction(function() use (&$requesition, $request) {
+        try {
+            DB::transaction(function () use (&$requesition, $request) {
 
                 $requesition->setStatusSuccess($request->get('requesition_item_ids'));
             });
 
             $url = url('/requisitions');
 
-            if($requesition->status != Requesition::SUCCESS){
+            if ($requesition->status != Requesition::SUCCESS) {
                 $url = url("/requisitions/processes/{$requesition->id}");
             }
 
             app('App\Stock')->cutStock($requesition);
 
             return [
-                'status' => true,
-                'title' => trans('requesition.label.name'),
+                'status'  => true,
+                'title'   => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_success_message'),
-                'url' => $url,
+                'url'     => $url,
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
 
-            Log::error('requesition-item-unsuccess', array($e));
+            Log::error('requesition-item-unsuccess', [$e]);
 
             return [
-                'status' => false,
-                'title' => trans('requesition.label.name'),
+                'status'  => false,
+                'title'   => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_success_unsuccess_message'),
-                'url' => url("/requisitions/status-success/{$requesition->id}"),
+                'url'     => url("/requisitions/status-success/{$requesition->id}"),
             ];
         }
     }
@@ -224,42 +225,42 @@ class RequesitionController extends Controller
     public function processCancel(Request $request, $id)
     {
         $requesition = Requesition::with([
-                'items' => function($query){
-                    $query->where('status', RequesitionItem::PADDING);
-                },
-                'items.product',
-                'items.product.stock',
-            ])
+            'items' => function ($query) {
+                $query->where('status', RequesitionItem::PADDING);
+            },
+            'items.product',
+            'items.product.stock',
+        ])
             ->whereId($id)
             ->first();
 
-        try{
-            DB::transaction(function() use (&$requesition, $request) {
+        try {
+            DB::transaction(function () use (&$requesition, $request) {
 
                 $requesition->setStatusCancel($request->get('requesition_item_ids'));
             });
 
             $url = url('/requisitions');
 
-            if($requesition->status != Requesition::SUCCESS){
+            if ($requesition->status != Requesition::SUCCESS) {
                 $url = url("/requisitions/processes/{$requesition->id}");
             }
 
             return [
-                'status' => true,
-                'title' => trans('requesition.label.name'),
+                'status'  => true,
+                'title'   => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_cancel_message'),
-                'url' => $url,
+                'url'     => $url,
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
 
-            Log::error('requesition-item-unsuccess', array($e));
+            Log::error('requesition-item-unsuccess', [$e]);
 
             return [
-                'status' => false,
-                'title' => trans('requesition.label.name'),
+                'status'  => false,
+                'title'   => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_cancel_unsuccess_message'),
-                'url' => url("/requisitions/processes/{$requesition->id}"),
+                'url'     => url("/requisitions/processes/{$requesition->id}"),
             ];
         }
     }
@@ -267,13 +268,13 @@ class RequesitionController extends Controller
     public function editMulti()
     {
         $rules = [
-            'project_id' => [
+            'project_id'           => [
                 'project_id' => 'required',
             ],
-            'site_id' => [
+            'site_id'              => [
                 'site_id' => 'required|max:255',
             ],
-            'site_name' => [
+            'site_name'            => [
                 'site_name' => 'required|max:255',
             ],
             'receive_company_name' => [
@@ -282,10 +283,10 @@ class RequesitionController extends Controller
             'receive_contact_name' => [
                 'receive_contact_name' => 'required|max:255',
             ],
-            'receive_phone' => [
+            'receive_phone'        => [
                 'receive_phone' => 'required|max:255',
             ],
-            'receive_date' => [
+            'receive_date'         => [
                 'receive_date' => 'required|date_format:Y-m-d',
             ],
         ];
@@ -297,29 +298,41 @@ class RequesitionController extends Controller
         $data = [
             $attribute => $value,
         ];
-        
+
         $validator = Validator::make($data, $rules[$attribute]);
 
-        if($validator->passes()){
+        if ($validator->passes()) {
             $requisition = Requesition::find($pk);
 
-            if($attribute == 'project_id'){
+            if ($attribute == 'project_id') {
                 $requisition->$attribute = $value;
                 $requisition->project_code = Project::find($value)->code;
-            }else{
+            } else {
                 $requisition->$attribute = $value;
             }
 
             $requisition->save();
 
             return Response::json('success', 200);
-        }   
+        }
 
-        return Response::json($validator->errors()->first($attribute), 422);            
+        return Response::json($validator->errors()->first($attribute), 422);
     }
 
-    public function destroy($id)
+    public function downloadExcel(ExportExcel $excel, $id)
     {
-        //
+        $model = Requesition::getOnce($id);
+
+        foreach ($model->items as $item) {
+            $excel->add([
+                'group'   => $item->group,
+                'number'  => $item->number,
+                'product' => $item->product_code,
+                'qty'     => $item->qty,
+                'unit'    => $item->product->unit->name,
+            ]);
+        }
+
+        $excel->download();
     }
 }

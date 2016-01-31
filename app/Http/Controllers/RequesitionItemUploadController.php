@@ -53,7 +53,7 @@ class RequesitionItemUploadController extends Controller
 
             return [
                 'status'      => 'success',
-                'urlRedirect' => url("/requesitions/add-products/{$id}"),
+                'urlRedirect' => url("/requisitions/add-products/{$id}"),
             ];
         }
 

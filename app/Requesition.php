@@ -130,11 +130,11 @@ class Requesition extends Model
             if (in_array($item->id, $items)) {
                 $item->status = RequesitionItem::CANCEL;
 
-                if($item->save()){
+                if ($item->save()) {
                     Log::info('Requesition-item: set canel item', [
                         'requesition_id' => $item->requesition_id,
-                        'product_id' => $item->product_id,
-                        'location_id' => $item->location_id,
+                        'product_id'     => $item->product_id,
+                        'location_id'    => $item->location_id,
                     ]);
                 }
             }
@@ -177,7 +177,7 @@ class Requesition extends Model
 
         if (is_null($requesitionNumber)) {
             RequesitionNumber::create([
-                'name' => $prefix,
+                'name'   => $prefix,
                 'number' => $number,
             ]);
         } else {
@@ -207,5 +207,19 @@ class Requesition extends Model
                 return $number;
                 break;
         }
+    }
+
+    public static function getOnce($id)
+    {
+        return static::with([
+            'items' => function ($query) {
+                $query->orderBy('group', 'asc');
+                $query->orderBy('number', 'asc');
+            },
+            'items.product',
+            'items.product.unit',
+        ])
+            ->where('id', $id)
+            ->first();
     }
 }

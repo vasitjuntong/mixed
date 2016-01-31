@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Excel\ExportExcel;
 use DB;
 use Response;
 use Validator;
@@ -12,6 +11,7 @@ use App\Requesition;
 use App\RequesitionItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Excel\ExportExcelRequisition;
 use App\Http\Requests\RequesitionCreateRequest;
 use App\Http\Requests\RequesitionItemAddProductRequest;
 
@@ -319,7 +319,7 @@ class RequesitionController extends Controller
         return Response::json($validator->errors()->first($attribute), 422);
     }
 
-    public function downloadExcel(ExportExcel $excel, $id)
+    public function downloadExcel(ExportExcelRequisition $excel, $id)
     {
         $model = Requesition::getOnce($id);
 

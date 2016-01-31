@@ -4,7 +4,7 @@ namespace App\Excel;
 
 use Excel;
 
-class ExportExcel
+abstract class ExportExcel
 {
     protected $data = [];
     protected $fileName = 'requesition';
@@ -16,16 +16,7 @@ class ExportExcel
         return $this;
     }
 
-    protected function columns()
-    {
-        return [
-            'group'   => 'Group',
-            'number'  => 'Number',
-            'product' => 'Product',
-            'qty'     => 'QTY',
-            'unit'    => 'Unit',
-        ];
-    }
+    abstract protected function columns();
 
     public function add(array $data)
     {

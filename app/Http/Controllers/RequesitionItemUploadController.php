@@ -38,6 +38,7 @@ class RequesitionItemUploadController extends Controller
 
         $file = $request->file('file');
         $upload->upload($file->getRealPath(), $id);
+
         if (empty($upload->getErrors()) && !empty($upload->getData())) {
             $responseSave = $upload->save($requesition);
 

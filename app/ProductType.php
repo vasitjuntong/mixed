@@ -55,6 +55,6 @@ class ProductType extends Model
 
     public static function listSelect()
     {
-
+        return static::lists('name', 'id');
     }
 }

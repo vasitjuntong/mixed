@@ -27,8 +27,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $productTypes = ProductType::orderBy('id', 'desc')
-            ->lists('name', 'id');
+        $productTypes = ProductType::listSelect();
         $units = Unit::orderBy('id', 'desc')
             ->lists('name', 'id');
 

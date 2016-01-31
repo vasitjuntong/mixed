@@ -95,16 +95,7 @@
 				"bJQueryUI": true,
 				"sPaginationType": "full_numbers",
                 "order": [[ 0, "desc" ]],
-                "aoColumns": [
-                    { "sType": "date" },
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                ]
+
 			});
 		});
 	</script>

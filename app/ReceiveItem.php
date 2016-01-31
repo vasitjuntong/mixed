@@ -93,21 +93,14 @@ class ReceiveItem extends Model
         });
 
         static::updated(function ($model) {
-            MovementAll::create([
-                'table_id' => $model->id,
-                'type' => MovementAll::TYPE_RECEIVE,
-                'project' => $model->receive->project->code,
-                'dn' => $model->receive->document_no,
-                'po_no' => $model->receive->po_no,
-                'ref_no' => $model->receive->ref_no,
-                'created_by' => auth()->user()->name,
-                'product_mix_no' => $model->product->mix_no,
-                'product_description' => $model->product->description,
-                'product_qty' => $model->qty,
-                'product_unit' => $model->product->unit->name,
-                'location_or_site_name' => $model->location->name,
-                'status' => $model->status,
-            ]);
+
+            $movement = MovementAll::where('table_id', $model->id)
+                ->where('type', MovementAll::TYPE_RECEIVE)
+                ->first();
+
+            $movement->status = $model->status;
+            $movement->save();
+
         });
     }
 

@@ -34,7 +34,7 @@
 	            
 	           <div class="row">
 		           	<div class="col-md-12"> 
-		      			<button type="submit" class="btn btn-success btn-sm">
+		      			<button id="btn-create-product" type="submit" class="btn btn-success btn-sm">
 		      				<i class="fa fa-plus"></i>
 		      				{{ trans('product.buttons.create') }}
 		      			</button>

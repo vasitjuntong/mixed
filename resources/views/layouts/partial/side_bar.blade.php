@@ -87,7 +87,7 @@
 
 			@if(hasRole('setting'))
 				<li class="openable {{ urlActive('setting')? 'active openable':'' }}">
-					<a href="#">
+					<a id="side-bar-setting" href="#">
 						<span class="menu-icon">
 							<i class="fa fa-cog fa-lg"></i> 
 						</span>
@@ -101,7 +101,7 @@
 							<li
 								class="{{ activeMenu(['products', 'products/*']) ? 'active':'' }}"
 							>
-								<a href="/products">
+								<a id="side-bar-product" href="/products">
 									<span class="submenu-label">{{ trans('main.side_menu.product') }}</span>
 								</a>
 							</li>

@@ -71,21 +71,13 @@ class RequesitionItem extends Model
 
 
         static::updated(function($model) {
-            MovementAll::create([
-                'table_id' => $model->id,
-                'type' => MovementAll::TYPE_REQUISITION,
-                'project' => $model->requesition->project->code,
-                'dn' => $model->requesition->document_no,
-                'po_no' => $model->requesition->po_no,
-                'ref_no' => $model->requesition->ref_no,
-                'created_by' => auth()->user()->name,
-                'product_mix_no' => $model->product->mix_no,
-                'product_description' => $model->product->description,
-                'product_qty' => $model->qty,
-                'product_unit' => $model->product->unit->name,
-                'location_or_site_name' => $model->requesition->site_name,
-                'status' => $model->status,
-            ]);
+
+            $movement = MovementAll::where('table_id', $model->id)
+                ->where('type', MovementAll::TYPE_REQUISITION)
+                ->first();
+
+            $movement->status = $model->status;
+            $movement->save();
         });
     }
 
@@ -359,10 +351,10 @@ class RequesitionItem extends Model
             $data['qty'] = $qty_hold;
             $data['location_id'] = $stock->location_id;
             $data['location_name'] = $stock->location->name;
-            $data['status'] = self::CREATE;
+            $data['status'] = static::CREATE;
 
             if(! $this->checkItemInRequest($id, $product_code, $stock->location_id)){
-                if(self::create($data)){
+                if(static::create($data)){
                     $stock->qty = $stock->qty - $qty_hold;
                     // $stock->save();
                 }

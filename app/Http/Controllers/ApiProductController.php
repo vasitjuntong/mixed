@@ -46,7 +46,6 @@ class ApiProductController extends Controller
         $products = $this->product->with([
             'unit',
         ])
-            ->orderBy('code', 'desc')
             ->get(['id', 'unit_id', 'code', 'mix_no', 'description']);
 
         foreach ($products as $product) {

@@ -27,7 +27,7 @@
 			<label for="type1" class="control-label">
 				{{ trans('product.attributes.product_type_id') }}
 			</label>
-			<select name="product_type_id" class="form-control chosen-select">
+			<select id="select-product-type" name="product_type_id" class="form-control chosen-select">
 
 				<option value="">
 					{{ trans('main.label.select') }}
@@ -57,7 +57,7 @@
 			<label for="type1" class="control-label">
 				{{ trans('product.attributes.unit_id') }}
 			</label>
-			<select class="form-control chosen-select" name="unit_id">
+			<select id="select-unit" class="form-control chosen-select" name="unit_id">
 
 				<option value="">
 					{{ trans('main.label.select') }}

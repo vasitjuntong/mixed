@@ -38,7 +38,7 @@
 
 	<div class="col-md-12">
 		<div class="form-group">
-			<button class="btn btn-info btn-sm">
+			<button id="btn-search-product" class="btn btn-info btn-sm">
 				<i class="fa fa-search"></i>
 				{{ trans('product.buttons.search') }}
 			</button>

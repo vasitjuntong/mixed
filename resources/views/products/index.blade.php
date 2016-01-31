@@ -14,7 +14,7 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-body">
-	   	<a href="/products/create" class="btn btn-info btn-sm">
+	   	<a id="btn-create-product" href="/products/create" class="btn btn-info btn-sm">
 	   		<i class="fa fa-plus"></i>
 	   		{{ trans('product.buttons.create') }}
    		</a>

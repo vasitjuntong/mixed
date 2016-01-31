@@ -7,7 +7,7 @@
             </a>
         </div>
         <div class="btn-group pull-right" role="group" aria-label="...">
-            <a class="btn btn-success btn-sm" id="invoicePrint">
+            <a href="/requisitions/download-excel/{{ $requesition->id }}" class="btn btn-success btn-sm">
                 <i class="fa fa-file-excel-o"></i> Export Excel
             </a>
             <a class="btn btn-success btn-sm" id="invoicePrint">

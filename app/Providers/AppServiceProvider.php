@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Notify;
 use App\Product;
 use Illuminate\Support\ServiceProvider;
 use Validator;
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('layouts.partial.top_nav', function($view){
+            $view->with('notifies', Notify::latest()->where('read', 0)->limit(10)->get());
+        });
+
         Validator::extend('qtyOver', function ($attribute, $value, $parameters, $validator) {
             $product = Product::where('code', $parameters[1])
                 ->first(['id']);

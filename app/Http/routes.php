@@ -1,8 +1,11 @@
 <?php
 
-get('set-padding/{id}', function($id){
+use App\Events\ProductOutOfStock;
+use App\Notify;
+
+get('set-padding/{id}', function ($id) {
     $model = App\Requesition::find($id);
-    foreach($model->items as $item){
+    foreach ($model->items as $item) {
         $item->status = 'padding';
         $item->save();
     }
@@ -10,6 +13,11 @@ get('set-padding/{id}', function($id){
     $model->status = 'padding';
 
     $model->save();
+});
+
+get('test-event', function () {
+    $product = App\Product::find(1);
+    event(new ProductOutOfStock($product));
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -107,4 +115,14 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['prefix' => 'api'], function () {
     Route::get('product/{product_code}', 'ApiProductController@show');
     Route::get('product-typeahead', 'ApiProductController@typeahead');
+});
+
+Route::get('read-notify/{id}', function ($id) {
+    $notify = Notify::find($id);
+    $notify->read = 1;
+    $notify->save();
+
+    return Response::json([
+        'status' => 'success',
+    ], 200);
 });

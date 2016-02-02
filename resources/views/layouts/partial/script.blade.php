@@ -5,10 +5,10 @@
 <script src="/bootstrap/js/bootstrap.js"></script>
 
 <!-- Datatable -->
-<script src='/js/jquery.dataTables.min.js'></script>	
+<script src='/js/jquery.dataTables.min.js'></script>
 
 <!-- Colorbox -->
-<script src='/js/jquery.colorbox.min.js'></script>	
+<script src='/js/jquery.colorbox.min.js'></script>
 
 <!-- Sparkline -->
 <script src='/js/jquery.sparkline.min.js'></script>
@@ -31,25 +31,42 @@
 <!-- Endless -->
 <script src="/js/endless/endless.js"></script>
 
-<script src="/js/sweetalert.min.js"></script> 
+<script src="/js/sweetalert.min.js"></script>
 <script>
-	
-		$(function(){
-	        $.ajaxSetup({
-	            headers: {
-	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	            }
-	        });
-		});
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("a[id^='notify_id_']").click(function (e) {
+            e.preventDefault();
+
+            var notify = $(this);
+            var link = notify.attr('href');
+            var notifyId = notify.attr('data-notify-id');
+
+            $.ajax({
+                type: 'get',
+                url: '/read-notify/' + notifyId,
+                success: function (response) {
+                    if (response.status == 'success') {
+                        window.location.href = link;
+                    }
+                }
+            });
+        });
+    });
+
 </script>
 @if(session()->has('flash_message'))
-	<script>
-		swal({
-			title: "{!! session()->get('flash_message.title') !!}",
-			text: "{!! session()->get('flash_message.message') !!}",
-			type: "{!! session()->get('flash_message.level') !!}",
-			timer: 3000,
-			showConfirmButton: false
-		});
-	</script>
+    <script>
+        swal({
+            title: "{!! session()->get('flash_message.title') !!}",
+            text: "{!! session()->get('flash_message.message') !!}",
+            type: "{!! session()->get('flash_message.level') !!}",
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
 @endif

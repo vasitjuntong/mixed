@@ -51,6 +51,7 @@
 			$('#dataTables').dataTable( {
 				"bJQueryUI": true,
 				"sPaginationType": "full_numbers",
+				"oSearch": {"sSearch": '{{ request()->get('search') }}'},
                 "order": [[ 0, "desc" ]],
                 "aoColumns": [
                     { "sType": "date" },

@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+
+use App\Events\ProductOutOfStock;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,67 +22,86 @@ class Stock extends Model
 {
     protected $fillable = ['product_id', 'location_id', 'qty'];
 
-	public function product()
-	{
-		return $this->belongsTo(Product::class);
-	}
-	public function location()
-	{
-		return $this->belongsTo(Location::class);
-	}
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
-	public function cutStock(Requesition $requesition)
-	{
-		$error = false;
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 
-		$items = $requesition->items()
-			->where('status', Requesition::SUCCESS)
-			->get();
+    public function cutStock(Requesition $requesition)
+    {
+        $error = false;
 
-		foreach($items as $item){
-			$stockTem["{$item->product_id}_{$item->location_id}"] = self::where('product_id', $item->product_id)
-				->where('location_id', $item->location_id)
-				->first();
+        $items = $requesition->items()
+            ->where('status', Requesition::SUCCESS)
+            ->get();
 
-			$stock = $stockTem["{$item->product_id}_{$item->location_id}"];
+        foreach ($items as $item) {
+            $stockTem["{$item->product_id}_{$item->location_id}"] = self::where('product_id', $item->product_id)
+                ->where('location_id', $item->location_id)
+                ->first();
 
-			if($stock->qty < $item->qty){
-				$error = true;
+            $stock = $stockTem["{$item->product_id}_{$item->location_id}"];
 
-				Log::warning('cus-stock: item is not enouge.', [
-					'requesition_id' => $item->requesition_id,
-					'product' => $stock->product_id,
-					'location' => $stock->location_id,
-					'item-qty' => $item->qty,
-					'stock' => $stock->qty,
-				]);
-			}
-		}
+            if ($stock->qty < $item->qty) {
+                $error = true;
 
-		if($error){
-			
-			flash()
-				->error(
-					trans('requesition.label.name'),
-					trans('requesition.message_alert.requesition_error_case_item_not_enouge')
-				);
+                Log::warning('cus-stock: item is not enouge.', [
+                    'requesition_id' => $item->requesition_id,
+                    'product'        => $stock->product_id,
+                    'location'       => $stock->location_id,
+                    'item-qty'       => $item->qty,
+                    'stock'          => $stock->qty,
+                ]);
+            }
+        }
 
-			return;
-		}
+        if ($error) {
 
-		foreach($items as $item){
-			$stock = $stockTem["{$item->product_id}_{$item->location_id}"];
-			$stock->qty = $stock->qty - $item->qty;
+            flash()
+                ->error(
+                    trans('requesition.label.name'),
+                    trans('requesition.message_alert.requesition_error_case_item_not_enouge')
+                );
 
-			Log::info('cut-stock: success', [
-				'requesition_id' => $item->requesition_id,
-				'product' => $stock->product_id,
-				'location' => $stock->location_id,
-				'item-qty' => $item->qty,
-				'stock-after-cus' => $stock->qty,
-			]);
+            return;
+        }
 
-			$stock->save();
-		}
+        foreach ($items as $item) {
+            $stock = $stockTem["{$item->product_id}_{$item->location_id}"];
+            $stock->qty = $stock->qty - $item->qty;
+
+            Log::info('cut-stock: success', [
+                'requesition_id'  => $item->requesition_id,
+                'product'         => $stock->product_id,
+                'location'        => $stock->location_id,
+                'item-qty'        => $item->qty,
+                'stock-after-cus' => $stock->qty,
+            ]);
+
+            $stock->save();
+
+            $this->checkStockByProductId($item->product_id);
+        }
+
+    }
+
+    public function checkStockByProductId($productId)
+    {
+        $stockCount = Stock::where('product_id', $productId)->sum('qty');
+        $product = Product::find($productId);
+
+        Log::debug('Check stock for notify', [
+            '$stockCount' => $stockCount,
+            '$product' => $product->toArray(),
+        ]);
+
+        if ($stockCount <= $product->stock_min) {
+            event(new ProductOutOfStock($product));
+        }
 	}
 }

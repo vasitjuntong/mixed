@@ -14,10 +14,14 @@ class CreateNotifiesTable extends Migration
     {
         Schema::create('notifies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->integer('table_id')->index();
+            $table->string('type')->index();
             $table->string('title');
             $table->string('description');
             $table->string('link');
+            $table->integer('read')
+                ->default(0)
+                ->index();
             $table->timestamps();
         });
     }

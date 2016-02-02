@@ -5,6 +5,27 @@ namespace App;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\MovementAll
+ *
+ * @property integer $id
+ * @property string $table_id
+ * @property string $type
+ * @property string $project
+ * @property string $dn
+ * @property string $ref_no
+ * @property string $po_no
+ * @property string $created_by
+ * @property string $product_mix_no
+ * @property string $product_description
+ * @property string $product_qty
+ * @property string $product_unit
+ * @property string $product_remark
+ * @property string $location_or_site_name
+ * @property string $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class MovementAll extends Model
 {
     const STATUS_CEATE = 'create';

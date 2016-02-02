@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $status
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \App\User $user
  */
 class RequesitionItem extends Model
 {

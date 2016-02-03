@@ -21,8 +21,16 @@
                 <ul class="list-group">
                     @foreach($notifies as $notify)
                         <li class="list-group-item">
-                            <h5 class="list-group-item-heading"><i class="alert-warning fa fa-warning"></i> {{ $notify->title }}</h5>
-                            <em class="list-group-item-text">{{ $notify->created_at->diffForHumans() }}</em>
+                            <a id="notify_id_{{ $notify->id }}"
+                               data-notify-id="{{ $notify->id }}"
+                               href="{{ $notify->link }}">
+                                <h5 class="list-group-item-heading">
+                                    <label class="bg-warning padding-xs">
+                                        <i class="fa fa-warning"></i>
+                                    </label>
+                                    {{ $notify->title }}</h5>
+                                <em class="list-group-item-text">{{ $notify->created_at->diffForHumans() }}</em>
+                            </a>
                         </li>
                     @endforeach
                 </ul>

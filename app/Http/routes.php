@@ -110,6 +110,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/users/assign-role/{id}', 'UserController@assignRole');
         Route::post('/users/assign-role/{id}', 'UserController@storeAssignRole');
     });
+
+    Route::controller('notifies', 'NotifyController');
 });
 
 Route::group(['prefix' => 'api'], function () {

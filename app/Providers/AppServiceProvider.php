@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.partial.top_nav', function($view){
-            $view->with('notifies', Notify::latest()->where('read', 0)->limit(10)->get());
+            $view->with('notifies', Notify::latest()->where('read', 0)->limit(5)->get());
         });
 
         Validator::extend('qtyOver', function ($attribute, $value, $parameters, $validator) {

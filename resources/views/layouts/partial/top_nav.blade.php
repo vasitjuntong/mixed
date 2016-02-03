@@ -41,7 +41,7 @@
                             </a>
                         </li>
                     @endforeach
-                    {{--<li><a href="#">View all notifications</a></li>--}}
+                    <li><a href="/notifies/all">View all notifications</a></li>
                 </ul>
             @endif
         </li>

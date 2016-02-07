@@ -102,7 +102,9 @@
                                 <li class="list-group-item clearfix">
                                     <div class="pull-left m-left-sm">
                                         <span><a href="/requisitions/{{ $requisition->id }}">{!! $requisition->statusHtml() !!}  {{ $requisition->document_no }}</a></span><br/>
-                                        <small class="text-muted"><i class="fa fa-clock-o"></i> {{ $requisition->created_at->diffForHumans() }}</small>
+                                        <small class="text-muted"><i
+                                                    class="fa fa-clock-o"></i> {{ $requisition->created_at->diffForHumans() }}
+                                        </small>
                                     </div>
                                 </li>
                             @endforeach

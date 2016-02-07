@@ -81,6 +81,16 @@
                     return response.responseText;
                 }
             });
+
+			$('a#editable-qty').editable({
+				success: function (response, newValue) {
+					if (response.status == 'error') return response.mgs;
+					console.log(response);
+				},
+				error: function (response) {
+					console.log(response);
+				}
+			});
 		});
 	</script>
 @endsection

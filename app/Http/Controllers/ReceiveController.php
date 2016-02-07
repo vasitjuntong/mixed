@@ -452,9 +452,4 @@ class ReceiveController extends Controller
 
         return Response::json($validator->errors()->first($attribute), 422);            
     }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

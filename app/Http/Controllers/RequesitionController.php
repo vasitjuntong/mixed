@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Stock;
 use DB;
-use Response;
 use Validator;
+use Response;
 use App\Project;
 use App\Location;
 use App\Requesition;
@@ -65,7 +66,7 @@ class RequesitionController extends Controller
         if ($requesition) {
 
             return [
-                'status'      => 'success',
+                'status' => 'success',
                 'urlRedirect' => url("/requisitions/add-products/{$requesition->id}"),
             ];
         }
@@ -86,8 +87,8 @@ class RequesitionController extends Controller
         $projectLists = Project::lists('code', 'id');
 
         return view('requesitions.show', [
-            'requesition'  => $requesition,
-            'items'        => $requesition->items,
+            'requesition' => $requesition,
+            'items' => $requesition->items,
             'projectLists' => $projectLists,
         ]);
     }
@@ -110,8 +111,8 @@ class RequesitionController extends Controller
         }
 
         return view('requesitions.add_product', [
-            'requesition'   => $requesition,
-            'items'         => $requesition->items,
+            'requesition' => $requesition,
+            'items' => $requesition->items,
             'locationLists' => $locationLists,
         ]);
     }
@@ -145,10 +146,10 @@ class RequesitionController extends Controller
         $requesition->save();
 
         return [
-            'status'  => true,
-            'title'   => trans('requesition.label.name'),
+            'status' => true,
+            'title' => trans('requesition.label.name'),
             'message' => trans('requesition.message_alert.status_padding_message'),
-            'url'     => url("/requisitions/{$id}"),
+            'url' => url("/requisitions/{$id}"),
         ];
     }
 
@@ -173,7 +174,7 @@ class RequesitionController extends Controller
 
         return view('requesitions.processes', [
             'requesition' => $requesition,
-            'items'       => $requesition->items()->paginate(20),
+            'items' => $requesition->items()->paginate(20),
         ]);
     }
 
@@ -204,20 +205,20 @@ class RequesitionController extends Controller
             app('App\Stock')->cutStock($requesition);
 
             return [
-                'status'  => true,
-                'title'   => trans('requesition.label.name'),
+                'status' => true,
+                'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_success_message'),
-                'url'     => $url,
+                'url' => $url,
             ];
         } catch (Exception $e) {
 
             Log::error('requesition-item-unsuccess', [$e]);
 
             return [
-                'status'  => false,
-                'title'   => trans('requesition.label.name'),
+                'status' => false,
+                'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_success_unsuccess_message'),
-                'url'     => url("/requisitions/status-success/{$requesition->id}"),
+                'url' => url("/requisitions/status-success/{$requesition->id}"),
             ];
         }
     }
@@ -247,20 +248,20 @@ class RequesitionController extends Controller
             }
 
             return [
-                'status'  => true,
-                'title'   => trans('requesition.label.name'),
+                'status' => true,
+                'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_cancel_message'),
-                'url'     => $url,
+                'url' => $url,
             ];
         } catch (Exception $e) {
 
             Log::error('requesition-item-unsuccess', [$e]);
 
             return [
-                'status'  => false,
-                'title'   => trans('requesition.label.name'),
+                'status' => false,
+                'title' => trans('requesition.label.name'),
                 'message' => trans('requesition.message_alert.status_cancel_unsuccess_message'),
-                'url'     => url("/requisitions/processes/{$requesition->id}"),
+                'url' => url("/requisitions/processes/{$requesition->id}"),
             ];
         }
     }
@@ -268,13 +269,13 @@ class RequesitionController extends Controller
     public function editMulti()
     {
         $rules = [
-            'project_id'           => [
+            'project_id' => [
                 'project_id' => 'required',
             ],
-            'site_id'              => [
+            'site_id' => [
                 'site_id' => 'required|max:255',
             ],
-            'site_name'            => [
+            'site_name' => [
                 'site_name' => 'required|max:255',
             ],
             'receive_company_name' => [
@@ -283,10 +284,10 @@ class RequesitionController extends Controller
             'receive_contact_name' => [
                 'receive_contact_name' => 'required|max:255',
             ],
-            'receive_phone'        => [
+            'receive_phone' => [
                 'receive_phone' => 'required|max:255',
             ],
-            'receive_date'         => [
+            'receive_date' => [
                 'receive_date' => 'required|date_format:Y-m-d',
             ],
         ];
@@ -319,17 +320,51 @@ class RequesitionController extends Controller
         return Response::json($validator->errors()->first($attribute), 422);
     }
 
+    public function updateQty($id, $productId, $locationId)
+    {
+        $qty = request()->get('value');
+
+        $data = [
+            'qty' => $qty,
+        ];
+
+        $rules = [
+            'qty' => 'required|integer',
+        ];
+
+        $validator = Validator::make($data, $rules);
+
+        if (!$validator->passes()) {
+            return Response::json($validator->errors()->first('qty'), 422);
+        }
+
+        $stock = Stock::where('product_id', $productId)
+            ->where('location_id', $locationId)
+            ->first(['qty']);
+
+        if($stock->qty < $qty){
+            return Response::json("Product remining {$stock->qty}.", 422);
+        }
+
+        $item = RequesitionItem::find($id);
+        $item->qty = $qty;
+
+        $item->save();
+
+        return Response::json('success', 200);
+    }
+
     public function downloadExcel(ExportExcelRequisition $excel, $id)
     {
         $model = Requesition::getOnce($id);
 
         foreach ($model->items as $item) {
             $excel->add([
-                'group'   => $item->group,
-                'number'  => $item->number,
+                'group' => $item->group,
+                'number' => $item->number,
                 'product' => $item->product_code,
-                'qty'     => $item->qty,
-                'unit'    => $item->product->unit->name,
+                'qty' => $item->qty,
+                'unit' => $item->product->unit->name,
             ]);
         }
 

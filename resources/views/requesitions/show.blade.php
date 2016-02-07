@@ -88,10 +88,8 @@
         		viewformat: 'dth M yyyy',
                 success: function (response, newValue) {
                     if (response.status == 'error') return response.mgs;
-                    console.log(response);
                 },
                 error: function (response) {
-                	console.log(response.responseText);
                     return response.responseText;
                 }
             });

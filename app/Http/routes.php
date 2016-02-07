@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/receives/edit-receive/{id}', 'ReceiveController@editReceive');
 
     Route::resource('/requisitions', 'RequesitionController');
+    Route::post('/requisition-update-qty/{id}/{product_id}/{location_id}', 'RequesitionController@updateQty');
     Route::get('/requisitions/download-excel/{id}', 'RequesitionController@downloadExcel');
     Route::get('/requisitions/add-products/{id}', 'RequesitionController@addProducts');
     Route::post('/requisitions/add-products/{id}', 'RequesitionController@storeProduct');

@@ -21,7 +21,17 @@
 				<td>{{ $item->location_name }}</td>
 				<td>{!! $item->product_description !!}</td>
 				<td>{{ $item->product->unit->name }}</td>
-				<td>{{ $item->qty }}</td>
+				<td>
+					<a href="#"
+					   id="editable-qty"
+					   data-qty="integer"
+					   data-method="get"
+					   data-pk="{{ $item->id }}"
+					   data-url="/requisition/update-qty"
+					   data-title="Enter QTY">
+						{{ $item->qty }}
+					</a>
+				</td>
 				<td>{{ $item->remark }}</td>
 				<td class="hidden-print">{!! $item->statusHtml() !!}</td>
 			</tr>

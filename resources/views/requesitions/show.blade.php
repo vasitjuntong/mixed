@@ -93,6 +93,15 @@
                     return response.responseText;
                 }
             });
+
+			$('a#editable-qty').editable({
+				success: function (response, newValue) {
+					if (response.status == 'error') return response.mgs;
+				},
+				error: function (response) {
+					return response.responseText;
+				}
+			});
 		});
 	</script>
 @endsection

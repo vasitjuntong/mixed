@@ -143,6 +143,7 @@
                     return response.responseText;
                 }
             });
+
             $(".chosen-select").chosen({
                 search_contains: true
             });

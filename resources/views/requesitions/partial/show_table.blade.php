@@ -27,7 +27,7 @@
 					   data-qty="integer"
 					   data-method="get"
 					   data-pk="{{ $item->id }}"
-					   data-url="/requisition/update-qty"
+					   data-url="/requisition-update-qty/{{ $item->id }}/{{ $item->product_id }}/{{ $item->location_id }}"
 					   data-title="Enter QTY">
 						{{ $item->qty }}
 					</a>

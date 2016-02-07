@@ -338,12 +338,14 @@ class RequesitionController extends Controller
             return Response::json($validator->errors()->first('qty'), 422);
         }
 
-        $stock = Stock::where('product_id', $productId)
+        $stock = Stock::join('products', 'stocks.product_id', '=', 'products.id')
+            ->where('product_id', $productId)
             ->where('location_id', $locationId)
-            ->first(['qty']);
+            ->first();
 
         if($stock->qty < $qty){
-            return Response::json("Product remining {$stock->qty}.", 422);
+            return Response::json("Product '{$stock->description}' remining is {$stock->qty}.",
+                422, [], JSON_UNESCAPED_UNICODE);
         }
 
         $item = RequesitionItem::find($id);

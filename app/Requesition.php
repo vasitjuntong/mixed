@@ -103,7 +103,10 @@ class Requesition extends Model
                 $item->status = RequesitionItem::SUCCESS;
 
                 Log::debug('set-status-requesition-item-success: line item', [
-                    'requesition&items' => $this->toArray(),
+                    'item_id' => $item->id,
+                    'product_code' => $item->product_code,
+                    'product_description' => $item->product_description,
+                    'qty' => $item->qty,
                 ]);
 
                 $item->save();
@@ -120,8 +123,7 @@ class Requesition extends Model
             $this->save();
         }
 
-        Log::debug('set-status-receive-item-success', [
-        ]);
+        Log::debug('set-status-receive-item-success');
     }
 
     public function setStatusCancel($items)
@@ -133,8 +135,8 @@ class Requesition extends Model
                 if ($item->save()) {
                     Log::info('Requesition-item: set canel item', [
                         'requesition_id' => $item->requesition_id,
-                        'product_id'     => $item->product_id,
-                        'location_id'    => $item->location_id,
+                        'product_id' => $item->product_id,
+                        'location_id' => $item->location_id,
                     ]);
                 }
             }
@@ -177,7 +179,7 @@ class Requesition extends Model
 
         if (is_null($requesitionNumber)) {
             RequesitionNumber::create([
-                'name'   => $prefix,
+                'name' => $prefix,
                 'number' => $number,
             ]);
         } else {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Stock;
 use DB;
-use Validator;
+use Log;
+use Exception;
 use Response;
+use App\Stock;
+use Validator;
 use App\Project;
 use App\Location;
 use App\Requesition;
@@ -191,18 +193,19 @@ class RequesitionController extends Controller
             ->first();
 
         try {
-            DB::transaction(function () use (&$requesition, $request) {
-
-                $requesition->setStatusSuccess($request->get('requesition_item_ids'));
-            });
-
             $url = url('/requisitions');
 
-            if ($requesition->status != Requesition::SUCCESS) {
-                $url = url("/requisitions/processes/{$requesition->id}");
-            }
+            DB::transaction(function () use (&$requesition, $request, &$url) {
+                $requesition->setStatusSuccess($request->get('requesition_item_ids'));
 
-            app('App\Stock')->cutStock($requesition);
+                if ($requesition->status != Requesition::SUCCESS) {
+                    $url = url("/requisitions/processes/{$requesition->id}");
+                }
+
+                if ($requesition->status == Requesition::SUCCESS) {
+                    app('App\Stock')->cutStock($requesition);
+                }
+            });
 
             return [
                 'status' => true,
@@ -211,13 +214,14 @@ class RequesitionController extends Controller
                 'url' => $url,
             ];
         } catch (Exception $e) {
-
-            Log::error('requesition-item-unsuccess', [$e]);
+            Log::error('requesition-item-unsuccess', [
+                $e
+            ]);
 
             return [
                 'status' => false,
                 'title' => trans('requesition.label.name'),
-                'message' => trans('requesition.message_alert.status_success_unsuccess_message'),
+                'message' => $e->getMessage(),
                 'url' => url("/requisitions/status-success/{$requesition->id}"),
             ];
         }

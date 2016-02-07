@@ -2,8 +2,9 @@
 
 namespace App;
 
-use App\Events\ProductOutOfStock;
 use Log;
+use Exception;
+use App\Events\ProductOutOfStock;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -61,14 +62,7 @@ class Stock extends Model
         }
 
         if ($error) {
-
-            flash()
-                ->error(
-                    trans('requesition.label.name'),
-                    trans('requesition.message_alert.requesition_error_case_item_not_enouge')
-                );
-
-            return;
+            throw new Exception(trans('requesition.message_alert.requesition_error_case_item_not_enouge'));
         }
 
         foreach ($items as $item) {

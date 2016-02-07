@@ -339,12 +339,17 @@ class RequesitionController extends Controller
         }
 
         $stock = Stock::join('products', 'stocks.product_id', '=', 'products.id')
+            ->join('locations', 'stocks.location_id', '=', 'locations.id')
             ->where('product_id', $productId)
             ->where('location_id', $locationId)
-            ->first();
+            ->first([
+                'products.description as product_description',
+                'stocks.qty as qty',
+                'locations.name as location_name'
+            ]);
 
-        if($stock->qty < $qty){
-            return Response::json("Product '{$stock->description}' remining is {$stock->qty}.",
+        if ($stock->qty < $qty) {
+            return Response::json("Product {$stock->product_description} on location {$stock->location_name} remining is {$stock->qty}.",
                 422, [], JSON_UNESCAPED_UNICODE);
         }
 

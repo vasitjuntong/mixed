@@ -86,10 +86,7 @@
             $('#dataTables').dataTable({
                 "bJQueryUI": true,
                 "sPaginationType": "full_numbers",
-                "order": [[0, "desc"]],
-                "columnDefs": [
-                    { "type": "date", targets: 0 }
-                ]
+                "order": [[0, "desc"]]
             });
         });
     </script>

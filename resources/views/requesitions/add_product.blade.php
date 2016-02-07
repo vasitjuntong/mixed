@@ -10,19 +10,9 @@
             <li><i class="fa fa-download"></i>
                 <a href="/requisitions"> {{ trans('requesition.label.name')}}</a>
             </li>
-            <li><i class="fa fa-edit"></i>
-                <a href="/requisitions/{{ $requesition->id }}/edit"> {{ trans('requesition.label.update')}}</a>
-            </li>
             <li class="active">{{ trans('requesition_item.label.name') }}</li>
         </ul>
-    </div><!-- /breadcrumb-->
-    <div class="main-header clearfix">
-        <div class="page-title">
-            <h3 class="no-margin">
-                {{ trans('requesition.label.name') }} {{ $requesition->document_no }}
-            </h3>
-        </div><!-- /page-title -->
-    </div><!-- /main-header -->
+    </div>
 
 @endsection
 

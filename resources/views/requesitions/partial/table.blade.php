@@ -16,7 +16,7 @@
 		@forelse($requesitions as $requesition)
 		
 			<tr>
-				<td>{{ $requesition->created_at->format('d/m/Y H:i') }}</td>
+				<td>{{ $requesition->created_at }}</td>
 				<td>
 					<a href="/requisitions/{{ $requesition->id }}">
 						{{ $requesition->document_no }}
@@ -24,7 +24,7 @@
 				</td>
 				<td>{{ $requesition->site_id }}</td>
 				<td>{{ $requesition->site_name }}</td>
-				<td>{{ $requesition->receive_date->format('d/m/Y H:i') }}</td>
+				<td>{{ $requesition->receive_date }}</td>
 				<td>{{ $requesition->receive_company_name }}</td>
 				<td>{{ $requesition->receive_contact_name }}</td>
 				<td>{{ $requesition->receive_phone }}</td>

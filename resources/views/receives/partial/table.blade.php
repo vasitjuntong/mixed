@@ -15,7 +15,7 @@
 		@forelse($receives as $receive)
 		
 			<tr>
-				<td>{{ $receive->created_at->format('d/m/Y H:i') }}</td>
+				<td>{{ $receive->created_at }}</td>
 				<td>
 					<a href="/receives/review/{{ $receive->id }}">
 						{{ $receive->document_no }}

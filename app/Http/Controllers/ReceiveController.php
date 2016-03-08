@@ -23,28 +23,35 @@ use App\Http\Requests\AddProductReceiveRequest;
 
 class ReceiveController extends Controller
 {
+    protected $model;
+
+    protected function __construct(Receive $receive)
+    {
+        $this->model = $receive;
+    }
+
     public function index(Request $request)
     {
         $filter = $request->all();
 
-        $receives = Receive::whereByFilterAll($filter);
+        $receives = $this->model->whereByFilterAll($filter);
 
         return view('receives.index', [
             'receives' => $receives,
             'urlDownloadExcel' => url("/receives/download-excel?{$request->getQueryString()}"),
         ]);
-}
+    }
 
     public function create(Request $request)
     {
         $projects = Project::orderBy('code', 'desc')
             ->lists('code', 'id');
 
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             return view('receives.create_modal', compact('projects'));
         }
-        
+
         return view('receives.create', compact('projects'));
     }
 
@@ -57,11 +64,11 @@ class ReceiveController extends Controller
 
         $receive = '';
 
-        DB::transaction(function() use (&$receive, $data) {
+        DB::transaction(function () use (&$receive, $data) {
             $receive = Receive::create($data);
         });
 
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             \Log::info('create-receive: success', array(
                 $receive,
@@ -79,15 +86,15 @@ class ReceiveController extends Controller
     public function addProducts($id)
     {
         $receive = Receive::with([
-                'receiveItems',
-                'receiveItems.product',
-                'receiveItems.product.unit',
-            ])
+            'receiveItems',
+            'receiveItems.product',
+            'receiveItems.product.unit',
+        ])
             ->whereId($id)
             ->whereStatus(Receive::CREATE)
             ->first();
 
-        if($receive == null){
+        if ($receive == null) {
             flash()->error(
                 trans('receive.label.name'),
                 trans('receive.message_alert.warning_receive_is_not_create')
@@ -100,7 +107,7 @@ class ReceiveController extends Controller
         $locations = Location::lists('name', 'id');
 
         $locationLists = [null => trans('main.label.select')];
-        if($locations != null)
+        if ($locations != null)
             $locationLists = $locationLists + $locations->toArray();
 
         $receiveItems = $receive->receiveItems()
@@ -108,8 +115,8 @@ class ReceiveController extends Controller
             ->get();
 
         return view('receives.add_product', compact(
-            'receive', 
-            'products', 
+            'receive',
+            'products',
             'locationLists',
             'receiveItems'
         ));
@@ -124,7 +131,7 @@ class ReceiveController extends Controller
             ->where('location_id', array_get($request->all(), 'location_id'))
             ->count();
 
-        if($count) {
+        if ($count) {
             flash()->error(
                 trans('receive.label.name'),
                 trans('receive.message_alert.warning_product_is_exists')
@@ -166,10 +173,10 @@ class ReceiveController extends Controller
     public function review($id)
     {
         $receive = Receive::with([
-                'receiveItems',  
-                'receiveItems.product',  
-                'receiveItems.product.unit',  
-            ])
+            'receiveItems',
+            'receiveItems.product',
+            'receiveItems.product.unit',
+        ])
             ->where('id', $id)
             ->first();
 
@@ -181,7 +188,7 @@ class ReceiveController extends Controller
     }
 
     public function statusPadding($id)
-    {   
+    {
         $receive = Receive::with([
             'receiveItems',
         ])
@@ -189,21 +196,21 @@ class ReceiveController extends Controller
             ->whereId($id)
             ->first();
 
-        if($receive == null){
+        if ($receive == null) {
             return [
                 'status' => false,
                 'title' => trans('receive.label.name'),
                 'message' => trans('receive.message_alert.item_is_empty'),
-                'url' => url('/receives/review/'. $id),
+                'url' => url('/receives/review/' . $id),
             ];
         }
 
-        try{
-            DB::transaction(function() use ($receive) {
+        try {
+            DB::transaction(function () use ($receive) {
                 $receive->setStatusPadding();
             });
-        } catch(Exception $e) {
-            Log::error('set-status-padding-unsuccess',[
+        } catch (Exception $e) {
+            Log::error('set-status-padding-unsuccess', [
                 $e
             ]);
 
@@ -211,28 +218,28 @@ class ReceiveController extends Controller
                 'status' => false,
                 'title' => trans('receive.label.name'),
                 'message' => trans('receive.message_alert.status_padding_unsuccess_message'),
-                'url' => url('/receives/review/'. $id),
+                'url' => url('/receives/review/' . $id),
             ];
-        } 
+        }
 
         return [
             'status' => true,
             'title' => trans('receive.label.name'),
             'message' => trans('receive.message_alert.status_padding_message'),
-            'url' => url('/receives/review/'. $id),
+            'url' => url('/receives/review/' . $id),
         ];
     }
 
     public function statusSuccess($id)
     {
         $receive = Receive::with([
-                'receiveItems',
-            ])
+            'receiveItems',
+        ])
             ->whereStatus(Receive::PADDING)
             ->whereId($id)
             ->first();
 
-        if($receive == null){
+        if ($receive == null) {
             flash()->error(
                 trans('receive.label.name'),
                 trans('receive.message_alert.warning_receive_is_not_padding')
@@ -253,22 +260,22 @@ class ReceiveController extends Controller
     public function storeStatusSuccess(Request $request, $id)
     {
         $receive = Receive::with([
-                'receiveItems',
-                'receiveItems.product',
-                'receiveItems.product.stock',
-            ])
+            'receiveItems',
+            'receiveItems.product',
+            'receiveItems.product.stock',
+        ])
             ->whereId($id)
             ->first();
 
-        try{
-            DB::transaction(function() use (&$receive, $request) {
+        try {
+            DB::transaction(function () use (&$receive, $request) {
 
                 $receive->setStatusSuccess($request->get('receive_item_ids'));
             });
 
             $url = url('/receives');
 
-            if($receive->status != Receive::SUCCESS){
+            if ($receive->status != Receive::SUCCESS) {
                 $url = url("/receives/status-success/{$receive->id}");
             }
 
@@ -278,7 +285,7 @@ class ReceiveController extends Controller
                 'message' => trans('receive.message_alert.status_success_message'),
                 'url' => $url,
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('receive-item-unsuccess', array($e));
 
@@ -294,22 +301,22 @@ class ReceiveController extends Controller
     public function storeStatusCancel(Request $request, $id)
     {
         $receive = Receive::with([
-                'receiveItems',
-                'receiveItems.product',
-                'receiveItems.product.stock',
-            ])
+            'receiveItems',
+            'receiveItems.product',
+            'receiveItems.product.stock',
+        ])
             ->whereId($id)
             ->first();
 
-        try{
-            DB::transaction(function() use (&$receive, $request) {
+        try {
+            DB::transaction(function () use (&$receive, $request) {
 
                 $receive->setStatusCancel($request->get('receive_item_ids'));
             });
 
             $url = url('/receives');
 
-            if($receive->status == Receive::PADDING){
+            if ($receive->status == Receive::PADDING) {
                 $url = url("/receives/status-success/{$receive->id}");
             }
 
@@ -319,7 +326,7 @@ class ReceiveController extends Controller
                 'message' => trans('receive.message_alert.status_cancel_message'),
                 'url' => $url,
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('receive-item-unsuccess', array($e));
 
@@ -349,7 +356,7 @@ class ReceiveController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'error', 
+                'status' => 'error',
                 'mgs' => $validator->errors()->first('value')
             ]);
         }
@@ -370,8 +377,8 @@ class ReceiveController extends Controller
 
         $datetime = date('d-m-Y_H-i');
 
-        Excel::create("receive_{$datetime}", function($excel) use ($receives) {
-            $excel->sheet('Receive', function($sheet) use ($receives) {
+        Excel::create("receive_{$datetime}", function ($excel) use ($receives) {
+            $excel->sheet('Receive', function ($sheet) use ($receives) {
                 $sheet->setAutoSize(true);
                 $sheet->row(1, array(
                     trans('receive.attributes.created_at'),
@@ -382,19 +389,19 @@ class ReceiveController extends Controller
                     trans('receive.attributes.create_by'),
                     trans('receive.attributes.remark'),
                 ));
-                    
-                $sheet->row(1, function($row){
+
+                $sheet->row(1, function ($row) {
                     $row->setBorder('solid', 'solid', 'solid', 'solid');
 
                     $row->setFont(array(
-                        'size'       => '16',
-                        'bold'       =>  true
+                        'size' => '16',
+                        'bold' => true
                     ));
                 });
 
-                 $i = 2;
+                $i = 2;
 
-                foreach($receives as $receive){
+                foreach ($receives as $receive) {
                     $sheet->row($i, array(
                         // Receive data
                         $receive->created_at->format('d/m/Y H:i'),
@@ -405,7 +412,7 @@ class ReceiveController extends Controller
                         $receive->user->name,
                         $receive->remark,
                     ));
-                    $i ++;
+                    $i++;
                 }
             });
 
@@ -433,23 +440,23 @@ class ReceiveController extends Controller
         $data = [
             $attribute => $value,
         ];
-        
+
         $validator = Validator::make($data, $rules[$attribute]);
 
-        if($validator->passes()){
+        if ($validator->passes()) {
             $receive = Receive::find($pk);
-            if($attribute == 'project_id'){
+            if ($attribute == 'project_id') {
                 $receive->$attribute = $value;
                 $receive->project_code = Project::find($value)->code;
-            }else{
+            } else {
                 $receive->$attribute = $value;
             }
 
             $receive->save();
 
             return Response::json('success', 200);
-        }   
+        }
 
-        return Response::json($validator->errors()->first($attribute), 422);            
+        return Response::json($validator->errors()->first($attribute), 422);
     }
 }

@@ -26,8 +26,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @property \Carbon\Carbon $updated_at
  */
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, HasRoles;
 
@@ -60,12 +60,12 @@ class User extends Model implements AuthenticatableContract,
     public static function deleteByCondition($id)
     {
         $query = self::with(array(
-                'receives'
-            ))
+            'receives'
+        ))
             ->whereId($id)
             ->first();
 
-        if($query->receives()->count()){
+        if ($query->receives()->count()) {
 
             Log::info('user activity: delete user is unsuccess.', [
                 'user_id' => $query->id,

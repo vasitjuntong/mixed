@@ -21,6 +21,12 @@
 
 @endsection
 
+@section('style')
+	@parent
+
+	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
+@endsection
+
 @section('script')
 	@parent
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>

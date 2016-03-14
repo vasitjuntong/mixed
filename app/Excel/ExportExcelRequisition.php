@@ -6,11 +6,11 @@ class ExportExcelRequisition extends ExportExcel
     protected function columns()
     {
         return [
-            'group'   => 'Group',
-            'number'  => 'Number',
-            'product' => 'Product',
-            'qty'     => 'QTY',
-            'unit'    => 'Unit',
+            'number'              => 'Number',
+            'product'             => 'Product',
+            'product_description' => 'Description',
+            'qty'                 => 'QTY',
+            'unit'                => 'Unit',
         ];
     }
 }

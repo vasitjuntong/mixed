@@ -369,13 +369,16 @@ class RequesitionController extends Controller
     {
         $model = Requesition::getOnce($id);
 
+        $excel->setFileName($model->document_no);
+
         foreach ($model->items as $item) {
             $excel->add([
-                'group' => $item->group,
-                'number' => $item->number,
+                'number' => $item->number ?: '-',
                 'product' => $item->product_code,
+                'product_description' => $item->product_description,
                 'qty' => $item->qty,
                 'unit' => $item->product->unit->name,
+                'remark' => $item->remark,
             ]);
         }
 

@@ -25,7 +25,7 @@ class ReceiveController extends Controller
 {
     protected $model;
 
-    protected function __construct(Receive $receive)
+    public function __construct(Receive $receive)
     {
         $this->model = $receive;
     }

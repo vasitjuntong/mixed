@@ -90,7 +90,7 @@ class MovementAllController extends Controller
                         $item->dn,
                         $item->po_no,
                         $item->ref_no,
-                        $item->project_code,
+                        $item->project,
                         $item->created_by,
 
                         // Items.
